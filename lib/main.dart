@@ -10,6 +10,7 @@ import 'package:pharma_assist/themes/app_themes.dart';
 import 'package:pharma_assist/translation/app_translations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeState.themeMode,
             supportedLocales: AppTranslation.all,
             localizationsDelegates: const [
-             // AppLocalizations.dalegate,
+              AppLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

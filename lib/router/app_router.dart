@@ -5,12 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
 import 'package:pharma_assist/screens/error/no_internet_screen.dart';
+import 'package:pharma_assist/screens/on_boarding/on_boarding_screen.dart';
 import 'package:pharma_assist/screens/splash/splash_screen.dart';
 
 class AppRouter {
   AppRouter({required this.noInternetCubit});
 
   static String get splashScreen => '/splash';
+
+  static String get onBoardingScreen => '/onBoardingscreen'; 
 
   static String get noInternetScreen => '/noInternet';
 
@@ -24,6 +27,11 @@ class AppRouter {
         path: splashScreen,
         builder: (context, state) => const SplashScreen(),
       ),
+        GoRoute(
+        path: onBoardingScreen,
+        builder: (context, state) => const OnBoardingScreen(),
+      ),
+    
       GoRoute(
         path: noInternetScreen,
         builder: (context, state) => const NoIntenetScreen(),
