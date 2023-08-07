@@ -1,4 +1,16 @@
 {
     "language": "English",
-    "splashDescription":"Never forget important medication details again. Start  now and make managing your medications a breeze."
+    "splashDescription":"Never forget important medication details again. Start  now and make managing your medications a breeze.",
+    "splashTextButton":"Get Started",
+    "onBoardingFirstTitle":"Welcome to Pharmasisst",
+    "onBoardingFirstDescription":"Pharmasisst is an easy-to-use app that helps you remember important drug details.",
+    "onBoardingSecondTitle":"Stay Informed About Your Health",
+    "onBoardingSecondDescription":"important information about your medications.",
+    "onBoardingLastTitle":"Easy-Search for Your Medications",
+    "onBoardingLastDescription":"quickly find the medications details that you need.",
+    "skip":"Skip",
+    "search":"Search drug, company etc..",
+    "companies":"Companies",
+    "see_all":"See all",
+    "categories":"Categories"
 }

@@ -1,5 +1,16 @@
 {
     "language": "arabic",
-    "splashDescription":"لا تنس تفاصيل الأدوية المهمة مجدداً. ابدأ الآن واجعل إدارة أدويتك نسيماً."
-
+    "splashDescription":"لا تنس تفاصيل الأدوية المهمة مجدداً. ابدأ الآن واجعل إدارة أدويتك نسيماً.",
+    "splashTextButton":"ابدأ الان",
+    "onBoardingFirstTitle":"مرحباً بكم في Pharmasisst",
+    "onBoardingFirstDescription":"Pharmasisst هو تطبيق سهل الاستخدام يساعدك على تذكر تفاصيل الأدوية المهمة.",
+    "onBoardingSecondTitle":" اطلع دوماً على  صحتك",
+    "onBoardingSecondDescription":"تابع معلومات مهمة عن أدويتك .",
+    "onBoardingLastTitle":"من السهل البحث عن أدويتك الخاصة",
+    "onBoardingLastDescription":"اعثر بسرعة على تفاصيل الأدوية التي تحتاجها.",
+    "Skip":"تخطي",
+    "search":"البحث عن عقار ، شركة ، إلخ..",
+    "companies":"الشركات",
+    "seeAll":"اظهار الكل",
+     "categories":"التصنيفات"
 }
