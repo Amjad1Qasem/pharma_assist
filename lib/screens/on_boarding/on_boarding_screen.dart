@@ -3,23 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnBoardingModel {
-  final String persononboarding;
-  final String backgroundonboarding;
-  final String title;
-  final String descriptions;
 
-  OnBoardingModel({
-    required this.persononboarding,
-    required this.backgroundonboarding,
-    required this.title,
-    required this.descriptions,
-  });
-}
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({super.key});
@@ -55,13 +44,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
+        appBar: 
+        AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          actions: [
+          actions: [ 
             TextButton(
                 onPressed: () {
-                  context.goNamed(AppRouter.homeScreen);
+                  context.goNamed(AppRouter.loginScreen);
                   },
                 child: Text(
                   translation(context).skip,
@@ -119,7 +109,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   FloatingActionButton(
                     onPressed: () {
                       if (isLast) {
-                        context.goNamed(AppRouter.homeScreen);
+                        context.goNamed(AppRouter.loginScreen);
                       } else {
                         onBoardController.nextPage(
                             duration: const Duration(milliseconds: 500),

@@ -38,3 +38,4 @@ abstract class LocalStoageHelper {
     return Locale(locale);
   }
 }
+

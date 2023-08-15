@@ -4,16 +4,17 @@
 import 'package:flutter/material.dart';
 
 class DefaultbButton extends StatelessWidget {
+  final String textButton;
+  final VoidCallback fun;
+  final Color color;
+  final Color colorText;
+  final double radius;
+  final double width;
+  final double height;
+  final FontWeight fontweight;
+  final double fontsize;
 
- final String textButton;
- final VoidCallback   fun;
- final Color color;
- final Color colorText;
- final double radius;
- final double width;
- final double height;
-
- const DefaultbButton({
+  const DefaultbButton({
     super.key,
     required this.textButton,
     required this.fun,
@@ -22,14 +23,15 @@ class DefaultbButton extends StatelessWidget {
     required this.radius,
     required this.width,
     required this.height,
+    required this.fontweight,
+    required this.fontsize,
   });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: width,
         height: height,
-        child: 
-        ElevatedButton(
+        child: ElevatedButton(
           style: ButtonStyle(
             alignment: Alignment.center,
             splashFactory: InkRipple.splashFactory,
@@ -43,11 +45,12 @@ class DefaultbButton extends StatelessWidget {
           onPressed: fun,
           child: Text(
             textButton,
-            style: const TextStyle(
+            style: TextStyle(
                 fontFamily: 'Nunito',
-                fontSize: 24,
-                fontWeight: FontWeight.w700),
+                fontSize: fontsize,
+                fontWeight: fontweight),
           ),
         ));
   }
 }
+        
