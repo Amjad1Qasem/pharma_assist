@@ -20,8 +20,7 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              children: [
+            Row(children: [
                 Image(
                   image: const AssetImage(
                     'assets/images/IconSplash.png',

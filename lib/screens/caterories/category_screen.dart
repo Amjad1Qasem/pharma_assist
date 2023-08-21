@@ -51,7 +51,8 @@ class CategorySreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: 
+      SafeArea(
         child: Column(
           children: [
             Padding(
@@ -92,6 +93,7 @@ class CategorySreen extends StatelessWidget {
                       ),
                     ),
                   ),
+              
                   Text(
                     translation(context).categories,
                     style: TextStyle(
@@ -127,6 +129,7 @@ class CategorySreen extends StatelessWidget {
           ],
         ),
       ),
+    
     );
   }
 }

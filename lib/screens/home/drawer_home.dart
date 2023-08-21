@@ -79,8 +79,8 @@ class _DrawerHomeState extends State<DrawerHome> {
                     children: [
                       AnimatedPositioned(
                           curve: Curves.easeIn,
-                          left: toggleValue ? 60.0.sp : 0.0.sp,
-                          right: toggleValue ? 0.0.sp : 60.0.sp,
+                          left: toggleValue ? 45.0.sp : 0.0.sp,
+                          right: toggleValue ? 0.0.sp : 45.0.sp,
                           duration: const Duration(
                             microseconds: 1000,
                           ),
@@ -184,8 +184,8 @@ class _DrawerHomeState extends State<DrawerHome> {
                     children: [
                       AnimatedPositioned(
                           curve: Curves.easeIn,
-                          left: isDarkSelected ? 60.0.sp : 0.0.sp,
-                          right: isDarkSelected ? 0.0.sp : 60.0.sp,
+                          left: isDarkSelected ? 45.0.sp : 0.0.sp,
+                          right: isDarkSelected ? 0.0.sp : 45.0.sp,
                           duration: const Duration(
                             microseconds: 1000,
                           ),

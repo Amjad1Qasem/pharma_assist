@@ -136,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30.0.w),
+            bottom: Radius.circular(30.0.r),
           ),
         ),
       ),
@@ -170,8 +170,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-         
-         
           SizedBox(
             height: 10.h,
           ),

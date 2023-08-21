@@ -98,7 +98,7 @@ flutter:
     - family: Nunito
       fonts:
         - asset: assets/fonts/Nunito.ttf
-          weight: 700
+          weight: 800
 
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
@@ -106,7 +106,7 @@ flutter:
       fonts:
         - asset: assets/fonts/ElMessiri.ttf
        
-          weight: 700
+          weight: 800
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

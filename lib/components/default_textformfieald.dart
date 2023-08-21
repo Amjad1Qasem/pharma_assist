@@ -4,8 +4,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 
 //TextFormField
 
-class DefaultTextFormField extends StatelessWidget {
-  DefaultTextFormField({
+class DefaultTextFormField extends StatefulWidget {
+  const DefaultTextFormField({
     super.key,
     required this.controller,
     required this.radius,
@@ -14,10 +14,15 @@ class DefaultTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final double radius;
   final TextInputType keyboardType;
-  final bool scureText = false;
-  // final  Widget suffixIcon ;
-  //IconData? prifix;
 
+  @override
+  State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
+}
+
+class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
+  final bool scureText = false;
+
+  // final  Widget suffixIcon ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -25,7 +30,7 @@ class DefaultTextFormField extends StatelessWidget {
         debugPrint(input);
       },
       maxLines: 1,
-      controller: controller,
+      controller: widget.controller,
       obscureText: scureText,
       // autofocus: false,
       //showCursor: true,
@@ -35,7 +40,7 @@ class DefaultTextFormField extends StatelessWidget {
           fontSize: 10.sp,
           fontWeight: FontWeight.w700,
           color: Colors.black),
-      keyboardType: keyboardType,
+      keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         // labelText: 'sdd',
         //hintText: 'dsadasd',
@@ -52,7 +57,7 @@ class DefaultTextFormField extends StatelessWidget {
             color: const Color.fromARGB(255, 118, 118, 128).withOpacity(0.2),
             width: 1.w,
           ),
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(widget.radius),
         ),
       ),
     );

@@ -8,8 +8,6 @@ import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-
-
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({super.key});
   @override
@@ -44,48 +42,47 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: 
-        AppBar(
+        appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          actions: [ 
+          actions: [
             TextButton(
                 onPressed: () {
                   context.goNamed(AppRouter.loginScreen);
-                  },
+                },
                 child: Text(
                   translation(context).skip,
                   style: TextStyle(
-                      color: const Color(0xff333333),
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Nunito-Bold',
+                    color: const Color(0xff333333),
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Nunito-Bold',
                   ),
-                )) ],),
+                ))
+          ],
+        ),
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Expanded(
-              child: PageView.builder(
-                controller: onBoardController,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) =>
-                    buildOnBoardingItem(boarding[index]),
-                itemCount: boarding.length,
-                onPageChanged: (int index) {
-                  if (index == boarding.length - 1) {
-                    debugPrint('Last screen');
-                    setState(() {
-                      isLast = true;
-                    });
-                  } else {
-                    debugPrint('not Last screen');
-                    setState(() {
-                      isLast = false;
-                    });
-                  }
-                },
-              ),
+            PageView.builder(
+              controller: onBoardController,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) =>
+                  buildOnBoardingItem(boarding[index]),
+              itemCount: boarding.length,
+              onPageChanged: (int index) {
+                if (index == boarding.length - 1) {
+                  debugPrint('Last screen');
+                  setState(() {
+                    isLast = true;
+                  });
+                } else {
+                  debugPrint('not Last screen');
+                  setState(() {
+                    isLast = false;
+                  });
+                }
+              },
             ),
             Padding(
               padding: EdgeInsets.all(ScreenUtil().setSp(30.0)),

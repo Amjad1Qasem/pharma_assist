@@ -46,11 +46,10 @@ class DefaultbButton extends StatelessWidget {
           child: Text(
             textButton,
             style: TextStyle(
-                fontFamily: 'Nunito',
+                fontFamily: 'Nunito-Bold',
                 fontSize: fontsize,
                 fontWeight: fontweight),
           ),
         ));
   }
 }
-        

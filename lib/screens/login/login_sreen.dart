@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_field_validator/form_field_validator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
+import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/utilities/translation.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -23,90 +25,85 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image.asset(
+                    'assets/images/shap1_login_sreen.png',
+                    width: 245.w,
+                    height: 150.h,
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.only(start: 40.r, end: 40.r),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/shap1_login_sreen.png',
-                      width: 245.w,
-                      height: 150.h,
-                    )
+                      'assets/images/icon_App.png',
+                      width: 118.w,
+                      height: 120.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(20.0.sp),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Pharma',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: const Color(0xff00A8B9),
+                                  fontFamily: 'Nunito-Bold',
+                                  fontSize: 42.sp,
+                                  fontWeight: FontWeight.w500)),
+                          Text('Assist',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: const Color(0xff00A8B9),
+                                  fontFamily: 'Nunito-Bold',
+                                  fontSize: 42.sp,
+                                  fontWeight: FontWeight.w500)),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.only(
-                      bottom: 10.r, start: 40.r, end: 40.r),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/icon_App.png',
-                        width: 118.w,
-                        height: 130.h,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20.0.sp),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Pharma',
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    color: const Color(0xff00A8B9),
-                                    fontFamily: 'Nunito',
-                                    fontSize: 45.sp,
-                                    fontWeight: FontWeight.w800)),
-                            Text('Assist',
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                    color: const Color(0xff00A8B9),
-                                    fontFamily: 'Nunito',
-                                    fontSize: 45.sp,
-                                    fontWeight: FontWeight.w800)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+              ),
+              const Spacer(),
+              SizedBox(
+                height: 100.h,
+                child: Image.asset(
+                  'assets/images/shap2_login_sreen.png',
+                  width: double.infinity.w,
+                  height: 150.h,
                 ),
-                const Spacer(),
-                SizedBox(
-                  height: 100,
-                  child: Image.asset(
-                    'assets/images/shap2_login_sreen.png',
-                    width: double.infinity.w,
-                    height: 150.h,
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                  top: 110.r, bottom: 10.r, start: 40.r, end: 40.r),
-              // ignore: avoid_unnecessary_containers
-              child: Container(
-                //   color: const Color.fromARGB(255, 209, 220, 240),
-                child: Form(
-                  key: formkey,
+              )
+            ],
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.only(
+                top: 210.r, bottom: 10.r, start: 40.r, end: 40.r),
+            // ignore: avoid_unnecessary_containers
+            child: Container(
+              child: Form(
+                key: formkey,
+                child: Center(
                   child: SingleChildScrollView(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Row(
                           children: [
-                            Text('Email',
+                            Text(translation(context).email,
                                 style: TextStyle(
                                     color: const Color.fromARGB(255, 0, 0, 0),
                                     fontFamily: 'Nunito',
@@ -115,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: 5.h,
+                          height: 3.h,
                         ),
                         DefaultTextFormField(
                           controller: emailcontroller,
@@ -123,11 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           radius: 20.sp,
                         ),
                         SizedBox(
-                          height: 15.h,
+                          height: 10.h,
                         ),
                         Row(
                           children: [
-                            Text('Password',
+                            Text(translation(context).password,
                                 style: TextStyle(
                                     color: const Color.fromARGB(255, 0, 0, 0),
                                     fontFamily: 'Nunito',
@@ -136,21 +133,147 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         SizedBox(
-                          height: 5.h,
+                          height: 3.h,
                         ),
                         DefaultTextFormField(
-                          controller: emailcontroller,
+                          controller: passcontroller,
                           keyboardType: TextInputType.emailAddress,
                           radius: 20.sp,
                         ),
                         TextButton(
-                          onPressed: () {},
-                          child: Text('Forget Password ? ',
+                          onPressed: () {
+                            context.goNamed(AppRouter.confirmEmail);
+                          },
+                          child: Text(translation(context).forget_password,
                               style: TextStyle(
                                   color: const Color(0xFF333333),
                                   fontFamily: 'Nunito',
                                   fontSize: 13.sp,
                                   fontWeight: FontWeight.bold)),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            DefaultbButton(
+                              textButton: translation(context).login,
+                              fun: () {
+                                context.goNamed(AppRouter.homeScreen);
+                                debugPrint('Login ok');
+                              },
+                              color: const Color(0xff00a8b9),
+                              colorText: Colors.white,
+                              radius: 40.r,
+                              width: 180.w,
+                              height: 60.h,
+                              fontsize: 28.sp,
+                              fontweight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              width: 60.w,
+                              color: const Color(0xFF333333),
+                              height: 0.5.h,
+                            ),
+                            const Spacer(),
+                            Text(translation(context).continue_with,
+                                style: TextStyle(
+                                    color: const Color(0xFF333333),
+                                    fontFamily: 'Nunito',
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold)),
+                            const Spacer(),
+                            Container(
+                              width: 60.w,
+                              color: const Color(0xFF333333),
+                              height: 0.5.h,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                debugPrint('google login');
+                              },
+                              child: Container(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                width: 140.w,
+                                height: 55.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(30.r)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/google_Icon.png',
+                                      width: 40.w,
+                                      height: 40.h,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      translation(context).google,
+                                      style: TextStyle(
+                                          fontSize: 20.sp,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'Nunito'),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            GestureDetector(
+                              onTap: () {
+                                debugPrint('Facebook login');
+                              },
+                              child: Container(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                width: 140.w,
+                                height: 55.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(30.r)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/facebook_Icon.png',
+                                      width: 40.w,
+                                      height: 40.h,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      translation(context).facebook,
+                                      style: TextStyle(
+                                          fontSize: 20.sp,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'Nunito'),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 10.h,
@@ -158,17 +281,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            DefaultbButton(
-                              textButton: 'Regaster',
-                              fun: () {},
-                              color: const Color(0xff00a8b9),
-                              colorText: Colors.white,
-                              radius: 30,
-                              width: 200,
-                              height: 65,
-                              fontsize: 25,
-                              fontweight: FontWeight.w700,
-                            ),
+                            Text(translation(context).no_account,
+                                style: TextStyle(
+                                    color: const Color(0xFF333333),
+                                    fontFamily: 'Nunito',
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600)),
+                            TextButton(
+                              onPressed: () {
+                                context.goNamed(AppRouter.registerScreen);
+                              },
+                              child: Text(translation(context).register_now,
+                                  style: TextStyle(
+                                      color: const Color(0xFF00a8b9),
+                                      fontFamily: 'Nunito',
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w600)),
+                            )
                           ],
                         ),
                       ],
@@ -177,8 +306,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

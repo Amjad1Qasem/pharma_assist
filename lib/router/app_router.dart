@@ -3,6 +3,12 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
+import 'package:pharma_assist/screens/forget_password/confirm_password.dart';
+import 'package:pharma_assist/screens/forget_password/successful_screen.dart';
+import 'package:pharma_assist/screens/intro/intro_screen.dart';
+import 'package:pharma_assist/screens/forget_password/confirm_email.dart';
+import 'package:pharma_assist/screens/profile/profile_screen.dart';
+import 'package:pharma_assist/screens/register/register_screen.dart';
 import 'package:pharma_assist/screens/caterories/category_screen.dart';
 import 'package:pharma_assist/screens/companies/company_screen.dart';
 import 'package:pharma_assist/screens/error/no_internet_screen.dart';
@@ -21,11 +27,17 @@ class AppRouter {
   static String get companyScreen => '/companyScreen';
   static String get categoryScreen => '/categoryScreen';
   static String get loginScreen => '/loginScreen';
+  static String get registerScreen => '/registerScreen';
+  static String get introScreen => '/introscreen';
+  static String get confirmEmail => '/confirmEmail';
+  static String get confirmPassword => '/confirmPassword';
+  static String get successfulScreen => '/successfulScreen';
+  static String get profilescreen => '/profileScreen';
 
   final NoInternetCubit noInternetCubit;
 
   late final GoRouter router = GoRouter(
-    initialLocation: homeScreen,
+    initialLocation: profilescreen,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
@@ -61,6 +73,32 @@ class AppRouter {
           path: loginScreen,
           name: loginScreen,
           builder: (context, state) => const LoginScreen()),
+      GoRoute(
+        path: registerScreen,
+        name: registerScreen,
+        builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: introScreen,
+        name: introScreen,
+        builder: (context, state) => const IntroScreen(),
+      ),
+      GoRoute(
+          path: confirmEmail,
+          name: confirmEmail,
+          builder: (context, state) => const ConfirmEmailSrceen()),
+      GoRoute(
+          path: confirmPassword,
+          name: confirmPassword,
+          builder: (context, state) => const ConfirmPasswordSrceen()),
+      GoRoute(
+          path: successfulScreen,
+          name: successfulScreen,
+          builder: (context, state) => const SuccessfulScreen()),
+      GoRoute(
+          path: profilescreen,
+          name: profilescreen,
+          builder: (context, state) => const ProfileScreen())
     ],
     redirect: (context, state) {
       // if (context.read<NoInternetCubit>().state is NoInternetFailed) {
