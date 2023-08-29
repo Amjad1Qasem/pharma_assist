@@ -40,17 +40,15 @@ class SplashScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 10.h),
-                  Text(
-                    translation(context).splashDescription,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
+                  Text(translation(context).splashDescription,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context).textTheme.bodySmall),
                   SizedBox(
                     height: 150.h,
                   ),
                   DefaultbButton(
                     textButton: translation(context).splashTextButton,
-                    fun: () {
+                    onTap: () {
                       context.goNamed(AppRouter.onBoardingScreen);
                     },
                     width: 221.w,

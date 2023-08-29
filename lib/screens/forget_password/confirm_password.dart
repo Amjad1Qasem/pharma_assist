@@ -182,7 +182,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           children: [
                             DefaultbButton(
                               textButton: translation(context).conti,
-                              fun: () {
+                              onTap: () {
                                 context.goNamed(AppRouter.successfulScreen);
                                 debugPrint('Login ok');
                               },

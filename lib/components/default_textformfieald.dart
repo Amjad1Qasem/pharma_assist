@@ -29,6 +29,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       onChanged: (input) {
         debugPrint(input);
       },
+      validator: RequiredValidator(errorText: 'djasiopjdposaj'),
       maxLines: 1,
       controller: widget.controller,
       obscureText: scureText,

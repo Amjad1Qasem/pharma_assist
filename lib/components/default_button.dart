@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class DefaultbButton extends StatelessWidget {
   final String textButton;
-  final VoidCallback fun;
+  final VoidCallback onTap;
   final Color color;
   final Color colorText;
   final double radius;
@@ -17,7 +17,7 @@ class DefaultbButton extends StatelessWidget {
   const DefaultbButton({
     super.key,
     required this.textButton,
-    required this.fun,
+    required this.onTap,
     required this.color,
     required this.colorText,
     required this.radius,
@@ -42,7 +42,7 @@ class DefaultbButton extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all<Color>(colorText),
             backgroundColor: MaterialStateProperty.all<Color>(color),
           ),
-          onPressed: fun,
+          onPressed: onTap,
           child: Text(
             textButton,
             style: TextStyle(

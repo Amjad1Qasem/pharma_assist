@@ -130,7 +130,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                           children: [
                             DefaultbButton(
                               textButton: translation(context).conti,
-                              fun: () {
+                              onTap: () {
                                 context.pushNamed(AppRouter.confirmPassword);
                                 debugPrint('Login ok');
                               },

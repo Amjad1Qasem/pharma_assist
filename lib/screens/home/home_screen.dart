@@ -9,6 +9,8 @@ import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/screens/home/drawer_home.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
+import '../../components/default_scaffold.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -87,9 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    return DefaultScaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff00a8b9),
         toolbarHeight: 70.h,
@@ -143,40 +143,40 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       drawer: const DrawerHome(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 180,
-            child: Container(
-              alignment: Alignment.topCenter,
-              // color: const Color.fromARGB(78, 195, 241, 246),
-              child: Swiper(
-                containerWidth: 500.w,
-                containerHeight: 500.h,
-                autoplay: true,
-                duration: 200,
-                curve: Curves.easeIn,
-                itemBuilder: (context, index) =>
-                    buildImagesSwiperModel(listOfImageSwiper[index]),
-                itemCount: listOfImageSwiper.length,
-                itemWidth: 300.w,
-                layout: SwiperLayout.STACK,
-                indicatorLayout: PageIndicatorLayout.WARM,
-                pagination:
-                    // ignore: prefer_const_constructors
-                    SwiperPagination(
-                  margin: EdgeInsets.all(0.1.sp),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 180,
+              child: Container(
+                alignment: Alignment.topCenter,
+                // color: const Color.fromARGB(78, 195, 241, 246),
+                child: Swiper(
+                  containerWidth: 500.w,
+                  containerHeight: 500.h,
+                  autoplay: true,
+                  duration: 200,
+                  curve: Curves.easeIn,
+                  itemBuilder: (context, index) =>
+                      buildImagesSwiperModel(listOfImageSwiper[index]),
+                  itemCount: listOfImageSwiper.length,
+                  itemWidth: 300.w,
+                  layout: SwiperLayout.STACK,
+                  indicatorLayout: PageIndicatorLayout.WARM,
+                  pagination:
+                      // ignore: prefer_const_constructors
+                      SwiperPagination(
+                    margin: EdgeInsets.all(0.1.sp),
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Expanded(
-            child: Padding(
+            SizedBox(
+              height: 10.h,
+            ),
+            Padding(
               padding: EdgeInsets.all(20.0.sp),
               child: Column(
                 children: [
@@ -273,8 +273,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

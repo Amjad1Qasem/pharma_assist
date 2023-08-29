@@ -93,7 +93,7 @@ class SuccessfulScreen extends StatelessWidget {
                     children: [
                       DefaultbButton(
                         textButton: translation(context).login_now,
-                        fun: () {
+                        onTap: () {
                           context.pushNamed(AppRouter.homeScreen);
                           debugPrint('Login ok');
                         },

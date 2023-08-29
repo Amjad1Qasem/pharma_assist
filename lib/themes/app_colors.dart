@@ -18,4 +18,6 @@ abstract class AppColors {
   static const primaryGreen = Color(0xFF00A8B9);
 
   static const primaryDarkGreen = Color(0xFF1F4D59);
+
+  static const floatingDarkColor = Color(0xff3D3D3D);
 }

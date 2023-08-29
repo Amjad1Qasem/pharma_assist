@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/themes/app_colors.dart';
@@ -18,12 +20,19 @@ class _AnimatedBackgoundState extends State<AnimatedBackgound> {
   bool isTopShapeUp = false;
   bool isLeftshapup = false;
   bool isRightshapup = false;
+  late final StreamSubscription subscribtion;
+
+  @override
+  void dispose() {
+    subscribtion.cancel();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
 
-    Stream.periodic(const Duration(seconds: 5)).listen((_) {
+    subscribtion = Stream.periodic(const Duration(seconds: 5)).listen((_) {
       isBottomShapeUp = !isBottomShapeUp;
       isLeftshapup = !isLeftshapup;
       isRightshapup = !isRightshapup;

@@ -285,7 +285,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     DefaultbButton(
                       textButton: translation(context).regaster,
-                      fun: () {
+                      onTap: () {
                         context.goNamed(AppRouter.introScreen);
                         debugPrint('Login ok');
                       },

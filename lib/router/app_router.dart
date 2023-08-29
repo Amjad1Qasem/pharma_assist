@@ -37,7 +37,7 @@ class AppRouter {
   final NoInternetCubit noInternetCubit;
 
   late final GoRouter router = GoRouter(
-    initialLocation: splashScreen,
+    initialLocation: loginScreen,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
@@ -100,17 +100,17 @@ class AppRouter {
           name: profilescreen,
           builder: (context, state) => const ProfileScreen())
     ],
-    redirect: (context, state) {
-      // if (context.read<NoInternetCubit>().state is NoInternetFailed) {
-      //   return noInternetScreen;
-      // }
-      return null;
-    },
-    refreshListenable: _GoRouterRefreshStream(
-      [
-        noInternetCubit.stream,
-      ],
-    ),
+    // redirect: (context, state) {
+    //   // if (context.read<NoInternetCubit>().state is NoInternetFailed) {
+    //   //   return noInternetScreen;
+    //   // }
+    //   return state.path;
+    // },
+    // refreshListenable: _GoRouterRefreshStream(
+    //   [
+    //     noInternetCubit.stream,
+    //   ],
+    // ),
   );
 }
 
