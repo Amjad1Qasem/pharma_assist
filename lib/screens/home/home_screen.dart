@@ -19,13 +19,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var Searchcontroller = TextEditingController();
 
-  late List<ImagesSwiperModel> listOfImageSwiper = [
+  List<ImagesSwiperModel> listOfImageSwiper = [
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper1.png'),
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper2.png'),
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper3.png'),
   ];
 
-  late List<CompanyModel> listOfCompanyItems = [
+  List<CompanyModel> listOfCompanyItems = [
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon1.png',
         companyName: 'companyName'),
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
         companyName: 'companyName'),
   ];
 
-  late List<CategoryModel> listOfCategoryItems = [
+  List<CategoryModel> listOfCategoryItems = [
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon1.png',
         categoriesNmae: 'categoriesNmae'),
@@ -88,6 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: const Color(0xff00a8b9),
         toolbarHeight: 70.h,

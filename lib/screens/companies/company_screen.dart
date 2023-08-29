@@ -135,7 +135,7 @@ class CompanyScreen extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Widget buildCategoryModel(CompanyModel Model) => Row(
+Widget buildCategoryModel(CompanyModel model) => Row(
       children: [
         GestureDetector(
           onTap: () {
@@ -153,7 +153,7 @@ Widget buildCategoryModel(CompanyModel Model) => Row(
                     padding: const EdgeInsets.all(10.0),
                     child: Image.asset(
                       // ignore: unnecessary_string_interpolations
-                      '${Model.companyIcon}',
+                      '${model.companyIcon}',
                       fit: BoxFit.fill,
                       width: 40.w,
                       height: 50.h,
@@ -167,7 +167,7 @@ Widget buildCategoryModel(CompanyModel Model) => Row(
                 width: 90.w,
                 child: Text(
                   // ignore: unnecessary_string_interpolations
-                  '${Model.companyName}',
+                  '${model.companyName}',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

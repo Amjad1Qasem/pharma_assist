@@ -1,21 +1,22 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:meta/meta.dart';
 
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-part  'no_internet_stste.dart';
+part 'no_internet_stste.dart';
 
-
-class NoInternetCubit extends Cubit <NoInternetState> {
-    NoInternetCubit() : super(NoInternetInitial()){
-      InternetConnectionChecker().onStatusChange.listen((event) { 
-        if(event == InternetConnectionStatus.disconnected){
+class NoInternetCubit extends Cubit<NoInternetState> {
+  NoInternetCubit() : super(NoInternetInitial()) {
+    if (!kIsWeb) {
+      InternetConnectionChecker().onStatusChange.listen((event) {
+        if (event == InternetConnectionStatus.disconnected) {
           emit(NoInternetFailed());
-        }
-        else{
+        } else {
           emit(NoInternetFailed());
         }
       });
     }
-    }
+  }
+}

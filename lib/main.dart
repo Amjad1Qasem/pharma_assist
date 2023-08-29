@@ -10,7 +10,6 @@ import 'package:pharma_assist/themes/app_themes.dart';
 import 'package:pharma_assist/translation/app_translations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -23,14 +22,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context)=>NoInternetCubit(),
+          create: (context) => NoInternetCubit()
         ),
-        BlocProvider(
-          create: (context)=>ThemeCubit()
-        ),
-        BlocProvider(
-          create: (context)=>LocalizationCubit()
-        ),
+        BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => LocalizationCubit()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(390, 844),
@@ -38,11 +33,10 @@ class MyApp extends StatelessWidget {
           final ThemeState themeState = context.watch<ThemeCubit>().state;
           final LocalizationState localizationState =
               context.watch<LocalizationCubit>().state;
-              if(
-                themeState is! ThemeFetched || localizationState is! LocalizationFetched)
-                {
-                return const SizedBox();
-                }
+          if (themeState is! ThemeFetched ||
+              localizationState is! LocalizationFetched) {
+            return const SizedBox();
+          }
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             theme: AppThemes.light,
@@ -56,16 +50,12 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-             routerConfig:
+            routerConfig:
                 AppRouter(noInternetCubit: context.read<NoInternetCubit>())
                     .router,
           );
         },
       ),
-   
-
-   
     );
   }
 }
-

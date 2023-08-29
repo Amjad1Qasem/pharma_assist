@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/blocs/theme/theme_cubit.dart';
 
 class DrawerHome extends StatefulWidget {
   const DrawerHome({super.key});
@@ -9,7 +11,9 @@ class DrawerHome extends StatefulWidget {
 }
 
 class _DrawerHomeState extends State<DrawerHome> {
-  bool isDarkSelected = false;
+  late ThemeState themeCubitState = BlocProvider.of<ThemeCubit>(context).state;
+  late bool isDarkSelected = themeCubitState is ThemeFetched &&
+      (themeCubitState as ThemeFetched).themeMode == ThemeMode.dark;
   bool toggleValue = false;
 
   @override
@@ -162,14 +166,15 @@ class _DrawerHomeState extends State<DrawerHome> {
                   color: Colors.black54,
                 ),
                 title: Text(
-                  'Dark Mode',
+                  'Theme',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                trailing: AnimatedContainer(
+                trailing:
+                 AnimatedContainer(
                   alignment: Alignment.center,
                   duration: const Duration(microseconds: 1000),
                   height: 38.h,
@@ -179,7 +184,8 @@ class _DrawerHomeState extends State<DrawerHome> {
                       color: isDarkSelected
                           ? const Color(0xff1f4d59)
                           : const Color(0xff64c1db)),
-                  child: Stack(
+                  child:
+                   Stack(
                     alignment: Alignment.center,
                     children: [
                       AnimatedPositioned(
@@ -191,6 +197,11 @@ class _DrawerHomeState extends State<DrawerHome> {
                           ),
                           child: InkWell(
                             onTap: () {
+                              if (isDarkSelected) {
+                                BlocProvider.of<ThemeCubit>(context).light();
+                              } else {
+                                BlocProvider.of<ThemeCubit>(context).dark();
+                              }
                               setState(() {
                                 isDarkSelected = !isDarkSelected;
                               });

@@ -167,7 +167,7 @@ Widget buildOnBoardingItem(OnBoardingModel Model) => Column(children: [
               // ignore: unnecessary_string_interpolations
               Image.asset('${Model.backgroundonboarding}'),
               Padding(
-                padding: const EdgeInsets.only(bottom: 70).r,
+                padding:  EdgeInsets.only(bottom: 60.r),
                 child: Image.asset(
                   // ignore: unnecessary_string_interpolations
                   '${Model.persononboarding}',

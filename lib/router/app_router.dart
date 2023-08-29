@@ -37,7 +37,7 @@ class AppRouter {
   final NoInternetCubit noInternetCubit;
 
   late final GoRouter router = GoRouter(
-    initialLocation: profilescreen,
+    initialLocation: splashScreen,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(

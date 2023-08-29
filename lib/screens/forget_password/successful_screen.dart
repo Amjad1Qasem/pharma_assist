@@ -102,7 +102,7 @@ class SuccessfulScreen extends StatelessWidget {
                         radius: 40.r,
                         width: 180.w,
                         height: 60.h,
-                        fontsize: 28.sp,
+                        fontsize: 26.sp,
                         fontweight: FontWeight.w500,
                       ),
                     ],
