@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
-import 'package:pharma_assist/screens/splash/widgets/animated_background.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/themes/extentions/splash_screen_header_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
@@ -14,10 +14,11 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final splashScreenHeaderThemeExtention =
         Theme.of(context).extension<SplashScreenHeaderThemeExtention>()!;
+    final color = Theme.of(context).extension<ColorsThemeExtention>()!;
     return DefaultScaffold(
       body: Stack(
         children: [
-          const AnimatedBackgound(),
+          //const AnimatedBackgound(),
           Center(
             child: Padding(
               padding: EdgeInsetsDirectional.only(
@@ -42,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                   SizedBox(height: 10.h),
                   Text(translation(context).splashDescription,
                       textAlign: TextAlign.start,
-                      style: Theme.of(context).textTheme.bodySmall),
+                      style: Theme.of(context).textTheme.bodyMedium),
                   SizedBox(
                     height: 150.h,
                   ),
@@ -55,7 +56,7 @@ class SplashScreen extends StatelessWidget {
                     height: 59.h,
                     radius: 40.r,
                     colorText: Theme.of(context).colorScheme.secondary,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: color.buttonColor,
                     fontsize: 24.sp,
                     fontweight: FontWeight.w700,
                   ),

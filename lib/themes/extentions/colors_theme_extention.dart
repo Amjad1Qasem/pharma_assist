@@ -5,17 +5,23 @@ import 'package:pharma_assist/themes/app_colors.dart';
 class ColorsThemeExtention extends ThemeExtension<ColorsThemeExtention> {
   final Color floatingBgColor;
   final Color floatingIconColor;
+  final Color iconAppColor;
+  final Color buttonColor;
 
   const ColorsThemeExtention(
-      {required this.floatingBgColor, required this.floatingIconColor});
+      {required this.floatingBgColor,
+      required this.floatingIconColor,
+      required this.iconAppColor,
+      required this.buttonColor});
 
   @override
   ThemeExtension<ColorsThemeExtention> copyWith(
       {Color? floatingBgColor, Color? floatingIconColor}) {
     return ColorsThemeExtention(
-      floatingBgColor: floatingBgColor ?? this.floatingBgColor,
-      floatingIconColor: floatingIconColor ?? this.floatingIconColor,
-    );
+        floatingBgColor: floatingBgColor ?? this.floatingBgColor,
+        floatingIconColor: floatingIconColor ?? this.floatingIconColor,
+        iconAppColor: iconAppColor,
+        buttonColor: buttonColor);
   }
 
   @override
@@ -27,13 +33,22 @@ class ColorsThemeExtention extends ThemeExtension<ColorsThemeExtention> {
     return ColorsThemeExtention(
       floatingBgColor: other.floatingBgColor,
       floatingIconColor: other.floatingIconColor,
+      iconAppColor: other.iconAppColor,
+      buttonColor: other.buttonColor,
     );
   }
 
   static const light = ColorsThemeExtention(
-      floatingBgColor: Colors.white, floatingIconColor: Colors.black);
+    floatingBgColor: Colors.white,
+    floatingIconColor: Colors.black,
+    iconAppColor: Color(0xff00A8B9),
+    buttonColor: Color(0xff00A8B9),
+  );
 
   static const dark = ColorsThemeExtention(
-      floatingBgColor: AppColors.floatingDarkColor,
-      floatingIconColor: Colors.white);
+    floatingBgColor: AppColors.floatingDarkColor,
+    floatingIconColor: Colors.white,
+    iconAppColor: Colors.white,
+    buttonColor: Color(0xff00A8B9),
+  );
 }

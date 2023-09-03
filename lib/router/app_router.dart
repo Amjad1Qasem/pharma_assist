@@ -37,7 +37,7 @@ class AppRouter {
   final NoInternetCubit noInternetCubit;
 
   late final GoRouter router = GoRouter(
-    initialLocation: loginScreen,
+    initialLocation: splashScreen,
     debugLogDiagnostics: kDebugMode,
     routes: [
       GoRoute(
@@ -114,6 +114,7 @@ class AppRouter {
   );
 }
 
+// ignore: unused_element
 class _GoRouterRefreshStream extends ChangeNotifier {
   _GoRouterRefreshStream(List<Stream> streams) {
     notifyListeners();

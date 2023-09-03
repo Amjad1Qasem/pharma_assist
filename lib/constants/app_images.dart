@@ -13,5 +13,25 @@ abstract class AppImages {
 
   static const iconLoginDark = '$_imagesPath/BackgroundOnBoarding3.png';
 
-  //static const iconLoginDark = '$_imagesPath/BackgroundOnBoarding3.png';
+  static const iconLogin = '$_imagesPath/icon_App.png';
+
+  static const shapOnTopEnd = '$_imagesPath/shap1_login_sreen.png';
+
+  static const shapOnTopStart = '$_imagesPath/shap3_login_sreen.png';
+
+  static const shapOnButtom = '$_imagesPath/shap2_login_sreen.png';
+
+  static const googleIcon = '$_imagesPath/google_Icon.png';
+
+  static const facebookeIcon = '$_imagesPath/facebook_Icon.png';
+
+  static const confirmEmail = '$_imagesPath/forget_password_icon1.png';
+
+  static const confirmPassword = '$_imagesPath/forget_password_icon2.png';
+
+  static const successIcon = '$_imagesPath/forget_password_icon3.png';
+
+  static const iconIntro = '$_imagesPath/Icon_app2.png';
+
+  static const persIntro = '$_imagesPath/person_intro.png';
 }

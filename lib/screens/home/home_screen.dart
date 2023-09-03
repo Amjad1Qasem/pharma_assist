@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return DefaultScaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff00a8b9),
+        backgroundColor: Theme.of(context).primaryColor,
         toolbarHeight: 70.h,
         leading: Padding(
           padding: EdgeInsetsDirectional.only(start: 6.sp),

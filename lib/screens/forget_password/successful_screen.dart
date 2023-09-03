@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 class SuccessfulScreen extends StatelessWidget {
-  const SuccessfulScreen({super.key});
+  const SuccessfulScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
+    return DefaultScaffold(
         body: Stack(
       alignment: Alignment.center,
       children: [
@@ -21,7 +27,8 @@ class SuccessfulScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Image.asset(
-                  'assets/images/shap1_login_sreen.png',
+                  AppImages.shapOnTopEnd,
+                  color: Theme.of(context).primaryColor,
                   width: 245.w,
                   height: 150.h,
                 )
@@ -34,7 +41,7 @@ class SuccessfulScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/forget_password_icon3.png',
+                    AppImages.successIcon,
                     width: 200.w,
                     height: 200.h,
                   ),
@@ -48,11 +55,7 @@ class SuccessfulScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(translation(context).reset_successful,
-                      style: TextStyle(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          fontFamily: 'Nunito_bold',
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w700)),
+                      style: Theme.of(context).textTheme.titleLarge),
                 ],
               ),
             ),
@@ -60,18 +63,15 @@ class SuccessfulScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(translation(context).you_can_login,
-                    style: TextStyle(
-                        color: const Color(0xFF333333),
-                        fontFamily: 'Nunito',
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w600)),
+                    style: Theme.of(context).textTheme.labelSmall),
               ],
             ),
             const Spacer(),
             SizedBox(
               height: 100.h,
               child: Image.asset(
-                'assets/images/shap2_login_sreen.png',
+                AppImages.shapOnButtom,
+                color: Theme.of(context).primaryColor,
                 width: double.infinity.w,
                 height: 150.h,
               ),
@@ -97,7 +97,7 @@ class SuccessfulScreen extends StatelessWidget {
                           context.pushNamed(AppRouter.homeScreen);
                           debugPrint('Login ok');
                         },
-                        color: const Color(0xff00a8b9),
+                        color: colors.buttonColor,
                         colorText: Colors.white,
                         radius: 40.r,
                         width: 180.w,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharma_assist/screens/home/drawer_home.dart';
 
 class DefaultScaffold extends StatelessWidget {
   const DefaultScaffold(

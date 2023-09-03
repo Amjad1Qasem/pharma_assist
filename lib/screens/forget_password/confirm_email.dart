@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
+import 'package:pharma_assist/constants/app_images.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 import '../../router/app_router.dart';
@@ -18,9 +21,11 @@ class ConfirmEmailSrceen extends StatefulWidget {
 class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
   var formkey = GlobalKey<FormState>();
   var emailcontroller = TextEditingController();
+  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -29,12 +34,56 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                        top: 48.r, start: 0.r, end: 82.r),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 36.w,
+                          height: 36.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.r),
+                            color: Theme.of(context).colorScheme.onTertiary,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(48, 0, 0, 0),
+                                offset: Offset(0, 4),
+                                blurRadius: 4,
+                              ),
+                              BoxShadow(
+                                color: Color.fromARGB(48, 0, 0, 0),
+                                offset: Offset(4, 0),
+                                blurRadius: 4,
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.only(
+                                bottom: 4.r, top: 0.r, start: 3.r),
+                            child: IconButton(
+                              onPressed: () {
+                                context.goNamed(AppRouter.loginScreen);
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Theme.of(context).colorScheme.tertiary,
+                                size: 25,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Image.asset(
-                    'assets/images/shap1_login_sreen.png',
+                    AppImages.shapOnTopEnd,
+                    color: Theme.of(context).primaryColor,
                     width: 245.w,
                     height: 150.h,
-                  )
+                  ),
                 ],
               ),
               Padding(
@@ -44,7 +93,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/forget_password_icon1.png',
+                      AppImages.confirmEmail,
                       width: 200.w,
                       height: 200.h,
                     ),
@@ -58,11 +107,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(translation(context).forget_password,
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                            fontFamily: 'Nunito_bold',
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w700)),
+                        style: Theme.of(context).textTheme.titleLarge),
                   ],
                 ),
               ),
@@ -72,11 +117,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(translation(context).it_happens,
-                        style: TextStyle(
-                            color: const Color(0xFF333333),
-                            fontFamily: 'Nunito',
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w600)),
+                        style: Theme.of(context).textTheme.bodyMedium),
                   ],
                 ),
               ),
@@ -84,7 +125,8 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
-                  'assets/images/shap2_login_sreen.png',
+                  AppImages.shapOnButtom,
+                  color: Theme.of(context).primaryColor,
                   width: double.infinity.w,
                   height: 150.h,
                 ),
@@ -107,11 +149,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                         Row(
                           children: [
                             Text(translation(context).email,
-                                style: TextStyle(
-                                    color: const Color.fromARGB(255, 0, 0, 0),
-                                    fontFamily: 'Nunito',
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold)),
+                                style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
                         SizedBox(
@@ -134,7 +172,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                                 context.pushNamed(AppRouter.confirmPassword);
                                 debugPrint('Login ok');
                               },
-                              color: const Color(0xff00a8b9),
+                              color: colors.buttonColor,
                               colorText: Colors.white,
                               radius: 40.r,
                               width: 180.w,

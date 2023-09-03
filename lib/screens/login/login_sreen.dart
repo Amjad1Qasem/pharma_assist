@@ -5,7 +5,10 @@ import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
+
+import '../../constants/app_images.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool secure = true;
 
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset(
-                    'assets/images/shap1_login_sreen.png',
+                    AppImages.shapOnTopEnd,
+                    color: Theme.of(context).primaryColor,
                     width: 245.w,
                     height: 150.h,
                   )
@@ -49,29 +54,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/icon_App.png',
+                      AppImages.iconLogin,
+                      color: colors.iconAppColor,
                       width: 118.w,
                       height: 120.h,
                     ),
-                    Padding( 
+                    Padding(
                       padding: EdgeInsets.all(20.0.sp),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Pharma',
+                          Text(translation(context).pharma,
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  color: const Color(0xff00A8B9),
-                                  fontFamily: 'Nunito-Bold',
-                                  fontSize: 42.sp,
-                                  fontWeight: FontWeight.w500)),
-                          Text('Assist',
+                              style: Theme.of(context).textTheme.bodyLarge),
+                          Text(translation(context).assist,
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  color: const Color(0xff00A8B9),
-                                  fontFamily: 'Nunito-Bold',
-                                  fontSize: 42.sp,
-                                  fontWeight: FontWeight.w500)),
+                              style: Theme.of(context).textTheme.bodyLarge),
                         ],
                       ),
                     ),
@@ -82,7 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
-                  'assets/images/shap2_login_sreen.png',
+                  AppImages.shapOnButtom,
+                  color: Theme.of(context).primaryColor,
                   width: double.infinity.w,
                   height: 150.h,
                 ),
@@ -93,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.only(
-                    top: 240.r, bottom: 10.r, start: 40.r, end: 40.r),
+                    top: 270.r, bottom: 10.r, start: 40.r, end: 40.r),
                 // ignore: avoid_unnecessary_containers
                 child: Container(
                   child: Form(
@@ -106,11 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           Row(
                             children: [
                               Text(translation(context).email,
-                                  style: TextStyle(
-                                      color: const Color.fromARGB(255, 0, 0, 0),
-                                      fontFamily: 'Nunito',
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold)),
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
                             ],
                           ),
                           SizedBox(
@@ -127,17 +123,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           Row(
                             children: [
                               Text(translation(context).password,
-                                  style: TextStyle(
-                                      color: const Color.fromARGB(255, 0, 0, 0),
-                                      fontFamily: 'Nunito',
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.bold)),
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
                             ],
                           ),
                           SizedBox(
                             height: 3.h,
                           ),
                           DefaultTextFormField(
+                            scureText: true,
                             controller: passcontroller,
                             keyboardType: TextInputType.emailAddress,
                             radius: 20.sp,
@@ -147,11 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               context.goNamed(AppRouter.confirmEmail);
                             },
                             child: Text(translation(context).forget_password,
-                                style: TextStyle(
-                                    color: const Color(0xFF333333),
-                                    fontFamily: 'Nunito',
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold)),
+                                style: Theme.of(context).textTheme.bodySmall),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -163,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context.goNamed(AppRouter.homeScreen);
                                   debugPrint('Login ok');
                                 },
-                                color: const Color(0xff00a8b9),
+                                color: colors.buttonColor,
                                 colorText: Colors.white,
                                 radius: 40.r,
                                 width: 180.w,
@@ -180,21 +170,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
-                                width: 60.w,
-                                color: const Color(0xFF333333),
+                                width: 80.w,
+                                color: Theme.of(context).colorScheme.tertiary,
                                 height: 0.5.h,
                               ),
                               const Spacer(),
                               Text(translation(context).continue_with,
-                                  style: TextStyle(
-                                      color: const Color(0xFF333333),
-                                      fontFamily: 'Nunito',
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.bold)),
+                                  style:
+                                      Theme.of(context).textTheme.labelSmall),
                               const Spacer(),
                               Container(
-                                width: 60.w,
-                                color: const Color(0xFF333333),
+                                width: 80.w,
+                                color: Theme.of(context).colorScheme.tertiary,
                                 height: 0.5.h,
                               ),
                             ],
@@ -202,109 +189,86 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 15.h,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  debugPrint('google login');
-                                },
-                                child: Container(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  width: 140.w,
-                                  height: 55.h,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      color: const Color.fromARGB(
-                                          255, 255, 255, 255),
-                                      borderRadius:
-                                          BorderRadius.circular(30.r)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/google_Icon.png',
-                                        width: 40.w,
-                                        height: 40.h,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Text(
-                                        translation(context).google,
-                                        style: TextStyle(
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'Nunito'),
-                                      )
-                                    ],
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 100),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    debugPrint('google login');
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: 50.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/google_Icon.png',
+                                          width: 30.w,
+                                          height: 30.h,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Spacer(),
-                              GestureDetector(
-                                onTap: () {
-                                  debugPrint('Facebook login');
-                                },
-                                child: Container(
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  width: 140.w,
-                                  height: 55.h,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.black),
-                                      color: const Color.fromARGB(
-                                          255, 255, 255, 255),
-                                      borderRadius:
-                                          BorderRadius.circular(30.r)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/facebook_Icon.png',
-                                        width: 40.w,
-                                        height: 40.h,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Text(
-                                        translation(context).facebook,
-                                        style: TextStyle(
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'Nunito'),
-                                      )
-                                    ],
+                                GestureDetector(
+                                  onTap: () {
+                                    debugPrint('Facebook login');
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: 50.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/facebook_Icon.png',
+                                          width: 30.w,
+                                          height: 30.h,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
+                              ],
+                            ),
+                          ),                    
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(translation(context).no_account,
-                                  style: TextStyle(
-                                      color: const Color(0xFF333333),
-                                      fontFamily: 'Nunito',
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.w600)),
+                              Text(
+                                translation(context).no_account,
+                                style: Theme.of(context).textTheme.labelSmall,
+                              ),
                               TextButton(
-                                onPressed: () {
-                                  context.goNamed(AppRouter.registerScreen);
-                                },
-                                child: Text(translation(context).register_now,
-                                    style: TextStyle(
-                                        color: const Color(0xFF00a8b9),
-                                        fontFamily: 'Nunito',
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w600)),
-                              )
+                                  onPressed: () {
+                                    context.goNamed(AppRouter.registerScreen);
+                                  },
+                                  child: Text(
+                                    translation(context).register_now,
+                                    style:
+                                        Theme.of(context).textTheme.labelMedium,
+                                  ))
                             ],
                           ),
+                     
                         ],
                       ),
                     ),

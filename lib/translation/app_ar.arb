@@ -40,6 +40,8 @@
     "you_can_login":"يمكنك الآن تسجيل الدخول إلى حسابك",
     "reset_successful":"تمت إعادة التعيين بنجاح",
     "it_happens":"لا تقلق\nهذا يحدث لنا جميعاً.",
-    "reset_successful":"Reset successful"
+    "reset_successful":"Reset successful",
+    "pharma":"Pharma",
+    "assist":"Assist"
    
 }

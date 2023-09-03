@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
+import 'package:pharma_assist/constants/app_images.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 import '../../router/app_router.dart';
@@ -19,9 +22,11 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
   var formkey = GlobalKey<FormState>();
   var emailcontroller = TextEditingController();
   var passcontroller = TextEditingController();
+
+  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
@@ -34,7 +39,8 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Image.asset(
-                        'assets/images/shap1_login_sreen.png',
+                        AppImages.shapOnTopEnd,
+                        color: Theme.of(context).primaryColor,
                         width: 245.w,
                         height: 150.h,
                       )
@@ -49,7 +55,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 36.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.r),
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onTertiary,
                             boxShadow: const [
                               BoxShadow(
                                 color: Color.fromARGB(48, 0, 0, 0),
@@ -70,8 +76,9 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                               onPressed: () {
                                 context.goNamed(AppRouter.confirmEmail);
                               },
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.arrow_back_ios,
+                                color: Theme.of(context).colorScheme.tertiary,
                                 size: 25,
                               ),
                             ),
@@ -89,7 +96,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/forget_password_icon2.png',
+                      AppImages.confirmPassword,
                       width: 200.w,
                       height: 200.h,
                     ),
@@ -103,11 +110,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(translation(context).reset_successful,
-                        style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                            fontFamily: 'Nunito_bold',
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.w700)),
+                        style: Theme.of(context).textTheme.titleLarge),
                   ],
                 ),
               ),
@@ -115,7 +118,8 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
-                  'assets/images/shap2_login_sreen.png',
+                  AppImages.shapOnButtom,
+                  color: Theme.of(context).primaryColor,
                   width: double.infinity.w,
                   height: 150.h,
                 ),
@@ -138,11 +142,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                         Row(
                           children: [
                             Text(translation(context).password,
-                                style: TextStyle(
-                                    color: const Color.fromARGB(255, 0, 0, 0),
-                                    fontFamily: 'Nunito',
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold)),
+                                style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
                         SizedBox(
@@ -151,6 +151,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                         DefaultTextFormField(
                           controller: passcontroller,
                           keyboardType: TextInputType.emailAddress,
+                          scureText: true,
                           radius: 20.sp,
                         ),
                         SizedBox(
@@ -159,11 +160,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                         Row(
                           children: [
                             Text(translation(context).confirm_password,
-                                style: TextStyle(
-                                    color: const Color.fromARGB(255, 0, 0, 0),
-                                    fontFamily: 'Nunito',
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold)),
+                                style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
                         SizedBox(
@@ -171,6 +168,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                         ),
                         DefaultTextFormField(
                           controller: passcontroller,
+                          scureText: true,
                           keyboardType: TextInputType.emailAddress,
                           radius: 20.r,
                         ),
@@ -186,7 +184,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                                 context.goNamed(AppRouter.successfulScreen);
                                 debugPrint('Login ok');
                               },
-                              color: const Color(0xff00a8b9),
+                              color: colors.buttonColor,
                               colorText: Colors.white,
                               radius: 40.r,
                               width: 180.w,

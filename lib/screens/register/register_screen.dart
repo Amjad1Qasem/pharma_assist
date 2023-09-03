@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -23,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var LastNamecontroller = TextEditingController();
   var MobileNumbercontroller = TextEditingController();
   var BirthDatecontroller = TextEditingController();
+  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset(
-                    'assets/images/shap1_login_sreen.png',
+                    AppImages.shapOnTopEnd,
+                    color: Theme.of(context).primaryColor,
                     width: 245.w,
                     height: 150.h,
                   )
@@ -50,7 +54,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/icon_App.png',
+                      AppImages.iconLogin,
+                      color: colors.iconAppColor,
                       width: 118.w,
                       height: 120.h,
                     ),
@@ -59,20 +64,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Pharma',
+                          Text(translation(context).pharma,
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  color: const Color(0xff00A8B9),
-                                  fontFamily: 'Nunito-Bold',
-                                  fontSize: 42.sp,
-                                  fontWeight: FontWeight.w500)),
-                          Text('Assist',
+                              style: Theme.of(context).textTheme.bodyLarge),
+                          Text(translation(context).assist,
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  color: const Color(0xff00A8B9),
-                                  fontFamily: 'Nunito-Bold',
-                                  fontSize: 42.sp,
-                                  fontWeight: FontWeight.w500)),
+                              style: Theme.of(context).textTheme.bodyLarge),
                         ],
                       ),
                     ),
@@ -83,7 +80,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
-                  'assets/images/shap2_login_sreen.png',
+                  AppImages.shapOnButtom,
+                  color: Theme.of(context).primaryColor,
                   width: double.infinity.w,
                   height: 150.h,
                 ),
@@ -92,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           Padding(
             padding: EdgeInsetsDirectional.only(
-                top: 230.r, bottom: 20.r, start: 20.r, end: 20.r),
+                top: 245.r, bottom: 10.r, start: 20.r, end: 20.r),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -106,11 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(translation(context).first_name,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600)),
+                              style: Theme.of(context).textTheme.labelSmall),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -134,11 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(translation(context).last_name,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600)),
+                              style: Theme.of(context).textTheme.labelSmall),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -167,11 +157,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(translation(context).mobile_number,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600)),
+                              style: Theme.of(context).textTheme.labelSmall),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -195,11 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(translation(context).birth_date,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600)),
+                              style: Theme.of(context).textTheme.labelSmall),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -228,11 +210,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(translation(context).email,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600)),
+                              style: Theme.of(context).textTheme.labelSmall),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -256,11 +234,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(translation(context).password,
-                              style: TextStyle(
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Nunito',
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600)),
+                              style: Theme.of(context).textTheme.labelSmall),
                           SizedBox(
                             height: 3.h,
                           ),
@@ -289,7 +263,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         context.goNamed(AppRouter.introScreen);
                         debugPrint('Login ok');
                       },
-                      color: const Color(0xff00a8b9),
+                      color: colors.buttonColor,
                       colorText: Colors.white,
                       radius: 40.r,
                       width: 180.w,
@@ -300,131 +274,99 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.h,
+                  height: 10.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      width: 60.w,
-                      color: const Color(0xFF333333),
+                      width: 80.w,
+                      color: Theme.of(context).colorScheme.tertiary,
                       height: 0.5.h,
                     ),
                     const Spacer(),
                     Text(translation(context).continue_with,
-                        style: TextStyle(
-                            color: const Color(0xFF333333),
-                            fontFamily: 'Nunito',
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold)),
+                        style: Theme.of(context).textTheme.labelSmall),
                     const Spacer(),
                     Container(
-                      width: 60.w,
-                      color: const Color(0xFF333333),
+                      width: 80.w,
+                      color: Theme.of(context).colorScheme.tertiary,
                       height: 0.5.h,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        debugPrint('google login');
-                      },
-                      child: Container(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        width: 160.w,
-                        height: 55.h,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.circular(30.r)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/google_Icon.png',
-                              width: 40.w,
-                              height: 40.h,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              translation(context).google,
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Nunito'),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        debugPrint('Facebook login');
-                      },
-                      child: Container(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        width: 160.w,
-                        height: 55.h,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.circular(30.r)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/facebook_Icon.png',
-                              width: 40.w,
-                              height: 40.h,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Text(
-                              translation(context).facebook,
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Nunito'),
-                            )
-                          ],
-                        ),
-                      ),
                     ),
                   ],
                 ),
                 SizedBox(
                   height: 10.h,
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 120),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('google login');
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 50.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                AppImages.googleIcon,
+                                width: 30.w,
+                                height: 30.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          debugPrint('Facebook login');
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 50.w,
+                          height: 50.h,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                AppImages.facebookeIcon,
+                                width: 30.w,
+                                height: 30.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(translation(context).do_you_have_account,
-                        style: TextStyle(
-                            color: const Color(0xFF333333),
-                            fontFamily: 'Nunito',
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600)),
+                    Text(
+                      translation(context).no_account,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
                     TextButton(
-                      onPressed: () {
-                        context.goNamed(AppRouter.loginScreen);
-                      },
-                      child: Text(translation(context).login,
-                          style: TextStyle(
-                              color: const Color(0xFF00a8b9),
-                              fontFamily: 'Nunito',
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600)),
-                    )
+                        onPressed: () {
+                          context.goNamed(AppRouter.loginScreen);
+                        },
+                        child: Text(
+                          translation(context).login_now,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ))
                   ],
                 ),
               ],

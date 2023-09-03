@@ -11,25 +11,67 @@ abstract class AppThemes {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.white,
+          onPrimary: AppColors.black,
           primary: AppColors.primaryGreen,
           secondary: Colors.white,
+          onSecondary: AppColors.colorTextField.withOpacity(0.2),
+          tertiary: AppColors.grey,
+          onTertiary: AppColors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
-            bodyMedium: GoogleFonts.nunito(
-              textStyle: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w600,
-                color: AppColors.grey,
-              ),
+          bodyMedium: GoogleFonts.nunito(
+            textStyle: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.grey,
             ),
-            bodySmall: GoogleFonts.nunito(
-              textStyle: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w400,
+          ),
+          bodySmall: GoogleFonts.nunito(
+            textStyle: TextStyle(
                 color: AppColors.grey,
-              ),
-            )),
+                fontFamily: 'Nunito',
+                fontSize: 13.sp,
+                fontWeight: FontWeight.bold),
+          ),
+          bodyLarge: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.primaryGreen,
+                  fontFamily: 'Nunito-Bold',
+                  fontSize: 42.sp,
+                  fontWeight: FontWeight.w500)),
+          labelSmall: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.grey,
+                  fontFamily: 'Nunito',
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600)),
+          labelMedium: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.primaryGreen,
+                  fontFamily: 'Nunito',
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600)),
+          labelLarge: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.grey,
+                  fontFamily: 'Nunito',
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold)),
+          titleLarge: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.grey,
+                  fontFamily: 'Nunito_bold',
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700)),
+          titleSmall: GoogleFonts.nunito(
+            textStyle: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.white,
+            ),
+          ),
+        ),
         extensions: const {
           SplashScreenHeaderThemeExtention.light,
           ColorsThemeExtention.light,
@@ -41,25 +83,67 @@ abstract class AppThemes {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.black,
+          onPrimary: AppColors.black,
           primary: AppColors.primaryDarkGreen,
           secondary: Colors.white,
+          tertiary: AppColors.white,
+          onSecondary: AppColors.lightGrey.withOpacity(0.7),
+          onTertiary: AppColors.colorButtonBack,
         ),
         scaffoldBackgroundColor: Colors.black,
         textTheme: TextTheme(
-            bodyMedium: GoogleFonts.nunito(
-              textStyle: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w600,
-                color: AppColors.lightGrey,
-              ),
+          bodyMedium: GoogleFonts.nunito(
+            textStyle: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.lightGrey,
             ),
-            bodySmall: GoogleFonts.nunito(
-              textStyle: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w400,
+          ),
+          bodySmall: GoogleFonts.nunito(
+            textStyle: TextStyle(
                 color: AppColors.lightGrey,
-              ),
-            )),
+                fontFamily: 'Nunito',
+                fontSize: 13.sp,
+                fontWeight: FontWeight.bold),
+          ),
+          bodyLarge: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.white,
+                  fontFamily: 'Nunito-Bold',
+                  fontSize: 42.sp,
+                  fontWeight: FontWeight.w500)),
+          labelSmall: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.lightGrey,
+                  fontFamily: 'Nunito',
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600)),
+          labelMedium: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.primaryGreen,
+                  fontFamily: 'Nunito',
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600)),
+          labelLarge: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.lightGrey,
+                  fontFamily: 'Nunito',
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold)),
+          titleLarge: GoogleFonts.nunito(
+              textStyle: TextStyle(
+                  color: AppColors.lightGrey,
+                  fontFamily: 'Nunito_bold',
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700)),
+          titleSmall: GoogleFonts.nunito(
+            textStyle: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w600,
+              color: AppColors.grey,
+            ),
+          ),
+        ),
         extensions: const {
           SplashScreenHeaderThemeExtention.dark,
           ColorsThemeExtention.dark,

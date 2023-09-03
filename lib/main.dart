@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => NoInternetCubit()
-        ),
+        BlocProvider(create: (context) => NoInternetCubit()),
         BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(create: (context) => LocalizationCubit()),
       ],

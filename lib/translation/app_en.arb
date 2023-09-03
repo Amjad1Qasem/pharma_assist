@@ -40,5 +40,7 @@
     "you_can_login":"You can now log in to your account ",
     "reset_successful":"Reset successful",
     "it_happens":"Dont worry\nIt happens to the best of us.",
-    "reset_successful":"Reset successful"   
+    "reset_successful":"Reset successful",
+    "pharma":"Pharma",
+    "assist":"Assist"   
 }

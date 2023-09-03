@@ -9,8 +9,7 @@ class IconsLoginScreenThemeExtention
   const IconsLoginScreenThemeExtention(this.imagePath);
 
   @override
-  ThemeExtension<IconsLoginScreenThemeExtention> copyWith(
-      {String? imagePath}) {
+  ThemeExtension<IconsLoginScreenThemeExtention> copyWith({String? imagePath}) {
     return IconsLoginScreenThemeExtention(
       imagePath ?? this.imagePath,
     );
@@ -27,8 +26,7 @@ class IconsLoginScreenThemeExtention
     );
   }
 
-  static const light = IconsLoginScreenThemeExtention(AppImages.iconSplash);
+  static const light = IconsLoginScreenThemeExtention(AppImages.iconLogin);
 
-  static const dark =
-      IconsLoginScreenThemeExtention(AppImages.iconSplashDark);
+  // static const dark = IconsLoginScreenThemeExtention(AppImages.iconLogin);
 }

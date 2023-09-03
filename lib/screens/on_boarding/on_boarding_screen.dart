@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
-import 'package:pharma_assist/themes/app_colors.dart';
 import 'package:pharma_assist/themes/extentions/bg_screen_onboarding_extention.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
@@ -143,11 +142,11 @@ Widget buildOnBoardingItem(OnBoardingModel Model, BuildContext context) =>
             Text(
                 // ignore: unnecessary_string_interpolations
                 '${Model.title}',
-                style: Theme.of(context).textTheme.bodySmall),
+                style: Theme.of(context).textTheme.labelLarge),
             Text(
-                // ignore: unnecessary_string_interpolationsp
+                // ignore: unnecessary_string_interpolationsp, unnecessary_string_interpolations
                 '${Model.descriptions}',
-                style: Theme.of(context).textTheme.bodySmall),
+                style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
       ),
@@ -159,6 +158,7 @@ Widget buildOnBoardingItem(OnBoardingModel Model, BuildContext context) =>
             children: [
               // ignore: unnecessary_string_interpolations
               Image.asset(
+                // ignore: unnecessary_string_interpolations
                 '${Model.backgroundonboarding}',
                 color: Theme.of(context).primaryColor,
               ),

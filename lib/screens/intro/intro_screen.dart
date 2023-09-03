@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -16,6 +18,7 @@ class _IntroScreenState extends State<IntroScreen> {
   String selectedValue = 'Student';
   List<String> dropdownValues = ['Doctor', 'Student', 'Pharmacist', 'Other'];
   bool toggleValue = false;
+  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class _IntroScreenState extends State<IntroScreen> {
           Stack(
             children: [
               Image.asset(
-                'assets/images/shap3_login_sreen.png',
-                color: const Color(0xff00a8b9),
+                AppImages.shapOnTopStart,
+                color: Theme.of(context).primaryColor,
                 height: 330.h,
                 width: 533.w,
               ),
@@ -39,8 +42,8 @@ class _IntroScreenState extends State<IntroScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Image.asset(
-                      'assets/images/Icon_app2.png',
-                      color: const Color(0xff00a8b9),
+                      AppImages.iconIntro,
+                      color: colors.iconAppColor,
                       height: 240.h,
                       width: 300.w,
                     ),
@@ -60,16 +63,12 @@ class _IntroScreenState extends State<IntroScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(translation(context).welcome_there,
-                    style: TextStyle(
-                        color: const Color(0xFF333333),
-                        fontFamily: 'Nunito-Bold',
-                        fontSize: 21.sp,
-                        fontWeight: FontWeight.w600)),
+                    style: Theme.of(context).textTheme.titleLarge),
                 SizedBox(
                   width: 5.w,
                 ),
                 Image.asset(
-                  'assets/images/person_intro.png',
+                  AppImages.persIntro,
                   height: 220.h,
                   width: 220.w,
                 ),
@@ -82,7 +81,7 @@ class _IntroScreenState extends State<IntroScreen> {
               width: 300.w,
               height: 50.h,
               decoration: BoxDecoration(
-                  color: const Color(0XFFefeff0),
+                  color: Theme.of(context).colorScheme.onSecondary,
                   borderRadius: BorderRadius.circular(20.r)),
               child: DropdownButton<String>(
                 iconSize: 35.sp,
@@ -119,7 +118,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 onTap: () {
                   context.goNamed(AppRouter.homeScreen);
                 },
-                color: const Color(0xff00a8b9),
+                color: colors.buttonColor,
                 colorText: Colors.white,
                 radius: 40.r,
                 width: 180.w,
@@ -135,76 +134,73 @@ class _IntroScreenState extends State<IntroScreen> {
             width: 110.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(17.r),
-                color: const Color(0xff1b717a)),
+                color: colors.buttonColor),
             child: Stack(
               alignment: Alignment.center,
               children: [
                 AnimatedPositioned(
-                    curve: Curves.easeIn,
-                    left: toggleValue ? 45.0.sp : 0.0.sp,
-                    right: toggleValue ? 0.0.sp : 45.0.sp,
-                    duration: const Duration(
-                      microseconds: 1000,
-                    ),
-                    child: InkWell(
+                  curve: Curves.easeIn,
+                  left: toggleValue ? 45.0.sp : 0.0.sp,
+                  right: toggleValue ? 0.0.sp : 45.0.sp,
+                  duration: const Duration(
+                    microseconds: 1000,
+                  ),
+                  child: InkWell(
                       onTap: () {
                         setState(() {
                           toggleValue = !toggleValue;
                         });
                       },
                       child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 1000),
-                          transitionBuilder:
-                              (Widget child, Animation<double> animation) {
-                            return ScaleTransition(
-                              // ignore: sort_child_properties_last
-                              child: child,
-                              scale: animation,
-                            );
-                          },
-                          child: toggleValue
-                              ? Padding(
-                                  padding: EdgeInsets.all(5.0.sp),
-                                  child: Container(
-                                    width: 70.w,
-                                    height: 30.h,
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(12.r),
-                                        color: const Color.fromARGB(
-                                            255, 255, 255, 255)),
-                                    child: Center(
-                                      child: Text(
-                                        'Ar',
-                                        style: TextStyle(
-                                            fontSize: 18.sp,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
+                        duration: const Duration(milliseconds: 1000),
+                        transitionBuilder:
+                            (Widget child, Animation<double> animation) {
+                          return ScaleTransition(
+                            // ignore: sort_child_properties_last
+                            child: child,
+                            scale: animation,
+                          );
+                        },
+                        child: toggleValue
+                            ? Padding(
+                                padding: EdgeInsets.all(5.0.sp),
+                                child: Container(
+                                  width: 70.w,
+                                  height: 30.h,
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.r),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary),
+                                  child: Center(
+                                    child: Text('Ar',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall),
                                   ),
-                                )
-                              : Padding(
-                                  padding: EdgeInsets.all(5.0.sp),
-                                  child: Container(
-                                    height: 30.h,
-                                    width: 70.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(12.r),
-                                        color: const Color.fromARGB(
-                                            255, 255, 255, 255)),
-                                    child: Center(
-                                      child: Text(
-                                        'En',
-                                        style: TextStyle(
-                                            fontSize: 18.sp,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
+                                ),
+                              )
+                            : Padding(
+                                padding: EdgeInsets.all(5.0.sp),
+                                child: Container(
+                                  height: 30.h,
+                                  width: 70.w,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.r),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .tertiary),
+                                  child: Center(
+                                    child: Text('En',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall),
                                   ),
-                                )),
-                    ))
+                                ),
+                              ),
+                      )),
+                )
               ],
             ),
           )
