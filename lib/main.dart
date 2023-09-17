@@ -35,7 +35,9 @@ class MyApp extends StatelessWidget {
               localizationState is! LocalizationFetched) {
             return const SizedBox();
           }
-          return MaterialApp.router(
+          final appRouter =
+              AppRouter(noInternetCubit: context.read<NoInternetCubit>());
+          return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppThemes.light,
             darkTheme: AppThemes.dark,
@@ -48,9 +50,8 @@ class MyApp extends StatelessWidget {
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
-            routerConfig:
-                AppRouter(noInternetCubit: context.read<NoInternetCubit>())
-                    .router,
+            // routerConfig: appRouter.router,
+            onGenerateRoute: AppRouter.onGenerateRoute,
           );
         },
       ),

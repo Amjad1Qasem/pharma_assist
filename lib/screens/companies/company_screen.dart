@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 class CompanyScreen extends StatelessWidget {
@@ -81,25 +82,21 @@ class CompanyScreen extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(
-                          bottom: 4.r, top: 0.r, start: 3.r),
+                          bottom: 0.sp, top: 0.sp, start: 3.sp),
                       child: IconButton(
                         onPressed: () {
-                          context.goNamed(AppRouter.homeScreen);
+                          context.pop();
                         },
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.arrow_back_ios,
-                          size: 25,
+                          size: 24.sp,
                         ),
                       ),
                     ),
                   ),
                   Text(
                     translation(context).companies,
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 22.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   Image(
                     image: const AssetImage(
@@ -122,9 +119,8 @@ class CompanyScreen extends StatelessWidget {
                     childAspectRatio: 10 / 16,
                     crossAxisCount: 3),
                 itemCount: listOfCompanyItems.length,
-                itemBuilder: (context, index) => buildCategoryModel(
-                  listOfCompanyItems[index],
-                ),
+                itemBuilder: (context, index) =>
+                    buildCategoryModel(listOfCompanyItems[index], context),
               ),
             ),
           ],
@@ -135,7 +131,7 @@ class CompanyScreen extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Widget buildCategoryModel(CompanyModel model) => Row(
+Widget buildCategoryModel(CompanyModel model, BuildContext context) => Row(
       children: [
         GestureDetector(
           onTap: () {
@@ -170,11 +166,7 @@ Widget buildCategoryModel(CompanyModel model) => Row(
                   '${model.companyName}',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 17.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             ],

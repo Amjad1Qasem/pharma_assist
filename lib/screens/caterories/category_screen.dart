@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 // ignore: must_be_immutable
 class CategorySreen extends StatelessWidget {
-  CategorySreen({super.key});
+  CategorySreen({super.key, this.hasBackButton = true});
 
   late List<CategoryModel> listOfCategoryItems = [
     CategoryModel(
@@ -48,11 +49,12 @@ class CategorySreen extends StatelessWidget {
         categoriesNmae: 'categoriesNmae'),
   ];
 
+  final bool hasBackButton;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
             Padding(
@@ -60,6 +62,7 @@ class CategorySreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  !hasBackButton ? SizedBox() :
                   Container(
                     width: 36.w,
                     height: 36.h,
@@ -81,26 +84,21 @@ class CategorySreen extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(
-                          bottom: 4.r, top: 0.r, start: 3.r),
+                          bottom: 0.sp, top: 0.sp, start: 3.sp),
                       child: IconButton(
                         onPressed: () {
-                          context.goNamed(AppRouter.homeScreen);
+                          context.pop();
                         },
                         icon: const Icon(
                           Icons.arrow_back_ios,
-                          size: 25,
+                          size: 24,
                         ),
                       ),
                     ),
                   ),
-              
                   Text(
                     translation(context).categories,
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 22.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   Image(
                     image: const AssetImage(
@@ -129,7 +127,6 @@ class CategorySreen extends StatelessWidget {
           ],
         ),
       ),
-    
     );
   }
 }

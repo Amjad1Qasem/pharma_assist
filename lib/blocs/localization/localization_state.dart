@@ -10,4 +10,3 @@ class LocalizationFetched extends LocalizationState {
 
   LocalizationFetched(this.locale);
 }
-//ليش ما حطيت  عربي و انكليزي 

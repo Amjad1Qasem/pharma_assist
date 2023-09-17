@@ -1,15 +1,14 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
+import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
-
-import '../../router/app_router.dart';
 
 class ConfirmPasswordSrceen extends StatefulWidget {
   const ConfirmPasswordSrceen({super.key});
@@ -74,7 +73,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                                 bottom: 4.r, top: 0.r, start: 3.r),
                             child: IconButton(
                               onPressed: () {
-                                context.goNamed(AppRouter.confirmEmail);
+                                context.pushNamed(AppRouter.confirmEmail);
                               },
                               icon: Icon(
                                 Icons.arrow_back_ios,

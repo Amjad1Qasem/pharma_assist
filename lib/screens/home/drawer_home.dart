@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/blocs/theme/theme_cubit.dart';
+import 'package:pharma_assist/utilities/translation.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class DrawerHome extends StatefulWidget {
+class DrawerHome extends HookWidget {
   const DrawerHome({super.key});
 
   @override
-  State<DrawerHome> createState() => _DrawerHomeState();
-}
-
-class _DrawerHomeState extends State<DrawerHome> {
-  late ThemeState themeCubitState = BlocProvider.of<ThemeCubit>(context).state;
-  late bool isDarkSelected = themeCubitState is ThemeFetched &&
-      (themeCubitState as ThemeFetched).themeMode == ThemeMode.dark;
-  bool toggleValue = false;
-
-  @override
   Widget build(BuildContext context) {
+    late ThemeState themeCubitState =
+        BlocProvider.of<ThemeCubit>(context).state;
+    final isDarkSelected = useState(themeCubitState is ThemeFetched &&
+        (themeCubitState).themeMode == ThemeMode.dark);
+    final toggleValue = useState(false);
     return Drawer(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: SafeArea(
         child: Column(
           children: [
@@ -31,7 +29,9 @@ class _DrawerHomeState extends State<DrawerHome> {
               child: Row(
                 children: [
                   Image(
-                    image: const AssetImage('assets/images/icon_App.png'),
+                    image: const AssetImage(
+                      'assets/images/icon_App.png',
+                    ),
                     width: 80.w,
                     height: 80.h,
                   ),
@@ -40,14 +40,10 @@ class _DrawerHomeState extends State<DrawerHome> {
                   ),
                   Expanded(
                     child: Text(
-                      'Jawad Talal Rustoms ',
+                      'Jawad Talal Rustoms',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w800,
-                        fontFamily: 'Nunito',
-                      ),
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ],
@@ -59,16 +55,12 @@ class _DrawerHomeState extends State<DrawerHome> {
             ListTile(
                 leading: Icon(
                   Icons.language,
-                  size: 35.sp,
+                  size: 32.sp,
                   color: Colors.black54,
                 ),
                 title: Text(
-                  'Language',
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  translation(context).language,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 trailing: AnimatedContainer(
                   alignment: Alignment.center,
@@ -83,16 +75,14 @@ class _DrawerHomeState extends State<DrawerHome> {
                     children: [
                       AnimatedPositioned(
                           curve: Curves.easeIn,
-                          left: toggleValue ? 45.0.sp : 0.0.sp,
-                          right: toggleValue ? 0.0.sp : 45.0.sp,
+                          left: toggleValue.value ? 45.0.sp : 0.0.sp,
+                          right: toggleValue.value ? 0.0.sp : 45.0.sp,
                           duration: const Duration(
                             microseconds: 1000,
                           ),
                           child: InkWell(
                             onTap: () {
-                              setState(() {
-                                toggleValue = !toggleValue;
-                              });
+                              toggleValue.value = !toggleValue.value;
                             },
                             child: AnimatedSwitcher(
                                 duration: const Duration(milliseconds: 1000),
@@ -104,7 +94,7 @@ class _DrawerHomeState extends State<DrawerHome> {
                                     scale: animation,
                                   );
                                 },
-                                child: toggleValue
+                                child: toggleValue.value
                                     ? Padding(
                                         padding: EdgeInsets.all(5.0.sp),
                                         child: Container(
@@ -166,45 +156,37 @@ class _DrawerHomeState extends State<DrawerHome> {
                   color: Colors.black54,
                 ),
                 title: Text(
-                  'Theme',
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  translation(context).theme,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                trailing:
-                 AnimatedContainer(
+                trailing: AnimatedContainer(
                   alignment: Alignment.center,
                   duration: const Duration(microseconds: 1000),
                   height: 38.h,
                   width: 110.w,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(17.r),
-                      color: isDarkSelected
+                      color: isDarkSelected.value
                           ? const Color(0xff1f4d59)
                           : const Color(0xff64c1db)),
-                  child:
-                   Stack(
+                  child: Stack(
                     alignment: Alignment.center,
                     children: [
                       AnimatedPositioned(
                           curve: Curves.easeIn,
-                          left: isDarkSelected ? 45.0.sp : 0.0.sp,
-                          right: isDarkSelected ? 0.0.sp : 45.0.sp,
+                          left: isDarkSelected.value ? 45.0.sp : 0.0.sp,
+                          right: isDarkSelected.value ? 0.0.sp : 45.0.sp,
                           duration: const Duration(
                             microseconds: 1000,
                           ),
                           child: InkWell(
                             onTap: () {
-                              if (isDarkSelected) {
+                              if (isDarkSelected.value) {
                                 BlocProvider.of<ThemeCubit>(context).light();
                               } else {
                                 BlocProvider.of<ThemeCubit>(context).dark();
                               }
-                              setState(() {
-                                isDarkSelected = !isDarkSelected;
-                              });
+                              isDarkSelected.value = !isDarkSelected.value;
                             },
                             child: AnimatedSwitcher(
                                 duration: const Duration(milliseconds: 1000),
@@ -216,7 +198,7 @@ class _DrawerHomeState extends State<DrawerHome> {
                                     scale: animation,
                                   );
                                 },
-                                child: isDarkSelected
+                                child: isDarkSelected.value
                                     ? Padding(
                                         padding: EdgeInsets.all(5.0.sp),
                                         child: Container(
@@ -278,12 +260,8 @@ class _DrawerHomeState extends State<DrawerHome> {
                 color: Colors.black54,
               ),
               title: Text(
-                'Favorites ',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
-                ),
+                translation(context).favorites,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             Padding(
@@ -304,12 +282,8 @@ class _DrawerHomeState extends State<DrawerHome> {
                 color: Colors.black54,
               ),
               title: Text(
-                'Log Out',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
-                ),
+                translation(context).logout,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
           ],

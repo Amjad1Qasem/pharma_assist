@@ -34,4 +34,6 @@ abstract class AppImages {
   static const iconIntro = '$_imagesPath/Icon_app2.png';
 
   static const persIntro = '$_imagesPath/person_intro.png';
+
+  static const editIcon = '$_imagesPath/edit_icon.png';
 }

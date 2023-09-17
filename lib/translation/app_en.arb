@@ -1,5 +1,5 @@
 {
-    "language": "English",
+    "language": "Language",
     "splashDescription":"Never forget important medication details again. Start  now and make managing your medications a breeze.",
     "splashTextButton":"Get Started",
     "onBoardingFirstTitle":"Welcome to Pharmasisst",
@@ -42,5 +42,16 @@
     "it_happens":"Dont worry\nIt happens to the best of us.",
     "reset_successful":"Reset successful",
     "pharma":"Pharma",
-    "assist":"Assist"   
+    "assist":"Assist",
+    "theme":"Theme",
+    "favorites":"Favorites",
+    "logout":"Log Out",
+    "edit_profile":"Edit profile",
+    "settings":"Settings",
+    "about":"About",
+    "search_history":"History",
+    "specialty":"Specialty ",
+    "home":"Home",
+    "search":"Search",
+    "profile":"Profile"
 }

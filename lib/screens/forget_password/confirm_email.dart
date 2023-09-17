@@ -1,12 +1,12 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 import '../../router/app_router.dart';
@@ -19,7 +19,7 @@ class ConfirmEmailSrceen extends StatefulWidget {
 }
 
 class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
-  var formkey = GlobalKey<FormState>();
+
   var emailcontroller = TextEditingController();
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
 
@@ -139,7 +139,6 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
             // ignore: avoid_unnecessary_containers
             child: Container(
               child: Form(
-                key: formkey,
                 child: Center(
                   child: SingleChildScrollView(
                     child: Column(

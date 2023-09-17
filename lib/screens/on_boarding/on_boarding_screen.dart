@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/bg_screen_onboarding_extention.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

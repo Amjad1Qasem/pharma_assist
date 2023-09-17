@@ -5,6 +5,7 @@ part 'keys.dart';
 
 abstract class LocalStoageHelper {
   static Future<void> setTheme(ThemeMode mode) async {
+    
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     sharedPreferences.setString(_Keys.theme, mode.name);
@@ -38,4 +39,4 @@ abstract class LocalStoageHelper {
     return Locale(locale);
   }
 }
-
+//تأخذ طريقة setLocal() كائنًا من نوع Locale كإدخال وتقوم بحفظه في تفضيلات المشاركة. يمثل كائن Locale لغة محددة ومنطقة. على سبيل المثال، يمثل كائن Locale en_US اللغة الإنجليزية في الولايات المتحدة.

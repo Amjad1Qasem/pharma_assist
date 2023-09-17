@@ -3,10 +3,10 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/screens/home/drawer_home.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 import '../../components/default_scaffold.dart';
@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var Searchcontroller = TextEditingController();
+  
 
   List<ImagesSwiperModel> listOfImageSwiper = [
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper1.png'),
@@ -89,61 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultScaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        toolbarHeight: 70.h,
-        leading: Padding(
-          padding: EdgeInsetsDirectional.only(start: 6.sp),
-          child: Builder(builder: (context) {
-            return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: Icon(
-                Icons.menu_rounded,
-                size: 45.sp,
-              ),
-              color: Colors.white,
-            );
-          }),
-        ),
-        title: SizedBox(
-          height: 50.h,
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(end: 5.sp),
-            child: TextField(
-              controller: Searchcontroller,
-              onSubmitted: (value) {
-                debugPrint(value);
-              },
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromARGB(255, 255, 255, 255),
-                  labelStyle: TextStyle(
-                      fontFamily: 'Nunito-Light',
-                      fontSize: 18.sp,
-                      color: const Color(0xff8A8A8E)),
-                  labelText: 'Search drug, company etc..',
-                  prefixIcon: Icon(
-                    Icons.search,
-                    size: 35.sp,
-                    color: Colors.black45,
-                  ),
-                  //suffixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12.r)))),
-            ),
-          ),
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30.0.r),
-          ),
-        ),
-      ),
-      drawer: const DrawerHome(),
-      body: SingleChildScrollView(
+    return Container(
+      
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -186,26 +134,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             translation(context).companies,
-                            style: TextStyle(
-                              color: const Color(0xff333333),
-                              fontSize: 21.sp,
-                              fontWeight: FontWeight.w800,
-                              fontFamily: 'Nunito',
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-                              context.push(AppRouter.companyScreen);
+                              context.pushNamed(AppRouter.companyScreen);
                             },
                             child: Text(
                               translation(context).see_all,
-                              style: TextStyle(
-                                color: const Color(0xff00A8B9),
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w800,
-                                fontFamily: 'Nunito',
-                              ),
+                              style: Theme.of(context).textTheme.displayLarge,
                             ),
                           ),
                         ],
@@ -232,25 +170,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             translation(context).categories,
-                            style: TextStyle(
-                              color: const Color(0xff333333),
-                              fontSize: 21.sp,
-                              fontWeight: FontWeight.w800,
-                              fontFamily: 'Nunito',
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           TextButton(
                             onPressed: () {
-                              context.goNamed(AppRouter.categoryScreen);
+                              context.pushNamed(AppRouter.categoryScreen);
                             },
                             child: Text(
                               translation(context).see_all,
-                              style: TextStyle(
-                                color: const Color(0xff00A8B9),
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w800,
-                                fontFamily: 'Nunito',
-                              ),
+                              style: Theme.of(context).textTheme.displayLarge,
                             ),
                           ),
                         ],

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 import '../../constants/app_images.dart';
@@ -24,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool secure = true;
 
-  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
 
   @override
@@ -96,7 +95,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 // ignore: avoid_unnecessary_containers
                 child: Container(
                   child: Form(
-                    key: _formKey,
                     child: Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           TextButton(
                             onPressed: () {
-                              context.goNamed(AppRouter.confirmEmail);
+                              context.pushNamed(AppRouter.confirmEmail);
                             },
                             child: Text(translation(context).forget_password,
                                 style: Theme.of(context).textTheme.bodySmall),
@@ -150,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 textButton: translation(context).login,
                                 onTap: () {
                                   // if (Form.of(context).validate()) {}
-                                  context.goNamed(AppRouter.homeScreen);
+                                  context.goNamed(AppRouter.homeLayout);
                                   debugPrint('Login ok');
                                 },
                                 color: colors.buttonColor,
@@ -249,7 +247,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ],
                             ),
-                          ),                    
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -268,7 +266,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ))
                             ],
                           ),
-                     
                         ],
                       ),
                     ),
