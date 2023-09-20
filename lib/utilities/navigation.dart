@@ -5,10 +5,8 @@ extension NewNavigation on BuildContext {
     Navigator.of(this).popAndPushNamed(name);
   }
 
-  void pushNamed(
-    String name,
-  ) {
-    Navigator.of(this).pushNamed(name);
+  void pushNamed(String name, {Object? argument}) {
+    Navigator.of(this).pushNamed(name, arguments: argument);
   }
 
   void pop() {

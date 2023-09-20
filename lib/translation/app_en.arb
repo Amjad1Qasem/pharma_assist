@@ -53,5 +53,13 @@
     "specialty":"Specialty ",
     "home":"Home",
     "search":"Search",
-    "profile":"Profile"
+    "profile":"Profile",
+    "password_is_required":"Password is required",
+    "email_is_required":"Email is required",
+    "name_is_required":"Name is required",
+    "specialty_is_required":"Specialty is required",
+    "next":"Next",
+    "new_password":"New Password",
+    "confirm_password":"Confirm Password",
+    "old_password":"Old Password "
 }

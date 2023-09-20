@@ -16,9 +16,9 @@ final class CategoryState extends BottomNavigationBarState {
 }
 
 final class FavorateState extends BottomNavigationBarState {
-  FavorateState() : super(2);
+  FavorateState() : super(3);
 }
 
 final class ProfileState extends BottomNavigationBarState {
-  ProfileState() : super(3);
+  ProfileState() : super(2);
 }

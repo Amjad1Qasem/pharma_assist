@@ -16,6 +16,7 @@ abstract class AppThemes {
             secondary: Colors.white,
             onSecondary: AppColors.colorTextField.withOpacity(0.2),
             tertiary: AppColors.grey,
+            onSecondaryContainer: AppColors.colorTextField.withOpacity(0.12),
             onTertiary: AppColors.white,
             outline: AppColors.grey),
         scaffoldBackgroundColor: Colors.white,
@@ -90,6 +91,12 @@ abstract class AppThemes {
               color: AppColors.primaryGreen,
               fontSize: 16.sp,
               fontWeight: FontWeight.w300,
+            )),
+            displayMedium: GoogleFonts.nunito(
+                textStyle: TextStyle(
+              color: AppColors.grey,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
             ))),
         extensions: const {
           SplashScreenHeaderThemeExtention.light,
@@ -107,6 +114,7 @@ abstract class AppThemes {
             secondary: Colors.white,
             tertiary: AppColors.white,
             onSecondary: AppColors.lightGrey.withOpacity(0.7),
+            onSecondaryContainer: AppColors.colorTextField,
             onTertiary: AppColors.colorButtonBack,
             outline: AppColors.white),
         scaffoldBackgroundColor: Colors.black,
@@ -181,6 +189,12 @@ abstract class AppThemes {
               color: AppColors.white,
               fontSize: 16.sp,
               fontWeight: FontWeight.w300,
+            )),
+            displayMedium: GoogleFonts.nunito(
+                textStyle: TextStyle(
+              color: AppColors.grey,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
             ))),
         extensions: const {
           SplashScreenHeaderThemeExtention.dark,

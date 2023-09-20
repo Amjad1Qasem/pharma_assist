@@ -53,6 +53,14 @@
     "specialty":"الاختصاص",
     "home":"الرئيسية",
     "search":"البحث",
-    "profile":"الصفحة الشخصية"
+    "profile":"الصفحة الشخصية",
+    "password_is_required":"كلمة المرور مطلوبة",
+    "email_is_required":"الايميل مطلوب",
+    "name_is_required":"اسم المستخدم مطلوب",
+    "specialty_is_required":"الاختصاص مطلوب",
+    "next":"التالي",
+     "new_password":"كلمة المرور الجديدة",
+    "confirm_password":"تأكيد كلمة المرور",
+    "old_password":"كلمة المرور القديمة"
    
 }

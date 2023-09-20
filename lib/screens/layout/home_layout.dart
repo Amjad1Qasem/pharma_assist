@@ -113,9 +113,9 @@ class _HomeLayoutState extends State<HomeLayout> {
               } else if (index == 1) {
                 context.read<BottomNavigationBarCubit>().categoryState();
               } else if (index == 2) {
-                context.read<BottomNavigationBarCubit>().favorateState();
-              } else {
                 context.read<BottomNavigationBarCubit>().profileScreen();
+              } else {
+                context.read<BottomNavigationBarCubit>().favorateState();
               }
             },
           ),

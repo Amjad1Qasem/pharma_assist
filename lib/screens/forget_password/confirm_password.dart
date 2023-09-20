@@ -148,6 +148,10 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          validation: const [],
                           controller: passcontroller,
                           keyboardType: TextInputType.emailAddress,
                           scureText: true,
@@ -166,7 +170,11 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
                           controller: passcontroller,
+                          validation: const [],
                           scureText: true,
                           keyboardType: TextInputType.emailAddress,
                           radius: 20.r,

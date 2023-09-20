@@ -155,6 +155,9 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
+                          scureText: false,
+                            fillColor: Theme.of(context).colorScheme.onSecondaryContainer,
+                          validation: [],
                           controller: emailcontroller,
                           keyboardType: TextInputType.emailAddress,
                           radius: 20.sp,

@@ -10,53 +10,49 @@ class DefaultTextFormField extends StatefulWidget {
     required this.controller,
     required this.radius,
     required this.keyboardType,
-    this.scureText,
-    // this.suffixIcon,
+    required this.validation,
+    required this.scureText,
+    this.suffixIcon,
+    required this.fillColor,
+    this.sufix,
+    this.sufixfun,
   });
   final TextEditingController controller;
   final double radius;
   final TextInputType keyboardType;
-  bool? scureText = false;
-  // Widget? suffixIcon;
+  final List<FieldValidator> validation;
+  bool scureText = false;
+  Widget? suffixIcon;
+  final Color fillColor;
+  IconData? sufix;
+  final Function()? sufixfun;
 
   @override
   State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
 }
 
 class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
-  bool scureText = false;
-
-  // late Widget suffixIcon;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: (input) {
         debugPrint(input);
       },
-      validator: RequiredValidator(errorText: 'djasiopjdposaj'),
+      validator: MultiValidator(widget.validation),
       maxLines: 1,
       controller: widget.controller,
-      obscureText: scureText,
-      // autofocus: false,
-      //showCursor: true,
-      //autovalidateMode: AutovalidateMode.always,
-      style: TextStyle(
-          fontFamily: 'Nunito',
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w700,
-          color: Colors.black),
+      obscureText: widget.scureText,
+      autovalidateMode: AutovalidateMode.always,
+      style: Theme.of(context).textTheme.displayMedium,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        // labelText: 'sdd',
-        //hintText: 'dsadasd',
-        // suffix: ,
-        labelStyle: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 40.sp,
-            fontWeight: FontWeight.w700,
-            color: Colors.black),
+        border: const UnderlineInputBorder(borderSide: BorderSide.none),
         filled: true,
-        fillColor: Theme.of(context).colorScheme.onSecondary,
+        fillColor: widget.fillColor,
+        suffixIcon: widget.sufix != null
+            ? IconButton(onPressed: widget.sufixfun, icon: Icon(widget.sufix))
+            : null,
+        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 5),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.onSecondary,

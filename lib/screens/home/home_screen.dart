@@ -90,7 +90,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 180,
               child: Container(
                 alignment: Alignment.topCenter,
-                // color: const Color.fromARGB(78, 195, 241, 246),
                 child: Swiper(
                   containerWidth: 500.w,
                   containerHeight: 500.h,

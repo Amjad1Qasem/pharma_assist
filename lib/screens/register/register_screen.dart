@@ -1,6 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/default_button.dart';
@@ -27,7 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var MobileNumbercontroller = TextEditingController();
   var BirthDatecontroller = TextEditingController();
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-
+  bool scure = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,6 +115,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45.h,
                             child: DefaultTextFormField(
+                              scureText: false,
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              validation: const [],
                               controller: FirstNamecontroller,
                               keyboardType: TextInputType.emailAddress,
                               radius: 15.sp,
@@ -136,7 +144,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45.h,
                             child: DefaultTextFormField(
+                              scureText: false,
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                               controller: LastNamecontroller,
+                              validation: const [],
                               keyboardType: TextInputType.emailAddress,
                               radius: 15.sp,
                             ),
@@ -165,6 +178,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45.h,
                             child: DefaultTextFormField(
+                              scureText: false,
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              validation: const [],
                               controller: MobileNumbercontroller,
                               keyboardType: TextInputType.emailAddress,
                               radius: 15.sp,
@@ -189,7 +207,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45.h,
                             child: DefaultTextFormField(
+                              scureText: false,
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                               controller: BirthDatecontroller,
+                              validation: const [],
                               keyboardType: TextInputType.emailAddress,
                               radius: 15.sp,
                             ),
@@ -218,7 +241,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45.h,
                             child: DefaultTextFormField(
+                              scureText: false,
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
                               controller: emailcontroller,
+                              validation: const [],
                               keyboardType: TextInputType.emailAddress,
                               radius: 15.sp,
                             ),
@@ -242,6 +270,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(
                             height: 45.h,
                             child: DefaultTextFormField(
+                              scureText: scure,
+                              sufix: scure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              sufixfun: () {
+                                setState(() {
+                                  scure = !scure;
+                                });
+                                return null;
+                              },
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer,
+                              validation: const [],
                               controller: passcontroller,
                               keyboardType: TextInputType.emailAddress,
                               radius: 15.sp,

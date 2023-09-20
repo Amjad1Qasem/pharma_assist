@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
@@ -25,6 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   bool secure = true;
 
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
+
+  bool scure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 3.h,
                           ),
                           DefaultTextFormField(
+                            scureText: true,
+                            fillColor: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                            validation: const [],
                             controller: emailcontroller,
                             keyboardType: TextInputType.emailAddress,
                             radius: 20.sp,
@@ -129,7 +137,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 3.h,
                           ),
                           DefaultTextFormField(
-                            scureText: true,
+                            scureText: scure,
+                            sufix:
+                                scure ? Icons.visibility : Icons.visibility_off,
+                            sufixfun: () {
+                              setState(() {
+                                scure = !scure;
+                              });
+                              return null;
+                            },
+                            fillColor: Theme.of(context)
+                                .colorScheme
+                                .onSecondaryContainer,
+                            validation: const [],
                             controller: passcontroller,
                             keyboardType: TextInputType.emailAddress,
                             radius: 20.sp,

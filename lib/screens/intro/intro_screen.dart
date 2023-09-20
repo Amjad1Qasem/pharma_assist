@@ -116,7 +116,7 @@ class _IntroScreenState extends State<IntroScreen> {
             padding: EdgeInsets.all(25.sp),
             child: DefaultbButton(
                 onTap: () {
-                  context.goNamed(AppRouter.homeScreen);
+                  context.goNamed(AppRouter.homeLayout);
                 },
                 color: colors.buttonColor,
                 colorText: Colors.white,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -12,6 +13,7 @@ import 'package:pharma_assist/screens/forget_password/successful_screen.dart';
 import 'package:pharma_assist/screens/intro/intro_screen.dart';
 import 'package:pharma_assist/screens/forget_password/confirm_email.dart';
 import 'package:pharma_assist/screens/layout/home_layout.dart';
+import 'package:pharma_assist/screens/profile/edit_password_screen.dart';
 import 'package:pharma_assist/screens/profile/edit_profile_screen.dart';
 import 'package:pharma_assist/screens/profile/profile_screen.dart';
 import 'package:pharma_assist/screens/register/register_screen.dart';
@@ -29,7 +31,7 @@ class AppRouter {
   static const noInternetScreen = '/noInternet';
   static const splashScreen = '/splash';
   static const onBoardingScreen = '/onBoardingScreen';
-  static const homeScreen = '/gome';
+  static const homeScreen = '/home';
   static const companyScreen = '/companyScreen';
   static const categoryScreen = '/categoryScreen';
   static const loginScreen = '/loginScreen';
@@ -42,6 +44,7 @@ class AppRouter {
   static const homeLayout = '/homeLayout';
   static const detailsMed = '/detailsMed';
   static const editProfile = '/editProfile';
+  static const editPassword = '/editPassword';
 
   final NoInternetCubit noInternetCubit;
 
@@ -92,6 +95,30 @@ class AppRouter {
         break;
       case AppRouter.editProfile:
         route = CupertinoPageRoute(builder: (_) => const EditProfileScreen());
+        break;
+      case AppRouter.introScreen:
+        route = CupertinoPageRoute(builder: (_) => const IntroScreen());
+        break;
+      case AppRouter.editPassword:
+        final (firstName, lastName, email, birthDate, mobile, speciality) =
+            settings.arguments as (
+          String,
+          String,
+          String,
+          String,
+          String,
+          String
+        );
+        print(settings.arguments);
+        route = CupertinoPageRoute(
+            builder: (_) => EditPasswordScreen(
+                  firsName: firstName,
+                  lastName: lastName,
+                  email: email,
+                  birthDate: birthDate,
+                  mobileNumber: mobile,
+                  specialty: speciality,
+                ));
         break;
       default:
         route = CupertinoPageRoute(builder: (_) => const SplashScreen());
