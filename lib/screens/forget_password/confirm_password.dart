@@ -18,9 +18,10 @@ class ConfirmPasswordSrceen extends StatefulWidget {
 }
 
 class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
-  var formkey = GlobalKey<FormState>();
-  var emailcontroller = TextEditingController();
+  var confirmPasscontroller = TextEditingController();
   var passcontroller = TextEditingController();
+  FocusNode focusConfirmPass = FocusNode();
+  FocusNode focusPass = FocusNode();
 
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
   @override
@@ -36,13 +37,57 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(
+                            top: 48.r, start: 0.r, end: 82.r),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 36.w,
+                              height: 36.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6.r),
+                                color: Theme.of(context).colorScheme.onTertiary,
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromARGB(48, 0, 0, 0),
+                                    offset: Offset(0, 4),
+                                    blurRadius: 4,
+                                  ),
+                                  BoxShadow(
+                                    color: Color.fromARGB(48, 0, 0, 0),
+                                    offset: Offset(4, 0),
+                                    blurRadius: 4,
+                                  )
+                                ],
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    bottom: 4.r, top: 0.r, start: 3.r),
+                                child: IconButton(
+                                  onPressed: () {
+                                    context.goNamed(AppRouter.loginScreen);
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    size: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Image.asset(
                         AppImages.shapOnTopEnd,
                         color: Theme.of(context).primaryColor,
                         width: 245.w,
                         height: 150.h,
-                      )
+                      ),
                     ],
                   ),
                   Padding(
@@ -125,15 +170,16 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
               )
             ],
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-                top: 310.r, bottom: 10.r, start: 40.r, end: 40.r),
-            // ignore: avoid_unnecessary_containers
-            child: Container(
-              child: Form(
-                key: formkey,
-                child: Center(
-                  child: SingleChildScrollView(
+          Center(
+            child: Form(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height / 2,
+                    horizontal: MediaQuery.of(context).size.width / 12,
+                  ),
+                  // ignore: avoid_unnecessary_containers
+                  child: Form(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
@@ -148,6 +194,11 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
+                          focus: focusPass,
+                          onFieldSubmitted: (val) {
+                            FocusScope.of(context)
+                                .requestFocus(focusConfirmPass);
+                          },
                           fillColor: Theme.of(context)
                               .colorScheme
                               .onSecondaryContainer,
@@ -170,10 +221,11 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
+                          focus: focusConfirmPass,
                           fillColor: Theme.of(context)
                               .colorScheme
                               .onSecondaryContainer,
-                          controller: passcontroller,
+                          controller: confirmPasscontroller,
                           validation: const [],
                           scureText: true,
                           keyboardType: TextInputType.emailAddress,

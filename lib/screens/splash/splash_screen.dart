@@ -17,13 +17,11 @@ class SplashScreen extends HookWidget {
     final splashScreenHeaderThemeExtention =
         Theme.of(context).extension<SplashScreenHeaderThemeExtention>()!;
     final color = Theme.of(context).extension<ColorsThemeExtention>()!;
-
     // useEffect(() {
     //   Future.delayed(const Duration(seconds: 3))
     //       .then((value) => context.pushNamed(AppRouter.homeLayout));
     //   return null;
     // }, []);
-
     return DefaultScaffold(
       body: Stack(
         children: [

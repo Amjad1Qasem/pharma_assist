@@ -19,7 +19,7 @@ class HomeLayout extends StatefulWidget {
 }
 
 class _HomeLayoutState extends State<HomeLayout> {
-  var Searchcontroller = TextEditingController();
+  var searchcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -52,7 +52,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(end: 5.sp),
                       child: TextField(
-                        controller: Searchcontroller,
+                        controller: searchcontroller,
                         onSubmitted: (value) {
                           debugPrint(value);
                         },
@@ -83,11 +83,11 @@ class _HomeLayoutState extends State<HomeLayout> {
                   ),
                 ),
           drawer: state is! HomeState ? null : const DrawerHome(),
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          // backgroundColor: const Color.fromARGB(205, 67, 69, 72),
           bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor: Theme.of(context).colorScheme.onPrimary,
-            unselectedItemColor: Theme.of(context).colorScheme.tertiary,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+            backgroundColor: Theme.of(context).colorScheme.primary,
             currentIndex: state.index,
             items: [
               BottomNavigationBarItem(

@@ -32,6 +32,9 @@ class EditPasswordScreen extends StatefulWidget {
 }
 
 class _EditPasswordScreenState extends State<EditPasswordScreen> {
+  FocusNode focusOldPassword = FocusNode();
+  FocusNode focusNewPassword = FocusNode();
+  FocusNode focusConfirmPassword = FocusNode();
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
   PageController pageViewController = PageController();
   bool scurePassNew = true;
@@ -76,104 +79,114 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                   ),
                 ],
               ),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 50.h),
-                  child: Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            translation(context).old_password,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          DefaultTextFormField(
-                            scureText: scurePassNew,
-                            sufix: scurePassNew
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            sufixfun: () {
-                              setState(() {
-                                scurePassNew = !scurePassNew;
-                              });
-                              return null;
-                            },
-                            fillColor: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
-                            validation: const [],
-                            controller: oldPasswordController,
-                            radius: 6.r,
-                            keyboardType: TextInputType.name,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            translation(context).new_password,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          DefaultTextFormField(
-                            scureText: scurePassold,
-                            sufix: scurePassold
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            sufixfun: () {
-                              setState(() {
-                                scurePassold = !scurePassold;
-                              });
-                              return null;
-                            },
-                            fillColor: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
-                            validation: const [],
-                            controller: newPasswordController,
-                            radius: 6.r,
-                            keyboardType: TextInputType.name,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(widget.birthDate),
-                          Text(
-                            translation(context).confirm_password,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          DefaultTextFormField(
-                            scureText: scurePassConfirm,
-                            sufix: scurePassConfirm
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            sufixfun: () {
-                              setState(() {
-                                scurePassConfirm = !scurePassConfirm;
-                              });
-                              return null;
-                            },
-                            fillColor: Theme.of(context)
-                                .colorScheme
-                                .onSecondaryContainer,
-                            validation: const [],
-                            controller: confirmPasswordController,
-                            radius: 6.r,
-                            keyboardType: TextInputType.name,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height / 12),
+                child: Column(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          translation(context).old_password,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        DefaultTextFormField(
+                          focus: focusOldPassword,
+                          onFieldSubmitted: (val) {
+                            FocusScope.of(context)
+                                .requestFocus(focusNewPassword);
+                          },
+                          scureText: scurePassNew,
+                          sufix: scurePassNew
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          sufixfun: () {
+                            setState(() {
+                              scurePassNew = !scurePassNew;
+                            });
+                            return null;
+                          },
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          validation: const [],
+                          controller: oldPasswordController,
+                          radius: 6.r,
+                          keyboardType: TextInputType.name,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          translation(context).new_password,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        DefaultTextFormField(
+                          focus: focusNewPassword,
+                          onFieldSubmitted: (val) {
+                            FocusScope.of(context)
+                                .requestFocus(focusConfirmPassword);
+                          },
+                          scureText: scurePassold,
+                          sufix: scurePassold
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          sufixfun: () {
+                            setState(() {
+                              scurePassold = !scurePassold;
+                            });
+                            return null;
+                          },
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          validation: const [],
+                          controller: newPasswordController,
+                          radius: 6.r,
+                          keyboardType: TextInputType.name,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          translation(context).confirm_password,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        DefaultTextFormField(
+                          focus: focusConfirmPassword,
+                          scureText: scurePassConfirm,
+                          sufix: scurePassConfirm
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          sufixfun: () {
+                            setState(() {
+                              scurePassConfirm = !scurePassConfirm;
+                            });
+                            return null;
+                          },
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          validation: const [],
+                          controller: confirmPasswordController,
+                          radius: 6.r,
+                          keyboardType: TextInputType.name,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
@@ -185,7 +198,7 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                   DefaultbButton(
                     textButton: translation(context).confirm,
                     onTap: () {
-                      context.pushNamed(AppRouter.confirmPassword);
+                      context.pop();
                       debugPrint('the values has edited');
                     },
                     color: colors.buttonColor,

@@ -28,4 +28,10 @@ abstract class AppColors {
   static const colorButtonBack = Color(0xff568093);
 
   static const black = Color(0xFF000000);
+
+  static const colorTextFieldSearch = Color(0xFFdedee1);
+
+  static const containerColor = Color(0xFFe5fdff);
+
+  static const favorateColor = Color(0xFFFF0000);
 }

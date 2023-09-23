@@ -19,7 +19,6 @@ class ConfirmEmailSrceen extends StatefulWidget {
 }
 
 class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
-
   var emailcontroller = TextEditingController();
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
 
@@ -74,7 +73,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                               ),
                             ),
                           ),
-                        ),
+                        ), 
                       ],
                     ),
                   ),
@@ -86,6 +85,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                   ),
                 ],
               ),
+            
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 40.r, end: 40.r),
                 child: Row(
@@ -156,8 +156,10 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                         ),
                         DefaultTextFormField(
                           scureText: false,
-                            fillColor: Theme.of(context).colorScheme.onSecondaryContainer,
-                          validation: [],
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          validation: const [],
                           controller: emailcontroller,
                           keyboardType: TextInputType.emailAddress,
                           radius: 20.sp,

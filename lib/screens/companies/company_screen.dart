@@ -3,13 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 class CompanyScreen extends StatelessWidget {
-  CompanyScreen({super.key});
+  CompanyScreen({super.key, this.hasBackButton = true});
 
   late List<CompanyModel> listOfCompanyItems = [
     CompanyModel(
@@ -49,10 +50,10 @@ class CompanyScreen extends StatelessWidget {
         companyIcon: 'assets/images/compani_Icon6.png',
         companyName: 'company Name'),
   ];
-
+  final bool hasBackButton;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultScaffold(
       body: SafeArea(
         child: Column(
           children: [
@@ -61,39 +62,42 @@ class CompanyScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 36.w,
-                    height: 36.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.r),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromARGB(48, 0, 0, 0),
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
+                  !hasBackButton
+                      ? const SizedBox()
+                      : Container(
+                          width: 36.w,
+                          height: 36.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.r),
+                            color: Theme.of(context).colorScheme.onTertiary,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(48, 0, 0, 0),
+                                offset: Offset(0, 4),
+                                blurRadius: 4,
+                              ),
+                              BoxShadow(
+                                color: Color.fromARGB(48, 0, 0, 0),
+                                offset: Offset(4, 0),
+                                blurRadius: 4,
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.only(
+                                bottom: 0.sp, top: 0.sp, start: 3.sp),
+                            child: IconButton(
+                              onPressed: () {
+                                context.pop();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Theme.of(context).colorScheme.tertiary,
+                                size: 24.sp,
+                              ),
+                            ),
+                          ),
                         ),
-                        BoxShadow(
-                          color: Color.fromARGB(48, 0, 0, 0),
-                          offset: Offset(4, 0),
-                          blurRadius: 4,
-                        )
-                      ],
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          bottom: 0.sp, top: 0.sp, start: 3.sp),
-                      child: IconButton(
-                        onPressed: () {
-                          context.pop();
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          size: 24.sp,
-                        ),
-                      ),
-                    ),
-                  ),
                   Text(
                     translation(context).companies,
                     style: Theme.of(context).textTheme.labelLarge,
@@ -109,6 +113,7 @@ class CompanyScreen extends StatelessWidget {
                 ],
               ),
             ),
+         
             Expanded(
               child: GridView.builder(
                 padding: EdgeInsets.all(20.sp),

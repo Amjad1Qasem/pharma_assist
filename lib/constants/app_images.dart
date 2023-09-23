@@ -36,4 +36,11 @@ abstract class AppImages {
   static const persIntro = '$_imagesPath/person_intro.png';
 
   static const editIcon = '$_imagesPath/edit_icon.png';
+
+  static const filterIcon = '$_imagesPath/filter_search_icon.png';
+
+  static const searchIcon = '$_imagesPath/search_icon.png';
+
+  static const medImage = '$_imagesPath/med_image.png';
+
 }

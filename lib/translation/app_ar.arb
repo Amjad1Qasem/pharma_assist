@@ -59,8 +59,9 @@
     "name_is_required":"اسم المستخدم مطلوب",
     "specialty_is_required":"الاختصاص مطلوب",
     "next":"التالي",
-     "new_password":"كلمة المرور الجديدة",
+    "new_password":"كلمة المرور الجديدة",
     "confirm_password":"تأكيد كلمة المرور",
-    "old_password":"كلمة المرور القديمة"
+    "old_password":"كلمة المرور القديمة",
+    "manufactured_by":"صُنع بواسطة"
    
 }

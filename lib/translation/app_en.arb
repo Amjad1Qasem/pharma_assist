@@ -61,5 +61,6 @@
     "next":"Next",
     "new_password":"New Password",
     "confirm_password":"Confirm Password",
-    "old_password":"Old Password "
+    "old_password":"Old Password ",
+    "manufactured_by":"Manufactured By:"
 }

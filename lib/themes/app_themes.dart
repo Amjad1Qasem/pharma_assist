@@ -11,14 +11,17 @@ abstract class AppThemes {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.white,
+            tertiaryContainer: AppColors.colorTextFieldSearch,
             onPrimary: AppColors.black,
             primary: AppColors.primaryGreen,
             secondary: Colors.white,
-            onSecondary: AppColors.colorTextField.withOpacity(0.2),
             tertiary: AppColors.grey,
             onSecondaryContainer: AppColors.colorTextField.withOpacity(0.12),
             onTertiary: AppColors.white,
-            outline: AppColors.grey),
+            outline: AppColors.grey,
+            onTertiaryContainer: AppColors.containerColor,
+            onInverseSurface: AppColors.favorateColor,
+            inversePrimary: AppColors.aqua),
         scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
             bodyMedium: GoogleFonts.nunito(
@@ -109,13 +112,17 @@ abstract class AppThemes {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.black,
+            tertiaryContainer: AppColors.white,
             onPrimary: AppColors.black,
             primary: AppColors.primaryDarkGreen,
             secondary: Colors.white,
             tertiary: AppColors.white,
             onSecondary: AppColors.lightGrey.withOpacity(0.7),
-            onSecondaryContainer: AppColors.colorTextField,
+            onSecondaryContainer: AppColors.colorTextField.withOpacity(0.12),
             onTertiary: AppColors.colorButtonBack,
+            onTertiaryContainer: AppColors.containerColor.withOpacity(0.3),
+            inversePrimary: AppColors.aqua,
+            onInverseSurface: AppColors.favorateColor,
             outline: AppColors.white),
         scaffoldBackgroundColor: Colors.black,
         textTheme: TextTheme(

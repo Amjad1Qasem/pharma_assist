@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 
 //TextFormField
 
@@ -16,6 +17,11 @@ class DefaultTextFormField extends StatefulWidget {
     required this.fillColor,
     this.sufix,
     this.sufixfun,
+    this.focus,
+    this.onFieldSubmitted,
+    this.onTap,
+    this.hintText,
+    this.prefix,
   });
   final TextEditingController controller;
   final double radius;
@@ -26,7 +32,11 @@ class DefaultTextFormField extends StatefulWidget {
   final Color fillColor;
   IconData? sufix;
   final Function()? sufixfun;
-
+  final FocusNode? focus;
+  final Function(String)? onFieldSubmitted;
+  final Function()? onTap;
+  final String? hintText;
+  IconData? prefix;
   @override
   State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
 }
@@ -38,6 +48,9 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       onChanged: (input) {
         debugPrint(input);
       },
+      onTap: widget.onTap,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      focusNode: widget.focus,
       validator: MultiValidator(widget.validation),
       maxLines: 1,
       controller: widget.controller,
@@ -47,12 +60,21 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
         border: const UnderlineInputBorder(borderSide: BorderSide.none),
+        hintText: widget.hintText,
         filled: true,
         fillColor: widget.fillColor,
+        prefixIcon: widget.prefix != null
+            ? Icon(Icons.search,
+                size: 25.sp,
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSecondaryContainer
+                    .withOpacity(0.8))
+            : null,
         suffixIcon: widget.sufix != null
             ? IconButton(onPressed: widget.sufixfun, icon: Icon(widget.sufix))
             : null,
-        contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 5),
+        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 5),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.onSecondary,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
@@ -13,47 +14,47 @@ class CategorySreen extends StatelessWidget {
   late List<CategoryModel> listOfCategoryItems = [
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon1.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNma1'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon2.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNma2'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon3.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNma3'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon4.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNma4'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon5.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNma5'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon6.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNma6'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon1.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon2.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon3.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon4.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon5.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon6.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
   ];
 
   final bool hasBackButton;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultScaffold(
       body: SafeArea(
         child: Column(
           children: [
@@ -62,40 +63,42 @@ class CategorySreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  !hasBackButton ? SizedBox() :
-                  Container(
-                    width: 36.w,
-                    height: 36.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.r),
-                      color: Colors.white,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromARGB(48, 0, 0, 0),
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
+                  !hasBackButton
+                      ? const SizedBox()
+                      : Container(
+                          width: 36.w,
+                          height: 36.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.r),
+                            color: Theme.of(context).colorScheme.onTertiary,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(48, 0, 0, 0),
+                                offset: Offset(0, 4),
+                                blurRadius: 4,
+                              ),
+                              BoxShadow(
+                                color: Color.fromARGB(48, 0, 0, 0),
+                                offset: Offset(4, 0),
+                                blurRadius: 4,
+                              )
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.only(
+                                bottom: 0.sp, top: 0.sp, start: 3.sp),
+                            child: IconButton(
+                              onPressed: () {
+                                context.pop();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: Theme.of(context).colorScheme.tertiary,
+                                size: 24.sp,
+                              ),
+                            ),
+                          ),
                         ),
-                        BoxShadow(
-                          color: Color.fromARGB(48, 0, 0, 0),
-                          offset: Offset(4, 0),
-                          blurRadius: 4,
-                        )
-                      ],
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          bottom: 0.sp, top: 0.sp, start: 3.sp),
-                      child: IconButton(
-                        onPressed: () {
-                          context.pop();
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios,
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  ),
                   Text(
                     translation(context).categories,
                     style: Theme.of(context).textTheme.labelLarge,
@@ -122,7 +125,7 @@ class CategorySreen extends StatelessWidget {
                       crossAxisCount: 2),
                   itemCount: listOfCategoryItems.length,
                   itemBuilder: (context, index) =>
-                      buildCategoryModel(listOfCategoryItems[index])),
+                      buildCategoryModel(listOfCategoryItems[index], context)),
             ),
           ],
         ),
@@ -132,11 +135,12 @@ class CategorySreen extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Widget buildCategoryModel(CategoryModel Model) => Row(
+Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
       children: [
         GestureDetector(
           onTap: () {
-            debugPrint('Category itemes');
+            context.pushNamed(AppRouter.categoryData,
+                argument: (model.categoriesName));
           },
           child: Container(
               width: 160.w,
@@ -155,7 +159,7 @@ Widget buildCategoryModel(CategoryModel Model) => Row(
                       blurRadius: 4,
                     )
                   ],
-                  color: const Color.fromARGB(255, 255, 255, 255)),
+                  color: Theme.of(context).colorScheme.secondary),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -167,7 +171,7 @@ Widget buildCategoryModel(CategoryModel Model) => Row(
                       ),
                       child: Image.asset(
                         // ignore: unnecessary_string_interpolations
-                        '${Model.categoriesImage}',
+                        '${model.categoriesImage}',
                         fit: BoxFit.fill,
                         width: 154.w,
                         height: 120.h,
@@ -187,11 +191,8 @@ Widget buildCategoryModel(CategoryModel Model) => Row(
                     padding: EdgeInsets.all(10.0.sp),
                     child: Text(
                       // ignore: unnecessary_string_interpolations
-                      '${Model.categoriesNmae}',
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w600),
+                      '${model.categoriesName}',
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(color:const Color(0xFF333333)),
                       maxLines: 2,
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,

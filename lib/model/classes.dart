@@ -1,4 +1,3 @@
-
 class OnBoardingModel {
   final String persononboarding;
   final String backgroundonboarding;
@@ -24,14 +23,34 @@ class CompanyModel {
   CompanyModel({
     required this.companyIcon,
     required this.companyName,
-    });
+  });
 }
 
 class CategoryModel {
   final String categoriesImage;
-  final String categoriesNmae;
+  final String categoriesName;
   CategoryModel({
     required this.categoriesImage,
-    required this.categoriesNmae,
+    required this.categoriesName,
+  });
+}
+
+class DetailsMedModel {
+  final String medImage;
+  final String medName;
+  final String medForm;
+  final String companyName;
+  final String categoriesName;
+  final  List<String> title;
+  final List<String> titleText;
+  // final Map<String, String> title;
+  DetailsMedModel({
+    required this.medImage,
+    required this.medName,
+    required this.medForm,
+    required this.companyName,
+    required this.categoriesName,
+    required this.title,
+    required this.titleText,
   });
 }

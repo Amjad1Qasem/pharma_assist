@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/bg_screen_onboarding_extention.dart';
@@ -10,7 +9,6 @@ import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../components/default_scaffold.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -87,6 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 }
               },
             ),
+           
             Padding(
               padding: EdgeInsets.all(ScreenUtil().setSp(30.0)),
               child: Row(
@@ -132,7 +131,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 }
 
-Widget buildOnBoardingItem(OnBoardingModel Model, BuildContext context) =>
+Widget buildOnBoardingItem(OnBoardingModel model, BuildContext context) =>
     Column(children: [
       Padding(
         // ignore: prefer_const_constructors
@@ -142,11 +141,11 @@ Widget buildOnBoardingItem(OnBoardingModel Model, BuildContext context) =>
           children: [
             Text(
                 // ignore: unnecessary_string_interpolations
-                '${Model.title}',
+                '${model.title}',
                 style: Theme.of(context).textTheme.labelLarge),
             Text(
                 // ignore: unnecessary_string_interpolationsp, unnecessary_string_interpolations
-                '${Model.descriptions}',
+                '${model.descriptions}',
                 style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
@@ -160,14 +159,14 @@ Widget buildOnBoardingItem(OnBoardingModel Model, BuildContext context) =>
               // ignore: unnecessary_string_interpolations
               Image.asset(
                 // ignore: unnecessary_string_interpolations
-                '${Model.backgroundonboarding}',
+                '${model.backgroundonboarding}',
                 color: Theme.of(context).primaryColor,
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 60.r),
                 child: Image.asset(
                   // ignore: unnecessary_string_interpolations
-                  '${Model.persononboarding}',
+                  '${model.persononboarding}',
                   width: 340.w,
                   height: 500.h,
                 ),

@@ -94,7 +94,7 @@ class SuccessfulScreen extends StatelessWidget {
                       DefaultbButton(
                         textButton: translation(context).login_now,
                         onTap: () {
-                          context.goNamed(AppRouter.homeScreen);
+                          context.goNamed(AppRouter.homeLayout);
                           debugPrint('Login ok');
                         },
                         color: colors.buttonColor,

@@ -19,8 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-
   List<ImagesSwiperModel> listOfImageSwiper = [
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper1.png'),
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper2.png'),
@@ -51,40 +49,40 @@ class _HomeScreenState extends State<HomeScreen> {
   List<CategoryModel> listOfCategoryItems = [
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon1.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNmaq'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon2.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNames'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon3.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNamed'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon4.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNamefd'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon5.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesNamec'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon6.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon1.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon2.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon3.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon4.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon5.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon6.png',
-        categoriesNmae: 'categoriesNmae'),
+        categoriesName: 'categoriesName'),
   ];
 
   @override
@@ -188,8 +186,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 220,
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) =>
-                                buildCategoryModel(listOfCategoryItems[index]),
+                            itemBuilder: (context, index) => buildCategoryModel(
+                                listOfCategoryItems[index], context),
                             separatorBuilder: (context, index) =>
                                 SizedBox(width: 18.0.w),
                             itemCount: listOfCompanyItems.length),
@@ -249,11 +247,12 @@ Widget buildCompanyModel(CompanyModel Model) => Row(
       ],
     );
 
-Widget buildCategoryModel(CategoryModel Model) => Row(
+Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
       children: [
         GestureDetector(
           onTap: () {
-            debugPrint('Category itemes');
+            context.pushNamed(AppRouter.categoryData,
+                argument: (model.categoriesName));
           },
           child: Container(
               width: 160.w,
@@ -283,7 +282,7 @@ Widget buildCategoryModel(CategoryModel Model) => Row(
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: Image.asset(
-                        '${Model.categoriesImage}',
+                        '${model.categoriesImage}',
                         fit: BoxFit.fill,
                         width: 154.w,
                         height: 120.h,
@@ -302,11 +301,11 @@ Widget buildCategoryModel(CategoryModel Model) => Row(
                       child: Padding(
                     padding: EdgeInsets.all(10.0.sp),
                     child: Text(
-                      '${Model.categoriesNmae}',
-                      style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w600),
+                      '${model.categoriesName}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium
+                          ?.copyWith(color: const Color(0xFF333333)),
                       maxLines: 2,
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,

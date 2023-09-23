@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
+import 'package:pharma_assist/screens/category_data/category_data_screen.dart';
 import 'package:pharma_assist/screens/details_med/details.dart';
+import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
 import 'package:pharma_assist/screens/forget_password/confirm_password.dart';
 import 'package:pharma_assist/screens/forget_password/successful_screen.dart';
 import 'package:pharma_assist/screens/intro/intro_screen.dart';
@@ -45,6 +47,8 @@ class AppRouter {
   static const detailsMed = '/detailsMed';
   static const editProfile = '/editProfile';
   static const editPassword = '/editPassword';
+  static const categoryData = '/categoryData';
+  static const favorateScreen = '/favorateScreen';
 
   final NoInternetCubit noInternetCubit;
 
@@ -98,6 +102,13 @@ class AppRouter {
         break;
       case AppRouter.introScreen:
         route = CupertinoPageRoute(builder: (_) => const IntroScreen());
+        break;
+      case AppRouter.favorateScreen:
+        route = CupertinoPageRoute(builder: (_) => const FavoriteScreen());
+        break;
+      case AppRouter.categoryData:
+        final categoryName = settings.arguments as String;
+        route = CupertinoPageRoute(builder: (_) => CategoryData(categoryName: categoryName,));
         break;
       case AppRouter.editPassword:
         final (firstName, lastName, email, birthDate, mobile, speciality) =
