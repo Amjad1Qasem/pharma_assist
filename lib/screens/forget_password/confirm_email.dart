@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
@@ -28,6 +29,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
+          const BackgroundScreen(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -46,7 +48,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.r),
                             color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 color: Color.fromARGB(48, 0, 0, 0),
                                 offset: Offset(0, 4),
@@ -64,7 +66,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                                 bottom: 4.r, top: 0.r, start: 3.r),
                             child: IconButton(
                               onPressed: () {
-                                context.goNamed(AppRouter.loginScreen);
+                                context.pop();
                               },
                               icon: Icon(
                                 Icons.arrow_back_ios,
@@ -73,7 +75,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                               ),
                             ),
                           ),
-                        ), 
+                        ),
                       ],
                     ),
                   ),
@@ -85,7 +87,6 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                   ),
                 ],
               ),
-            
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 40.r, end: 40.r),
                 child: Row(
@@ -106,7 +107,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(translation(context).forget_password,
+                    Text(translation(context).forgetPassword,
                         style: Theme.of(context).textTheme.titleLarge),
                   ],
                 ),
@@ -116,12 +117,12 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(translation(context).it_happens,
+                    Text(translation(context).itHappens,
                         style: Theme.of(context).textTheme.bodyMedium),
                   ],
                 ),
               ),
-              const Spacer(),
+              Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -158,7 +159,8 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                           scureText: false,
                           fillColor: Theme.of(context)
                               .colorScheme
-                              .onSecondaryContainer,
+                              .onSecondary
+                              .withOpacity(0.3),
                           validation: const [],
                           controller: emailcontroller,
                           keyboardType: TextInputType.emailAddress,
@@ -196,5 +198,11 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailcontroller.clear();
+    super.dispose();
   }
 }

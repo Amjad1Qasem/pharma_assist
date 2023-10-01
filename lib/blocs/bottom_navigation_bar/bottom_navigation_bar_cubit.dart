@@ -9,12 +9,12 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
   void homeScreen() {
     emit(HomeState());
   }
-
-  void categoryState() {
+ 
+  void categoryScreen() {
     emit(CategoryState());
   }
 
-  void favorateState() {
+  void favorateScreen() {
     emit(FavorateState());
   }
 

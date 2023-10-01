@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
@@ -55,80 +57,84 @@ class CategorySreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(20.0.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  !hasBackButton
-                      ? const SizedBox()
-                      : Container(
-                          width: 36.w,
-                          height: 36.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(48, 0, 0, 0),
-                                offset: Offset(0, 4),
-                                blurRadius: 4,
+      body: Stack(
+        children: [
+          const BackgroundScreen(),
+          SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(20.0.sp),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      !hasBackButton
+                          ? SizedBox()
+                          : Container(
+                              width: 36.w,
+                              height: 36.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6.r),
+                                color: Theme.of(context).colorScheme.onTertiary,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(48, 0, 0, 0),
+                                    offset: Offset(0, 4),
+                                    blurRadius: 4,
+                                  ),
+                                  BoxShadow(
+                                    color: Color.fromARGB(48, 0, 0, 0),
+                                    offset: Offset(4, 0),
+                                    blurRadius: 4,
+                                  )
+                                ],
                               ),
-                              BoxShadow(
-                                color: Color.fromARGB(48, 0, 0, 0),
-                                offset: Offset(4, 0),
-                                blurRadius: 4,
-                              )
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                bottom: 0.sp, top: 0.sp, start: 3.sp),
-                            child: IconButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: Theme.of(context).colorScheme.tertiary,
-                                size: 24.sp,
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    bottom: 0.sp, top: 0.sp, start: 3.sp),
+                                child: IconButton(
+                                  onPressed: () {
+                                    context.pop();
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    size: 24.sp,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                  Text(
-                    translation(context).categories,
-                    style: Theme.of(context).textTheme.labelLarge,
+                      Text(
+                        translation(context).categories,
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      Image(
+                        image: AssetImage(AppImages.iconLogin),
+                        fit: BoxFit.cover,
+                        width: 45.w,
+                        height: 55.h,
+                      ),
+                    ],
                   ),
-                  Image(
-                    image: const AssetImage(
-                      'assets/images/icon_App.png',
-                    ),
-                    fit: BoxFit.cover,
-                    width: 45.w,
-                    height: 55.h,
-                  ),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                      padding: EdgeInsets.all(20.sp),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisSpacing: 1,
+                          crossAxisSpacing: 9,
+                          //مسؤلة عن طول الايتم
+                          childAspectRatio: 12 / 16,
+                          crossAxisCount: 2),
+                      itemCount: listOfCategoryItems.length,
+                      itemBuilder: (context, index) => buildCategoryModel(
+                          listOfCategoryItems[index], context)),
+                ),
+              ],
             ),
-            Expanded(
-              child: GridView.builder(
-                  padding: EdgeInsets.all(20.sp),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 1,
-                      crossAxisSpacing: 9,
-                      //مسؤلة عن طول الايتم
-                      childAspectRatio: 12 / 16,
-                      crossAxisCount: 2),
-                  itemCount: listOfCategoryItems.length,
-                  itemBuilder: (context, index) =>
-                      buildCategoryModel(listOfCategoryItems[index], context)),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -192,7 +198,10 @@ Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
                     child: Text(
                       // ignore: unnecessary_string_interpolations
                       '${model.categoriesName}',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(color:const Color(0xFF333333)),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: const Color(0xFF333333)),
                       maxLines: 2,
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.ellipsis,

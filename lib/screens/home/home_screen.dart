@@ -3,13 +3,11 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
-import 'package:pharma_assist/screens/home/drawer_home.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
-
-import '../../components/default_scaffold.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper2.png'),
     ImagesSwiperModel(swiperImage: 'assets/images/image_swiper3.png'),
   ];
-
   List<CompanyModel> listOfCompanyItems = [
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon1.png',
@@ -45,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
         companyIcon: 'assets/images/compani_Icon6.png',
         companyName: 'companyName'),
   ];
-
   List<CategoryModel> listOfCategoryItems = [
     CategoryModel(
         categoriesImage: 'assets/images/compani_Icon1.png',
@@ -87,119 +83,124 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 180,
-              child: Container(
-                alignment: Alignment.topCenter,
-                child: Swiper(
-                  containerWidth: 500.w,
-                  containerHeight: 500.h,
-                  autoplay: true,
-                  duration: 200,
-                  curve: Curves.easeIn,
-                  itemBuilder: (context, index) =>
-                      buildImagesSwiperModel(listOfImageSwiper[index]),
-                  itemCount: listOfImageSwiper.length,
-                  itemWidth: 300.w,
-                  layout: SwiperLayout.STACK,
-                  indicatorLayout: PageIndicatorLayout.WARM,
-                  pagination:
-                      // ignore: prefer_const_constructors
-                      SwiperPagination(
-                    margin: EdgeInsets.all(0.1.sp),
+    return Stack(
+      children: [
+        const BackgroundScreen(),
+        SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 180,
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  child: Swiper(
+                    containerWidth: 500.w,
+                    containerHeight: 500.h,
+                    autoplay: true,
+                    duration: 200,
+                    curve: Curves.easeIn,
+                    itemBuilder: (context, index) =>
+                        buildImagesSwiperModel(listOfImageSwiper[index]),
+                    itemCount: listOfImageSwiper.length,
+                    itemWidth: 3000.w,
+                    layout: SwiperLayout.STACK,
+                    indicatorLayout: PageIndicatorLayout.WARM,
+                    pagination:
+                        // ignore: prefer_const_constructors
+                        SwiperPagination(
+                      margin: EdgeInsets.all(0.1.sp),
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Padding(
-              padding: EdgeInsets.all(20.0.sp),
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            translation(context).companies,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              context.pushNamed(AppRouter.companyScreen);
-                            },
-                            child: Text(
-                              translation(context).see_all,
-                              style: Theme.of(context).textTheme.displayLarge,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 90.h,
-                        child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) =>
-                                buildCompanyModel(listOfCompanyItems[index]),
-                            separatorBuilder: (context, index) =>
-                                SizedBox(width: 18.0.w),
-                            itemCount: listOfCompanyItems.length),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            translation(context).categories,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              context.pushNamed(AppRouter.categoryScreen);
-                            },
-                            child: Text(
-                              translation(context).see_all,
-                              style: Theme.of(context).textTheme.displayLarge,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      SizedBox(
-                        height: 220,
-                        child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => buildCategoryModel(
-                                listOfCategoryItems[index], context),
-                            separatorBuilder: (context, index) =>
-                                SizedBox(width: 18.0.w),
-                            itemCount: listOfCompanyItems.length),
-                      ),
-                    ],
-                  ),
-                ],
+              SizedBox(
+                height: 10.h,
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.all(20.0.sp),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              translation(context).companies,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const Spacer(),
+                            TextButton(
+                              onPressed: () {
+                                context.pushNamed(AppRouter.companyScreen);
+                              },
+                              child: Text(
+                                translation(context).seeAll,
+                                style: Theme.of(context).textTheme.displayLarge,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 90.h,
+                          child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) =>
+                                  buildCompanyModel(
+                                      listOfCompanyItems[index], context),
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(width: 18.0.w),
+                              itemCount: listOfCompanyItems.length),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              translation(context).categories,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                context.pushNamed(AppRouter.categoryScreen);
+                              },
+                              child: Text(
+                                translation(context).seeAll,
+                                style: Theme.of(context).textTheme.displayLarge,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        SizedBox(
+                          height: 220,
+                          child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) =>
+                                  buildCategoryModel(
+                                      listOfCategoryItems[index], context),
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(width: 18.0.w),
+                              itemCount: listOfCompanyItems.length),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -222,11 +223,13 @@ Widget buildImagesSwiperModel(ImagesSwiperModel Model) => Row(
       ],
     );
 
-Widget buildCompanyModel(CompanyModel Model) => Row(
+Widget buildCompanyModel(CompanyModel model, BuildContext context) => Row(
       children: [
         GestureDetector(
           onTap: () {
             debugPrint('Compani itemes');
+            context.pushNamed(AppRouter.companyData,
+                argument: (model.companyName));
           },
           child: Container(
               width: 100.w,
@@ -237,7 +240,7 @@ Widget buildCompanyModel(CompanyModel Model) => Row(
               child: Padding(
                 padding: EdgeInsets.all(5.0.sp),
                 child: Image.asset(
-                  '${Model.companyIcon}',
+                  '${model.companyIcon}',
                   fit: BoxFit.fill,
                   width: 70.w,
                   height: 50.h,

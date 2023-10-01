@@ -19,6 +19,7 @@ class DefaultTextFormField extends StatefulWidget {
     this.sufixfun,
     this.focus,
     this.onFieldSubmitted,
+    this.onTapOutside,
     this.onTap,
     this.hintText,
     this.prefix,
@@ -34,6 +35,7 @@ class DefaultTextFormField extends StatefulWidget {
   final Function()? sufixfun;
   final FocusNode? focus;
   final Function(String)? onFieldSubmitted;
+  final Function()? onTapOutside;
   final Function()? onTap;
   final String? hintText;
   IconData? prefix;
@@ -56,10 +58,10 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       controller: widget.controller,
       obscureText: widget.scureText,
       autovalidateMode: AutovalidateMode.always,
-      style: Theme.of(context).textTheme.displayMedium,
+      style: Theme.of(context).textTheme.bodyMedium,
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
-        border: const UnderlineInputBorder(borderSide: BorderSide.none),
+        border: const UnderlineInputBorder(borderSide: BorderSide()),
         hintText: widget.hintText,
         filled: true,
         fillColor: widget.fillColor,
@@ -77,8 +79,8 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
         contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 5),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.onSecondary,
-            width: 1.w,
+            color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.3),
+            width: 0.5.w,
           ),
           borderRadius: BorderRadius.circular(widget.radius),
         ),
@@ -102,7 +104,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
 //   bool readonly = false,
 // }) =>
 //     TextFormField(
-//       //cursorColor: Colors.red,
+//       //cursorColor: Theme.of(context).colorScheme.onInverseSurface,
 //       readOnly: readonly,
 //       validator: validator!,
 //       style: const TextStyle(

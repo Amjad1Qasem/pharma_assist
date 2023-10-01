@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
-import 'package:pharma_assist/screens/category_data/category_data_screen.dart';
+import 'package:pharma_assist/screens/caterories/category_data_screen.dart';
+import 'package:pharma_assist/screens/companies/company_data_screen.dart';
 import 'package:pharma_assist/screens/details_med/details.dart';
 import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
 import 'package:pharma_assist/screens/forget_password/confirm_password.dart';
@@ -25,6 +26,7 @@ import 'package:pharma_assist/screens/error/no_internet_screen.dart';
 import 'package:pharma_assist/screens/home/home_screen.dart';
 import 'package:pharma_assist/screens/login/login_sreen.dart';
 import 'package:pharma_assist/screens/on_boarding/on_boarding_screen.dart';
+import 'package:pharma_assist/screens/search/search_screen.dart';
 import 'package:pharma_assist/screens/splash/splash_screen.dart';
 
 class AppRouter {
@@ -49,6 +51,8 @@ class AppRouter {
   static const editPassword = '/editPassword';
   static const categoryData = '/categoryData';
   static const favorateScreen = '/favorateScreen';
+  static const searchScreen = '/searchScreen';
+  static const companyData = '/companyData';
 
   final NoInternetCubit noInternetCubit;
 
@@ -64,13 +68,13 @@ class AppRouter {
         route = CupertinoPageRoute(builder: (_) => OnBoardingScreen());
         break;
       case AppRouter.loginScreen:
-        route = CupertinoPageRoute(builder: (_) => const LoginScreen());
+        route = MaterialPageRoute(builder: (_) => const LoginScreen());
         break;
       case AppRouter.registerScreen:
-        route = CupertinoPageRoute(builder: (_) => const RegisterScreen());
+        route = MaterialPageRoute(builder: (_) => const RegisterScreen());
         break;
       case AppRouter.confirmEmail:
-        route = CupertinoPageRoute(builder: (_) => const ConfirmEmailSrceen());
+        route = MaterialPageRoute(builder: (_) => const ConfirmEmailSrceen());
         break;
       case AppRouter.confirmPassword:
         route =
@@ -101,14 +105,27 @@ class AppRouter {
         route = CupertinoPageRoute(builder: (_) => const EditProfileScreen());
         break;
       case AppRouter.introScreen:
-        route = CupertinoPageRoute(builder: (_) => const IntroScreen());
+        route = CupertinoPageRoute(builder: (_) => IntroScreen());
+        break;
+      case AppRouter.searchScreen:
+        route = CupertinoPageRoute(builder: (_) => const SearchScreen());
         break;
       case AppRouter.favorateScreen:
         route = CupertinoPageRoute(builder: (_) => const FavoriteScreen());
         break;
+      case AppRouter.companyData:
+        final companyName = settings.arguments as String;
+        route = CupertinoPageRoute(
+            builder: (_) => CompanyData(
+                  companyName: companyName,
+                ));
+        break;
       case AppRouter.categoryData:
         final categoryName = settings.arguments as String;
-        route = CupertinoPageRoute(builder: (_) => CategoryData(categoryName: categoryName,));
+        route = CupertinoPageRoute(
+            builder: (_) => CategoryData(
+                  categoryName: categoryName,
+                ));
         break;
       case AppRouter.editPassword:
         final (firstName, lastName, email, birthDate, mobile, speciality) =
@@ -145,75 +162,75 @@ class AppRouter {
     // observers: [],
 
     routes: [
-      GoRoute(
-        path: noInternetScreen,
-        name: noInternetScreen,
-        builder: (context, state) => const NoIntenetScreen(),
-      ),
-      GoRoute(
-        path: splashScreen,
-        name: splashScreen,
-        builder: (context, state) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: onBoardingScreen,
-        name: onBoardingScreen,
-        builder: (context, state) => OnBoardingScreen(),
-      ),
-      GoRoute(
-        path: homeScreen,
-        name: homeScreen,
-        builder: (context, state) => const HomeScreen(),
-      ),
-      GoRoute(
-        path: companyScreen,
-        name: companyScreen,
-        builder: (context, state) => CompanyScreen(),
-      ),
-      GoRoute(
-          path: categoryScreen,
-          name: categoryScreen,
-          builder: (context, state) => CategorySreen()),
-      GoRoute(
-          path: loginScreen,
-          name: loginScreen,
-          builder: (context, state) => const LoginScreen()),
-      GoRoute(
-        path: registerScreen,
-        name: registerScreen,
-        builder: (context, state) => const RegisterScreen(),
-      ),
-      GoRoute(
-        path: introScreen,
-        name: introScreen,
-        builder: (context, state) => const IntroScreen(),
-      ),
-      GoRoute(
-          path: confirmEmail,
-          name: confirmEmail,
-          builder: (context, state) => const ConfirmEmailSrceen()),
-      GoRoute(
-          path: confirmPassword,
-          name: confirmPassword,
-          builder: (context, state) => const ConfirmPasswordSrceen()),
-      GoRoute(
-          path: successfulScreen,
-          name: successfulScreen,
-          builder: (context, state) => const SuccessfulScreen()),
-      GoRoute(
-          path: profilescreen,
-          name: profilescreen,
-          builder: (context, state) => const ProfileScreen()),
-      GoRoute(
-        path: homeLayout,
-        name: homeLayout,
-        builder: (context, state) => const HomeLayout(),
-      ),
-      GoRoute(
-        path: detailsMed,
-        name: detailsMed,
-        builder: (context, state) => const DetailsMed(),
-      ),
+      // GoRoute(
+      //   path: noInternetScreen,
+      //   name: noInternetScreen,
+      //   builder: (context, state) => const NoIntenetScreen(),
+      // ),
+      // GoRoute(
+      //   path: splashScreen,
+      //   name: splashScreen,
+      //   builder: (context, state) => const SplashScreen(),
+      // ),
+      // GoRoute(
+      //   path: onBoardingScreen,
+      //   name: onBoardingScreen,
+      //   builder: (context, state) => OnBoardingScreen(context: ,),
+      // ),
+      // GoRoute(
+      //   path: homeScreen,
+      //   name: homeScreen,
+      //   builder: (context, state) => const HomeScreen(),
+      // ),
+      // GoRoute(
+      //   path: companyScreen,
+      //   name: companyScreen,
+      //   builder: (context, state) => CompanyScreen(),
+      // ),
+      // GoRoute(
+      //     path: categoryScreen,
+      //     name: categoryScreen,
+      //     builder: (context, state) => CategorySreen()),
+      // GoRoute(
+      //     path: loginScreen,
+      //     name: loginScreen,
+      //     builder: (context, state) => const LoginScreen()),
+      // GoRoute(
+      //   path: registerScreen,
+      //   name: registerScreen,
+      //   builder: (context, state) => const RegisterScreen(),
+      // ),
+      // GoRoute(
+      //   path: introScreen,
+      //   name: introScreen,
+      //   builder: (context, state) => const IntroScreen(),
+      // ),
+      // GoRoute(
+      //     path: confirmEmail,
+      //     name: confirmEmail,
+      //     builder: (context, state) => const ConfirmEmailSrceen()),
+      // GoRoute(
+      //     path: confirmPassword,
+      //     name: confirmPassword,
+      //     builder: (context, state) => const ConfirmPasswordSrceen()),
+      // GoRoute(
+      //     path: successfulScreen,
+      //     name: successfulScreen,
+      //     builder: (context, state) => const SuccessfulScreen()),
+      // GoRoute(
+      //     path: profilescreen,
+      //     name: profilescreen,
+      //     builder: (context, state) => const ProfileScreen()),
+      // GoRoute(
+      //   path: homeLayout,
+      //   name: homeLayout,
+      //   builder: (context, state) => const HomeLayout(),
+      // ),
+      // GoRoute(
+      //   path: detailsMed,
+      //   name: detailsMed,
+      //   builder: (context, state) => const DetailsMed(),
+      // ),
     ],
 
     // redirect: (context, state) {

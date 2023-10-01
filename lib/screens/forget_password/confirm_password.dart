@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
@@ -30,6 +31,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
+          const BackgroundScreen(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -44,38 +46,35 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                             top: 48.r, start: 0.r, end: 82.r),
                         child: Row(
                           children: [
-                            Container(
-                              width: 36.w,
-                              height: 36.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.r),
-                                color: Theme.of(context).colorScheme.onTertiary,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color.fromARGB(48, 0, 0, 0),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 4,
-                                  ),
-                                  BoxShadow(
-                                    color: Color.fromARGB(48, 0, 0, 0),
-                                    offset: Offset(4, 0),
-                                    blurRadius: 4,
-                                  )
-                                ],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.only(
-                                    bottom: 4.r, top: 0.r, start: 3.r),
-                                child: IconButton(
-                                  onPressed: () {
-                                    context.goNamed(AppRouter.loginScreen);
-                                  },
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
-                                    size: 25,
-                                  ),
+                            GestureDetector(
+                              onTap: () {
+                                debugPrint('object');
+                                context.pushNamed(AppRouter.confirmEmail);
+                              },
+                              child: Container(
+                                width: 36.w,
+                                height: 36.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  color:
+                                      Theme.of(context).colorScheme.onTertiary,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color.fromARGB(48, 0, 0, 0),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 4,
+                                    ),
+                                    BoxShadow(
+                                      color: Color.fromARGB(48, 0, 0, 0),
+                                      offset: Offset(4, 0),
+                                      blurRadius: 4,
+                                    )
+                                  ],
+                                ),
+                                child: Icon(
+                                  Icons.arrow_back_ios,
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                  size: 25.sp,
                                 ),
                               ),
                             ),
@@ -100,7 +99,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.r),
                             color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 color: Color.fromARGB(48, 0, 0, 0),
                                 offset: Offset(0, 4),
@@ -153,12 +152,12 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(translation(context).reset_successful,
+                    Text(translation(context).resetSuccessful,
                         style: Theme.of(context).textTheme.titleLarge),
                   ],
                 ),
               ),
-              const Spacer(),
+              Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -201,7 +200,8 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           },
                           fillColor: Theme.of(context)
                               .colorScheme
-                              .onSecondaryContainer,
+                              .onSecondary
+                              .withOpacity(0.3),
                           validation: const [],
                           controller: passcontroller,
                           keyboardType: TextInputType.emailAddress,
@@ -213,7 +213,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                         ),
                         Row(
                           children: [
-                            Text(translation(context).confirm_password,
+                            Text(translation(context).confirmPassword,
                                 style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
@@ -224,7 +224,8 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           focus: focusConfirmPass,
                           fillColor: Theme.of(context)
                               .colorScheme
-                              .onSecondaryContainer,
+                              .onSecondary
+                              .withOpacity(0.3),
                           controller: confirmPasscontroller,
                           validation: const [],
                           scureText: true,
@@ -263,5 +264,12 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    passcontroller.clear();
+    confirmPasscontroller.clear();
+    super.dispose();
   }
 }

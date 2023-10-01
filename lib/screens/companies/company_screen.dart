@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
@@ -15,121 +17,124 @@ class CompanyScreen extends StatelessWidget {
   late List<CompanyModel> listOfCompanyItems = [
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon1.png',
-        companyName: 'company Name'),
+        companyName: 'company 1'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon2.png',
-        companyName: 'company Name'),
+        companyName: 'company 2'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon3.png',
-        companyName: 'company Name'),
+        companyName: 'company 3'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon4.png',
-        companyName: 'company Name'),
+        companyName: 'company 4'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon5.png',
-        companyName: 'company Name'),
+        companyName: 'company 5'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon6.png',
-        companyName: 'company Name'),
+        companyName: 'company 6'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon1.png',
-        companyName: 'company Name'),
+        companyName: 'company 7'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon2.png',
-        companyName: 'company Name'),
+        companyName: 'company 8'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon3.png',
-        companyName: 'company Name'),
+        companyName: 'company 9'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon4.png',
-        companyName: 'company Name'),
+        companyName: 'company 10'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon5.png',
-        companyName: 'company Name'),
+        companyName: 'company 11'),
     CompanyModel(
         companyIcon: 'assets/images/compani_Icon6.png',
-        companyName: 'company Name'),
+        companyName: 'company 12'),
   ];
   final bool hasBackButton;
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(20.0.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  !hasBackButton
-                      ? const SizedBox()
-                      : Container(
-                          width: 36.w,
-                          height: 36.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(48, 0, 0, 0),
-                                offset: Offset(0, 4),
-                                blurRadius: 4,
+      body: Stack(
+        children: [
+          const BackgroundScreen(),
+          SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(20.0.sp),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      !hasBackButton
+                          ? SizedBox()
+                          : Container(
+                              width: 36.w,
+                              height: 36.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6.r),
+                                color: Theme.of(context).colorScheme.onTertiary,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(48, 0, 0, 0),
+                                    offset: Offset(0, 4),
+                                    blurRadius: 4,
+                                  ),
+                                  BoxShadow(
+                                    color: Color.fromARGB(48, 0, 0, 0),
+                                    offset: Offset(4, 0),
+                                    blurRadius: 4,
+                                  )
+                                ],
                               ),
-                              BoxShadow(
-                                color: Color.fromARGB(48, 0, 0, 0),
-                                offset: Offset(4, 0),
-                                blurRadius: 4,
-                              )
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                bottom: 0.sp, top: 0.sp, start: 3.sp),
-                            child: IconButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: Theme.of(context).colorScheme.tertiary,
-                                size: 24.sp,
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    bottom: 0.sp, top: 0.sp, start: 3.sp),
+                                child: IconButton(
+                                  onPressed: () {
+                                    context.pop();
+                                  },
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    size: 24.sp,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                  Text(
-                    translation(context).companies,
-                    style: Theme.of(context).textTheme.labelLarge,
+                      Text(
+                        translation(context).companies,
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                      Image(
+                        image: AssetImage(AppImages.iconLogin),
+                        fit: BoxFit.cover,
+                        width: 45.w,
+                        height: 55.h,
+                      ),
+                    ],
                   ),
-                  Image(
-                    image: const AssetImage(
-                      'assets/images/icon_App.png',
-                    ),
-                    fit: BoxFit.cover,
-                    width: 45.w,
-                    height: 55.h,
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.all(20.sp),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        mainAxisSpacing: 1,
+                        crossAxisSpacing: 9,
+                        //مسؤلة عن طول الايتم
+                        childAspectRatio: 10 / 16,
+                        crossAxisCount: 3),
+                    itemCount: listOfCompanyItems.length,
+                    itemBuilder: (context, index) =>
+                        buildCategoryModel(listOfCompanyItems[index], context),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-         
-            Expanded(
-              child: GridView.builder(
-                padding: EdgeInsets.all(20.sp),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 1,
-                    crossAxisSpacing: 9,
-                    //مسؤلة عن طول الايتم
-                    childAspectRatio: 10 / 16,
-                    crossAxisCount: 3),
-                itemCount: listOfCompanyItems.length,
-                itemBuilder: (context, index) =>
-                    buildCategoryModel(listOfCompanyItems[index], context),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -141,6 +146,8 @@ Widget buildCategoryModel(CompanyModel model, BuildContext context) => Row(
         GestureDetector(
           onTap: () {
             debugPrint('Compani itemes');
+            context.pushNamed(AppRouter.companyData,
+                argument: (model.companyName));
           },
           child: Column(
             children: [

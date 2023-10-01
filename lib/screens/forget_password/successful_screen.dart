@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
@@ -20,6 +21,7 @@ class SuccessfulScreen extends StatelessWidget {
         body: Stack(
       alignment: Alignment.center,
       children: [
+        const BackgroundScreen(),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -34,8 +36,11 @@ class SuccessfulScreen extends StatelessWidget {
                 )
               ],
             ),
+            SizedBox(
+              height: 50.h,
+            ),
             Padding(
-              padding: EdgeInsetsDirectional.only(start: 60.r, end: 40.r),
+              padding: EdgeInsetsDirectional.only(start: 60.r, end: 60.r),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -54,7 +59,7 @@ class SuccessfulScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(translation(context).reset_successful,
+                  Text(translation(context).resetSuccessful,
                       style: Theme.of(context).textTheme.titleLarge),
                 ],
               ),
@@ -62,11 +67,28 @@ class SuccessfulScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(translation(context).you_can_login,
+                Text(translation(context).youCanLogin,
                     style: Theme.of(context).textTheme.labelSmall),
               ],
             ),
-            const Spacer(),
+            SizedBox(
+              height: 50,
+            ),
+            DefaultbButton(
+              textButton: translation(context).loginNow,
+              onTap: () {
+                context.goNamed(AppRouter.homeLayout);
+                debugPrint('Login ok');
+              },
+              color: colors.buttonColor,
+              colorText: Colors.white,
+              radius: 40.r,
+              width: 180.w,
+              height: 60.h,
+              fontsize: 26.sp,
+              fontweight: FontWeight.w500,
+            ),
+            Spacer(),
             SizedBox(
               height: 100.h,
               child: Image.asset(
@@ -77,40 +99,6 @@ class SuccessfulScreen extends StatelessWidget {
               ),
             )
           ],
-        ),
-        Padding(
-          padding: EdgeInsetsDirectional.only(
-              top: 500.r, bottom: 10.r, start: 40.r, end: 40.r),
-          // ignore: avoid_unnecessary_containers
-          child: Container(
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DefaultbButton(
-                        textButton: translation(context).login_now,
-                        onTap: () {
-                          context.goNamed(AppRouter.homeLayout);
-                          debugPrint('Login ok');
-                        },
-                        color: colors.buttonColor,
-                        colorText: Colors.white,
-                        radius: 40.r,
-                        width: 180.w,
-                        height: 60.h,
-                        fontsize: 26.sp,
-                        fontweight: FontWeight.w500,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
         ),
       ],
     ));
