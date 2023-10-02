@@ -109,7 +109,7 @@ class EditProfileScreen extends HookWidget {
                                     fillColor: Theme.of(context)
                                         .colorScheme
                                         .tertiaryContainer,
-                                    validation: [],
+                                    validation: const [],
                                     controller: firsNameController,
                                     radius: 10.r,
                                     keyboardType: TextInputType.none),
@@ -136,7 +136,7 @@ class EditProfileScreen extends HookWidget {
                                   fillColor: Theme.of(context)
                                       .colorScheme
                                       .tertiaryContainer,
-                                  validation: [],
+                                  validation: const [],
                                   controller: lastNameController,
                                   radius: 10.r,
                                   keyboardType: TextInputType.name,
@@ -164,7 +164,7 @@ class EditProfileScreen extends HookWidget {
                                   fillColor: Theme.of(context)
                                       .colorScheme
                                       .tertiaryContainer,
-                                  validation: [],
+                                  validation: const [],
                                   controller: emailController,
                                   radius: 10.r,
                                   keyboardType: TextInputType.name,
@@ -192,7 +192,7 @@ class EditProfileScreen extends HookWidget {
                                   fillColor: Theme.of(context)
                                       .colorScheme
                                       .tertiaryContainer,
-                                  validation: [],
+                                  validation: const [],
                                   controller: specialtyController,
                                   radius: 10.r,
                                   keyboardType: TextInputType.name,
@@ -220,7 +220,7 @@ class EditProfileScreen extends HookWidget {
                                   fillColor: Theme.of(context)
                                       .colorScheme
                                       .tertiaryContainer,
-                                  validation: [],
+                                  validation: const [],
                                   controller: mobileNumberController,
                                   radius: 10.r,
                                   keyboardType: TextInputType.number,
@@ -244,12 +244,26 @@ class EditProfileScreen extends HookWidget {
                                   fillColor: Theme.of(context)
                                       .colorScheme
                                       .tertiaryContainer,
-                                  validation: [],
+                                  validation: const [],
                                   controller: birthDateController,
                                   radius: 10.r,
                                   keyboardType: TextInputType.none,
                                   onTap: () async {
                                     DateTime? date = await showDatePicker(
+                                        builder: (BuildContext context,
+                                            Widget? child) {
+                                          return Theme(
+                                            data: ThemeData.light().copyWith(
+                                              useMaterial3: true,
+                                              // buttonBarTheme: ButtonBarThemeData(buttonTextTheme: ),
+                                              buttonTheme:
+                                                  const ButtonThemeData(
+                                                      textTheme: ButtonTextTheme
+                                                          .primary),
+                                            ),
+                                            child: child!,
+                                          );
+                                        },
                                         context: context,
                                         initialDate: DateTime.utc(2016, 1, 1),
                                         firstDate: DateTime(1950),

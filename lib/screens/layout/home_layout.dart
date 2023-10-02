@@ -310,11 +310,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                           ),
                     IconButton(
                         onPressed: () {
-                          state is! FavorateState
-                              ? null
-                              : context
-                                  .read<BottomNavigationBarCubit>()
-                                  .favorateScreen();
+                          
+                    context.goNamed(AppRouter.profilescreen);
+                          // state is! FavorateState
+                          //     ? null
+                          //     : context
+                          //         .read<BottomNavigationBarCubit>()
+                          //         .favorateScreen();
                         },
                         icon: Icon(
                           Icons.favorite_outline,
