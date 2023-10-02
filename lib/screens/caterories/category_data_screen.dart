@@ -154,7 +154,7 @@ class CategoryData extends StatelessWidget {
     return DefaultScaffold(
       body: Stack(
         children: [
-          const BackgroundScreen(),
+          const Background(),
           SafeArea(
               child: Padding(
             padding: EdgeInsets.all(20.0.sp),
@@ -224,7 +224,6 @@ class CategoryData extends StatelessWidget {
                           radius: 10.r,
                           keyboardType: TextInputType.name,
                           validation: [],
-                          scureText: false,
                           fillColor:
                               Theme.of(context).colorScheme.tertiaryContainer),
                       // Padding(

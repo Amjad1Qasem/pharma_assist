@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
-import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
-class EditPasswordScreen extends StatefulWidget {
+class EditPasswordScreen extends HookWidget {
   const EditPasswordScreen({
     super.key,
     required this.firsName,
@@ -29,29 +28,18 @@ class EditPasswordScreen extends StatefulWidget {
   final String specialty;
 
   @override
-  State<EditPasswordScreen> createState() => _EditPasswordScreenState();
-}
-
-class _EditPasswordScreenState extends State<EditPasswordScreen> {
-  FocusNode focusOldPassword = FocusNode();
-  FocusNode focusNewPassword = FocusNode();
-  FocusNode focusConfirmPassword = FocusNode();
-  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-  PageController pageViewController = PageController();
-  bool scurePassNew = true;
-  bool scurePassold = true;
-  bool scurePassConfirm = true;
-  final TextEditingController oldPasswordController = TextEditingController();
-  final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
+    final scurePassNew = useState(true);
+    final scurePassold = useState(true);
+    final scurePassConfirm = useState(true);
+    final oldPasswordController = useTextEditingController();
+    final newPasswordController = useTextEditingController();
+    final confirmPasswordController = useTextEditingController();
     return DefaultScaffold(
       body: Stack(
         children: [
-          const BackgroundScreen(),
+          const Background(),
           SafeArea(
             child: Padding(
               padding: EdgeInsets.all(30.0.sp),
@@ -97,25 +85,18 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             DefaultTextFormField(
-                              focus: focusOldPassword,
-                              onFieldSubmitted: (val) {
-                                FocusScope.of(context)
-                                    .requestFocus(focusNewPassword);
-                              },
-                              scureText: scurePassNew,
-                              sufix: scurePassNew
+                              scureText: scurePassNew.value,
+                              sufix: scurePassNew.value
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              sufixfun: () {
-                                setState(() {
-                                  scurePassNew = !scurePassNew;
-                                });
+                              onSufixTap: () {
+                                scurePassNew.value = !scurePassNew.value;
                                 return null;
                               },
                               fillColor: Theme.of(context)
                                   .colorScheme
                                   .tertiaryContainer,
-                              validation: [],
+                              validation: const [],
                               controller: oldPasswordController,
                               radius: 6.r,
                               keyboardType: TextInputType.name,
@@ -133,25 +114,17 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             DefaultTextFormField(
-                              focus: focusNewPassword,
-                              onFieldSubmitted: (val) {
-                                FocusScope.of(context)
-                                    .requestFocus(focusConfirmPassword);
-                              },
-                              scureText: scurePassold,
-                              sufix: scurePassold
+                              scureText: scurePassold.value,
+                              sufix: scurePassold.value
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              sufixfun: () {
-                                setState(() {
-                                  scurePassold = !scurePassold;
-                                });
-                                return null;
+                              onSufixTap: () {
+                                scurePassold.value = !scurePassold.value;
                               },
                               fillColor: Theme.of(context)
                                   .colorScheme
                                   .tertiaryContainer,
-                              validation: [],
+                              validation: const [],
                               controller: newPasswordController,
                               radius: 6.r,
                               keyboardType: TextInputType.name,
@@ -169,21 +142,18 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             DefaultTextFormField(
-                              focus: focusConfirmPassword,
-                              scureText: scurePassConfirm,
-                              sufix: scurePassConfirm
+                              scureText: scurePassConfirm.value,
+                              sufix: scurePassConfirm.value
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              sufixfun: () {
-                                setState(() {
-                                  scurePassConfirm = !scurePassConfirm;
-                                });
-                                return null;
+                              onSufixTap: () {
+                                scurePassConfirm.value =
+                                    !scurePassConfirm.value;
                               },
                               fillColor: Theme.of(context)
                                   .colorScheme
                                   .tertiaryContainer,
-                              validation: [],
+                              validation: const [],
                               controller: confirmPasswordController,
                               radius: 6.r,
                               keyboardType: TextInputType.name,
@@ -221,16 +191,5 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    oldPasswordController.clear();
-    newPasswordController.clear();
-    confirmPasswordController.clear();
-    scurePassNew = false;
-    scurePassold = false;
-    scurePassConfirm = false;
-    super.dispose();
   }
 }

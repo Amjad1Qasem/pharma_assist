@@ -23,6 +23,7 @@ abstract class AppThemes {
             outline: AppColors.grey,
             onTertiaryContainer: AppColors.containerColor,
             onInverseSurface: AppColors.favorateColor,
+            // onBackground: AppColors.backgroundGradientLightColors,
             inversePrimary: AppColors.aqua),
         scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(

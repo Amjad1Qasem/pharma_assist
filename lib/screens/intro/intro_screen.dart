@@ -28,7 +28,7 @@ class _IntroScreenState extends State<IntroScreen> {
     return DefaultScaffold(
       body: Stack(
         children: [
-          const BackgroundScreen(),
+          const Background(),
           Column(
             children: [
               Stack(

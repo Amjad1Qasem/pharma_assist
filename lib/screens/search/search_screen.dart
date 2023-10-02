@@ -31,7 +31,7 @@ class SearchScreen extends HookWidget {
     return DefaultScaffold(
         body: Stack(
       children: [
-        const BackgroundScreen(),
+        const Background(),
         SafeArea(
             child: Column(children: [
           Padding(
@@ -89,7 +89,6 @@ class SearchScreen extends HookWidget {
                                 radius: 10.r,
                                 keyboardType: TextInputType.name,
                                 validation: [],
-                                scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .tertiaryContainer),

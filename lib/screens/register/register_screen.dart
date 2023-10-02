@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
@@ -12,36 +13,24 @@ import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends HookWidget {
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  FocusNode focusFirstName = FocusNode();
-  FocusNode focusLastName = FocusNode();
-  FocusNode focusEmail = FocusNode();
-  FocusNode focusPass = FocusNode();
-  FocusNode focusNumber = FocusNode();
-  FocusNode focusBirthDate = FocusNode();
-
-  var emailcontroller = TextEditingController();
-  var passcontroller = TextEditingController();
-  var FirstNamecontroller = TextEditingController();
-  var LastNamecontroller = TextEditingController();
-  var MobileNumbercontroller = TextEditingController();
-  var BirthDatecontroller = TextEditingController();
-  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-  bool scure = true;
-  @override
   Widget build(BuildContext context) {
+    final emailcontroller = useTextEditingController();
+    final passcontroller = useTextEditingController();
+    final FirstNamecontroller = useTextEditingController();
+    final LastNamecontroller = useTextEditingController();
+    final MobileNumbercontroller = useTextEditingController();
+    final BirthDatecontroller = useTextEditingController();
+    final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
+    final scure = useState(true);
     return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
-          const BackgroundScreen(),
+          const Background(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -85,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -121,12 +110,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(
                               height: 45.h,
                               child: DefaultTextFormField(
-                                focus: focusFirstName,
-                                onFieldSubmitted: (val) {
-                                  FocusScope.of(context)
-                                      .requestFocus(focusLastName);
-                                },
-                                scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .onSecondary
@@ -156,12 +139,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(
                               height: 45.h,
                               child: DefaultTextFormField(
-                                focus: focusLastName,
-                                onFieldSubmitted: (val) {
-                                  FocusScope.of(context)
-                                      .requestFocus(focusNumber);
-                                },
-                                scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .onSecondary
@@ -196,12 +173,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(
                               height: 45.h,
                               child: DefaultTextFormField(
-                                focus: focusNumber,
-                                onFieldSubmitted: (val) {
-                                  FocusScope.of(context)
-                                      .requestFocus(focusBirthDate);
-                                },
-                                scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .onSecondary
@@ -231,12 +202,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(
                               height: 45.h,
                               child: DefaultTextFormField(
-                                focus: focusBirthDate,
-                                onFieldSubmitted: (val) {
-                                  FocusScope.of(context)
-                                      .requestFocus(focusEmail);
-                                },
-                                scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .onSecondary
@@ -271,12 +236,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(
                               height: 45.h,
                               child: DefaultTextFormField(
-                                focus: focusEmail,
-                                onFieldSubmitted: (val) {
-                                  FocusScope.of(context)
-                                      .requestFocus(focusPass);
-                                },
-                                scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .onSecondary
@@ -306,16 +265,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(
                               height: 45.h,
                               child: DefaultTextFormField(
-                                focus: focusPass,
-                                scureText: scure,
-                                sufix: scure
+                                scureText: scure.value,
+                                sufix: scure.value
                                     ? Icons.visibility_off
                                     : Icons.visibility,
-                                sufixfun: () {
-                                  setState(() {
-                                    scure = !scure;
-                                  });
-                                  return null;
+                                onSufixTap: () {
+                                  scure.value = !scure.value;
                                 },
                                 fillColor: Theme.of(context)
                                     .colorScheme
@@ -457,16 +412,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    emailcontroller.clear();
-    passcontroller.clear();
-    FirstNamecontroller.clear();
-    LastNamecontroller.clear();
-    MobileNumbercontroller.clear();
-    BirthDatecontroller.clear();
-    super.dispose();
   }
 }

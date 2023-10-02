@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
@@ -11,27 +12,19 @@ import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
-class ConfirmPasswordSrceen extends StatefulWidget {
+class ConfirmPasswordSrceen extends HookWidget {
   const ConfirmPasswordSrceen({super.key});
 
   @override
-  State<ConfirmPasswordSrceen> createState() => _ConfirmPasswordSrceenState();
-}
-
-class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
-  var confirmPasscontroller = TextEditingController();
-  var passcontroller = TextEditingController();
-  FocusNode focusConfirmPass = FocusNode();
-  FocusNode focusPass = FocusNode();
-
-  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-  @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
+    final confirmPasscontroller = useTextEditingController();
+    final passcontroller = useTextEditingController();
     return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
-          const BackgroundScreen(),
+          const Background(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -58,7 +51,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                                   borderRadius: BorderRadius.circular(6.r),
                                   color:
                                       Theme.of(context).colorScheme.onTertiary,
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Color.fromARGB(48, 0, 0, 0),
                                       offset: Offset(0, 4),
@@ -99,7 +92,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.r),
                             color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Color.fromARGB(48, 0, 0, 0),
                                 offset: Offset(0, 4),
@@ -157,7 +150,7 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -177,7 +170,6 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                     vertical: MediaQuery.of(context).size.height / 2,
                     horizontal: MediaQuery.of(context).size.width / 12,
                   ),
-                  // ignore: avoid_unnecessary_containers
                   child: Form(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,11 +185,6 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
-                          focus: focusPass,
-                          onFieldSubmitted: (val) {
-                            FocusScope.of(context)
-                                .requestFocus(focusConfirmPass);
-                          },
                           fillColor: Theme.of(context)
                               .colorScheme
                               .onSecondary
@@ -221,7 +208,6 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
-                          focus: focusConfirmPass,
                           fillColor: Theme.of(context)
                               .colorScheme
                               .onSecondary
@@ -264,12 +250,5 @@ class _ConfirmPasswordSrceenState extends State<ConfirmPasswordSrceen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    passcontroller.clear();
-    confirmPasscontroller.clear();
-    super.dispose();
   }
 }

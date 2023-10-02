@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
@@ -12,24 +13,18 @@ import 'package:pharma_assist/utilities/translation.dart';
 
 import '../../router/app_router.dart';
 
-class ConfirmEmailSrceen extends StatefulWidget {
+class ConfirmEmailSrceen extends HookWidget {
   const ConfirmEmailSrceen({super.key});
 
   @override
-  State<ConfirmEmailSrceen> createState() => _ConfirmEmailSrceenState();
-}
-
-class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
-  var emailcontroller = TextEditingController();
-  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-
-  @override
   Widget build(BuildContext context) {
+    final emailcontroller = useTextEditingController();
+    final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
     return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
-          const BackgroundScreen(),
+          const Background(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -48,7 +43,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.r),
                             color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Color.fromARGB(48, 0, 0, 0),
                                 offset: Offset(0, 4),
@@ -122,7 +117,7 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -156,7 +151,6 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
                           height: 3.h,
                         ),
                         DefaultTextFormField(
-                          scureText: false,
                           fillColor: Theme.of(context)
                               .colorScheme
                               .onSecondary
@@ -198,11 +192,5 @@ class _ConfirmEmailSrceenState extends State<ConfirmEmailSrceen> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    emailcontroller.clear();
-    super.dispose();
   }
 }

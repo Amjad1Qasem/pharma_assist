@@ -170,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return DefaultScaffold(
       body: Stack(
         children: [
-          const BackgroundScreen(),
+          const Background(),
           Column(
             children: [
               Stack(

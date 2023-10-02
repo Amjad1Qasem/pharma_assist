@@ -10,9 +10,7 @@ import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
 class SuccessfulScreen extends StatelessWidget {
-  const SuccessfulScreen({
-    super.key,
-  });
+  const SuccessfulScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class SuccessfulScreen extends StatelessWidget {
         body: Stack(
       alignment: Alignment.center,
       children: [
-        const BackgroundScreen(),
+        const Background(),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -85,10 +83,10 @@ class SuccessfulScreen extends StatelessWidget {
               radius: 40.r,
               width: 180.w,
               height: 60.h,
-              fontsize: 26.sp,
+              fontsize: 18.sp,
               fontweight: FontWeight.w500,
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               height: 100.h,
               child: Image.asset(

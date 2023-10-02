@@ -1,10 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/blocs/bottom_navigation_bar/bottom_navigation_bar_cubit.dart';
-import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
@@ -13,20 +11,16 @@ import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
 import 'package:pharma_assist/screens/home/drawer_home.dart';
 import 'package:pharma_assist/screens/home/home_screen.dart';
 import 'package:pharma_assist/screens/profile/profile_screen.dart';
+import 'package:pharma_assist/themes/app_colors.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
-import 'package:pharma_assist/utilities/translation.dart';
 
-class HomeLayout extends StatefulWidget {
+class HomeLayout extends HookWidget {
   const HomeLayout({super.key});
 
   @override
-  State<HomeLayout> createState() => _HomeLayoutState();
-}
-
-class _HomeLayoutState extends State<HomeLayout> {
-  var searchcontroller = TextEditingController();
-  @override
   Widget build(BuildContext context) {
+    final searchcontroller = useTextEditingController();
+    final size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => BottomNavigationBarCubit(),
       child: Builder(builder: (context) {
@@ -60,10 +54,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                         alignment: AlignmentDirectional.centerEnd,
                         children: [
                           DefaultTextFormField(
-                              onTap: () {
-                                FocusScope.of(context).unfocus();
+                              onEditingComplete: () {
                                 context.pushNamed(AppRouter.searchScreen);
-                                FocusScope.of(context).unfocus();
                               },
                               hintText: 'Search drug,company etc.',
                               prefix: Icons.search_rounded,
@@ -71,7 +63,6 @@ class _HomeLayoutState extends State<HomeLayout> {
                               radius: 10.r,
                               keyboardType: TextInputType.none,
                               validation: const [],
-                              scureText: false,
                               fillColor: Theme.of(context)
                                   .colorScheme
                                   .tertiaryContainer),
@@ -104,271 +95,94 @@ class _HomeLayoutState extends State<HomeLayout> {
                 ),
           drawer: state is! HomeState ? null : const DrawerHome(),
           bottomNavigationBar: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 14,
-            // color: Theme.of(context).colorScheme.onTertiary,
+            width: size.width,
+            height: size.height * .09,
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              colors: [Color(0xff1c4c59), Color(0xff607d8b)],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-            )),
+                // gradient: LinearGradient(
+                //   colors: [Color(0xff1c4c59), Color(0xff607d8b)],
+                //   begin: Alignment.bottomCenter,
+                //   end: Alignment.topCenter,
+                // ),
+
+                ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                // GestureDetector(
+                //   child: const Text('dsadsa'),
+                //   onTap: () => debugPrint('dasjiopdjkpo'),
+                // ),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    state is! HomeState
-                        ? SizedBox(
-                            width: 55.w,
-                            height: 55.h,
-                          )
-                        : Column(
-                            children: [
-                              Container(
-                                width: 55.w,
-                                height: 3.h,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                width: 50.w,
-                                height: 55.h,
-                                decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(0, 217, 217, 217),
-                                        Color.fromARGB(179, 217, 217, 217),
-                                        Color(0xffD9D9D9),
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                    ),
-                                    color: Colors.white.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(
-                                          50.r,
-                                        ),
-                                        bottomRight: Radius.circular(
-                                          50.r,
-                                        ))),
-                              ),
-                            ],
-                          ),
-                    IconButton(
-                        onPressed: () {
-                          state is! HomeState
-                              ? null
-                              : context
-                                  .read<BottomNavigationBarCubit>()
-                                  .homeScreen();
-                        },
-                        icon: Icon(
-                          Icons.home,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          size: 30.sp,
-                        ))
+                    BottomNavigationBarShadowItem(
+                        opacity: state is! HomeState ? 0 : 1),
+                    GestureDetector(
+                      onTap:
+                          context.read<BottomNavigationBarCubit>().homeScreen,
+                      child: Image.asset(
+                        AppImages.homeIcon,
+                        width: 30.w,
+                        height: 30.h,
+                      ),
+                    ),
                   ],
                 ),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    state is! CategoryState
-                        ? const SizedBox()
-                        : Column(
-                            children: [
-                              Container(
-                                width: 55.w,
-                                height: 3.h,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                width: 50.w,
-                                height: 55.h,
-                                decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(0, 217, 217, 217),
-                                        Color.fromARGB(179, 217, 217, 217),
-                                        Color(0xffD9D9D9),
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                    ),
-                                    color: Colors.white.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(
-                                          50.r,
-                                        ),
-                                        bottomRight: Radius.circular(
-                                          50.r,
-                                        ))),
-                              ),
-                            ],
-                          ),
-                    IconButton(
-                        onPressed: () {
-                          state is! CategoryState
-                              ? null
-                              : context
-                                  .read<BottomNavigationBarCubit>()
-                                  .categoryScreen();
-                        },
-                        icon: Icon(
-                          Icons.category_sharp,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          size: 30.sp,
-                        ))
+                    BottomNavigationBarShadowItem(
+                        opacity: state is! CategoryState ? 0 : 1),
+                    GestureDetector(
+                      onTap: context
+                          .read<BottomNavigationBarCubit>()
+                          .categoryScreen,
+                      child: Image.asset(
+                        AppImages.categoryIcon,
+                        width: 30.w,
+                        height: 30.h,
+                      ),
+                    )
                   ],
                 ),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    state is! ProfileState
-                        ? const SizedBox()
-                        : Column(
-                            children: [
-                              Container(
-                                width: 55.w,
-                                height: 3.h,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                width: 50.w,
-                                height: 55.h,
-                                decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(0, 217, 217, 217),
-                                        Color.fromARGB(179, 217, 217, 217),
-                                        Color(0xffD9D9D9),
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                    ),
-                                    color: Colors.white.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(
-                                          50.r,
-                                        ),
-                                        bottomRight: Radius.circular(
-                                          50.r,
-                                        ))),
-                              ),
-                            ],
-                          ),
-                    IconButton(
-                        onPressed: () {
-                          state is! ProfileState
-                              ? null
-                              : context
-                                  .read<BottomNavigationBarCubit>()
-                                  .profileScreen();
-                        },
-                        icon: Icon(
-                          Icons.person,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          size: 30.sp,
-                        ))
+                    BottomNavigationBarShadowItem(
+                        opacity: state is! ProfileState ? 0 : 1),
+                    GestureDetector(
+                      onTap: context
+                          .read<BottomNavigationBarCubit>()
+                          .profileScreen,
+                      child: Image.asset(
+                        AppImages.profileIcon,
+                        width: 30.w,
+                        height: 30.h,
+                        color: const Color(0xff333333),
+                      ),
+                    )
                   ],
                 ),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    state is FavorateState
-                        ? const SizedBox()
-                        : Column(
-                            children: [
-                              Container(
-                                width: 55.w,
-                                height: 3.h,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                width: 50.w,
-                                height: 55.h,
-                                decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(0, 217, 217, 217),
-                                        Color.fromARGB(179, 217, 217, 217),
-                                        Color(0xffD9D9D9),
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                    ),
-                                    color: Colors.white.withOpacity(0.5),
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(
-                                          50.r,
-                                        ),
-                                        bottomRight: Radius.circular(
-                                          50.r,
-                                        ))),
-                              ),
-                            ],
-                          ),
-                    IconButton(
-                        onPressed: () {
-                          
-                    context.goNamed(AppRouter.profilescreen);
-                          // state is! FavorateState
-                          //     ? null
-                          //     : context
-                          //         .read<BottomNavigationBarCubit>()
-                          //         .favorateScreen();
-                        },
-                        icon: Icon(
-                          Icons.favorite_outline,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          size: 30.sp,
-                        ))
+                    BottomNavigationBarShadowItem(
+                        opacity: state is! FavorateState ? 0 : 1),
+                    GestureDetector(
+                      onTap: context
+                          .read<BottomNavigationBarCubit>()
+                          .favorateScreen,
+                      child: Image.asset(
+                        AppImages.favoriteIcon,
+                        width: 30.w,
+                        height: 30.h,
+                      ),
+                    )
                   ],
                 ),
               ],
             ),
           ),
-
-          //     BottomNavigationBar(
-          //   selectedItemColor: Colors.blue,
-          //   unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-          //   backgroundColor: Theme.of(context).colorScheme.primary,
-          //   currentIndex: state.index,
-          //   items: [
-          //     BottomNavigationBarItem(
-          //       icon: const Icon(Icons.home),
-          //       label: translation(context).home,
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: const Icon(Icons.category),
-          //       label: translation(context).categories,
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: const Icon(Icons.person_2),
-          //       label: translation(context).profile,
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: const Icon(Icons.favorite),
-          //       label: translation(context).favorites,
-          //     ),
-          //   ],
-          //   //نستخدمها فقط عند الحدث onTap ..
-          //   //read لا ترى التغيرات
-          //   // watch  ترى التغيرا
-          //   //حالة من حالات ال cuibte هي عندما يكون لدينا setState ونريد استخدامfuterBuilder
-          //   onTap: (index) {
-          //     if (index == 0) {
-          //       context.read<BottomNavigationBarCubit>().homeScreen();
-          //     } else if (index == 1) {
-          //       context.read<BottomNavigationBarCubit>().categoryState();
-          //     } else if (index == 2) {
-          //       context.read<BottomNavigationBarCubit>().profileScreen();
-          //     } else {
-          //       context.read<BottomNavigationBarCubit>().favorateState();
-          //     }
-          //   },
-          // ),
-
           body: getBody(state),
         );
       }),
@@ -382,9 +196,32 @@ class _HomeLayoutState extends State<HomeLayout> {
           : state is ProfileState
               ? const ProfileScreen()
               : const FavoriteScreen();
+}
+
+class BottomNavigationBarShadowItem extends StatelessWidget {
+  const BottomNavigationBarShadowItem({
+    super.key,
+    required this.opacity,
+  });
+
+  final double opacity;
+
   @override
-  void dispose() {
-    searchcontroller.clear();
-    super.dispose();
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: opacity,
+      duration: const Duration(milliseconds: 500),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Container(
+            width: 70.w,
+            height: 3.h,
+            color: AppColors.primaryGreen,
+          ),
+          Image.asset(AppImages.bottomShadowLightIcon),
+        ],
+      ),
+    );
   }
 }

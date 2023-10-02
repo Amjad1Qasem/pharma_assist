@@ -36,4 +36,19 @@ abstract class AppColors {
   static const favorateColor = Color(0xFFFF0000);
 
   static const backgroundFilter = Color(0xFFe0eeef);
+
+  static final backgroundGradientColors = [
+    const Color(0xff3f51b5).withOpacity(0.6),
+    const Color(0xffB7A5FF).withOpacity(0.6),
+    const Color(0xff33B9C7).withOpacity(0.6),
+  ];
+  static final backgroundGradientDarkColors = [
+    const Color.fromARGB(0, 217, 217, 217),
+    const Color.fromARGB(179, 217, 217, 217),
+    const Color(0xffD9D9D9),
+  ];
+  static final backgroundGradientLightColors = [
+    AppColors.primaryGreen.withOpacity(0.6),
+    const Color(0xff00A8B9).withOpacity(0.1),
+  ];
 }

@@ -1,71 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:pharma_assist/constants/app_images.dart';
 
-//TextFormField
-
-class DefaultTextFormField extends StatefulWidget {
-  DefaultTextFormField({
+class DefaultTextFormField extends StatelessWidget {
+  const DefaultTextFormField({
     super.key,
     required this.controller,
     required this.radius,
     required this.keyboardType,
     required this.validation,
-    required this.scureText,
+    this.scureText = false,
     this.suffixIcon,
     required this.fillColor,
     this.sufix,
-    this.sufixfun,
-    this.focus,
-    this.onFieldSubmitted,
-    this.onTapOutside,
-    this.onTap,
+    this.onSufixTap,
     this.hintText,
     this.prefix,
+    this.onEditingComplete,
   });
   final TextEditingController controller;
   final double radius;
   final TextInputType keyboardType;
   final List<FieldValidator> validation;
-  bool scureText = false;
-  Widget? suffixIcon;
+  final bool scureText;
+  final Widget? suffixIcon;
   final Color fillColor;
-  IconData? sufix;
-  final Function()? sufixfun;
-  final FocusNode? focus;
-  final Function(String)? onFieldSubmitted;
-  final Function()? onTapOutside;
-  final Function()? onTap;
+  final IconData? sufix;
+  final Function()? onSufixTap;
   final String? hintText;
-  IconData? prefix;
-  @override
-  State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
-}
+  final IconData? prefix;
+  final void Function()? onEditingComplete;
 
-class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: (input) {
         debugPrint(input);
       },
-      onTap: widget.onTap,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      focusNode: widget.focus,
-      validator: MultiValidator(widget.validation),
+      validator: MultiValidator(validation),
       maxLines: 1,
-      controller: widget.controller,
-      obscureText: widget.scureText,
+      controller: controller,
+      obscureText: scureText,
       autovalidateMode: AutovalidateMode.always,
       style: Theme.of(context).textTheme.bodyMedium,
-      keyboardType: widget.keyboardType,
+      keyboardType: keyboardType,
+      onEditingComplete: () {
+        FocusScope.of(context).nextFocus();
+        onEditingComplete?.call();
+      },
       decoration: InputDecoration(
         border: const UnderlineInputBorder(borderSide: BorderSide()),
-        hintText: widget.hintText,
+        hintText: hintText,
         filled: true,
-        fillColor: widget.fillColor,
-        prefixIcon: widget.prefix != null
+        fillColor: fillColor,
+        prefixIcon: prefix != null
             ? Icon(Icons.search,
                 size: 25.sp,
                 color: Theme.of(context)
@@ -73,8 +61,8 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
                     .onSecondaryContainer
                     .withOpacity(0.8))
             : null,
-        suffixIcon: widget.sufix != null
-            ? IconButton(onPressed: widget.sufixfun, icon: Icon(widget.sufix))
+        suffixIcon: sufix != null
+            ? IconButton(onPressed: onSufixTap, icon: Icon(sufix))
             : null,
         contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 5),
         enabledBorder: OutlineInputBorder(
@@ -82,51 +70,9 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             color: Theme.of(context).colorScheme.onSecondary.withOpacity(0.3),
             width: 0.5.w,
           ),
-          borderRadius: BorderRadius.circular(widget.radius),
+          borderRadius: BorderRadius.circular(radius),
         ),
       ),
     );
   }
 }
-
-
-// Widget defaultTextFormField({
-//   required TextEditingController controller,
-//   required TextInputType keyboard,
-//   required String labText,
-//   required double radius,
-//   MultiValidator? validator,
-//   required Function? Function() sufixfun,
-//   required String hintText,
-//   IconData? sufix,
-//   IconData? prifix,
-//   bool securTrue = false,
-//   bool readonly = false,
-// }) =>
-//     TextFormField(
-//       //cursorColor: Theme.of(context).colorScheme.onInverseSurface,
-//       readOnly: readonly,
-//       validator: validator!,
-//       style: const TextStyle(
-//         color: Color(0xFF333333),
-//       ),
-//       obscureText: securTrue,
-//       controller: controller,
-//       keyboardType: keyboard,
-//       decoration: InputDecoration(
-//         // focusColor: Colors.deepOrange,
-//         hintText: hintText,
-//         contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
-//         filled: true,
-//         fillColor: const Color(0xffCFD9F0),
-//         labelText: labText,
-//         labelStyle: const TextStyle(
-//             fontFamily: 'cairo', fontSize: 20, color: Colors.black54),
-//         prefixIcon: prifix != null ? Icon(prifix, color: Colors.black54) : null,
-//         suffixIcon: sufix != null
-
-//             ? IconButton(onPressed: sufixfun, icon: Icon(sufix))
-//             : null,
-//         border: OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
-//       ),
-//     );

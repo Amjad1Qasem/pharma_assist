@@ -57,7 +57,7 @@ class CompanyScreen extends StatelessWidget {
     return DefaultScaffold(
       body: Stack(
         children: [
-          const BackgroundScreen(),
+          const Background(),
           SafeArea(
             child: Column(
               children: [

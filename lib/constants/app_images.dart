@@ -43,4 +43,13 @@ abstract class AppImages {
 
   static const medImage = '$_imagesPath/med_image.png';
 
+  static const homeIcon = '$_imagesPath/home_icon.png';
+
+  static const categoryIcon = '$_imagesPath/category_icon.png';
+
+  static const profileIcon = '$_imagesPath/profile_icon.png';
+
+  static const favoriteIcon = '$_imagesPath/favorite_icon.png';
+
+  static const bottomShadowLightIcon = '$_imagesPath/bottom-shadow-light.png';
 }

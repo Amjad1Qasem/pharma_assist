@@ -20,7 +20,7 @@ class DrawerHome extends HookWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: Stack(
         children: [
-          const BackgroundScreen(),
+          const Background(),
           SafeArea(
             child: Column(
               children: [

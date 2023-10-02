@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const BackgroundScreen(),
+        const Background(),
         SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

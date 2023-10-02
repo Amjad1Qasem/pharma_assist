@@ -16,7 +16,7 @@ class FavoriteScreen extends HookWidget {
     return DefaultScaffold(
         body: Stack(
       children: [
-        const BackgroundScreen(),
+        const Background(),
         SafeArea(
           child: Column(
             children: [
