@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';

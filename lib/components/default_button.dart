@@ -10,7 +10,7 @@ class DefaultbButton extends StatelessWidget {
   final Color color;
   final Color colorText;
   final double radius;
-  double? width;
+  final double? width;
   final double height;
   final FontWeight fontweight;
   final double fontsize;
@@ -30,7 +30,7 @@ class DefaultbButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: width = 170.w,
+        width: 170.w,
         height: height,
         child: ElevatedButton(
           style: ButtonStyle(
