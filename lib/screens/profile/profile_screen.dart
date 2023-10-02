@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
@@ -28,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    translation(context).first_name,
+                    translation(context).firstName,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(
@@ -47,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    translation(context).last_name,
+                    translation(context).lastName,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -86,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    translation(context).birth_date,
+                    translation(context).birthDate,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -107,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    translation(context).mobile_number,
+                    translation(context).mobileNumber,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -165,147 +167,161 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return DefaultScaffold(
+      body: Stack(
         children: [
-          Stack(
+          const BackgroundScreen(),
+          Column(
             children: [
-              Image.asset('assets/images/shap_profile_sreen.png'),
-              Padding(
-                padding: EdgeInsetsDirectional.only(top: 160.r),
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/icon_App.png',
-                    width: 140.w,
-                    height: 150.h,
+              Stack(
+                children: [
+                  Image.asset(
+                    'assets/images/shap_profile_sreen.png',
+                    color: Theme.of(context).colorScheme.primary,
                   ),
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.sp, horizontal: 40.sp),
-            child: Column(
-              children: [
-                Text(
-                  'Jawad Talal Rustom',
-                  maxLines: 2,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            AppImages.editIcon,
-                            width: 25.w,
-                            height: 25.h,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              context.pushNamed(AppRouter.editProfile);
-                            },
-                            child: Text(translation(context).edit_profile,
-                                style: Theme.of(context).textTheme.bodyMedium),
-                          ),
-                        ],
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(top: 160.r),
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/icon_App.png',
+                        // color: Theme.of(context).colorScheme.primary,
+                        width: 140.w,
+                        height: 150.h,
                       ),
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.settings,
-                            size: 25.sp,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(translation(context).settings,
-                              style: Theme.of(context).textTheme.bodyMedium),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Column(
+                  )
+                ],
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 20.sp, horizontal: 40.sp),
+                child: Column(
                   children: [
+                    Text(
+                      'Jawad Talal Rustom',
+                      maxLines: 2,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton(
-                          onPressed: () {
-                            if (currentVal == 1) {
-                              setState(() {
-                                currentVal = 0;
-                                controller.animateToPage(0,
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              });
-                            }
-                          },
-                          child: Text(
-                            translation(context).about,
-                            style: Theme.of(context).textTheme.labelMedium,
+                        InkWell(
+                          onTap: () {},
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                AppImages.editIcon,
+                                width: 25.w,
+                                height: 25.h,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  context.pushNamed(AppRouter.editProfile);
+                                },
+                                child: Text(translation(context).editProfile,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
+                              ),
+                            ],
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            if (currentVal == 0) {
-                              setState(() {
-                                controller.nextPage(
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeIn);
-                              });
-                            }
-                          },
-                          child: Text(
-                            translation(context).search_history,
-                            style: Theme.of(context).textTheme.labelMedium,
+                        InkWell(
+                          onTap: () {},
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.settings,
+                                size: 25.sp,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Text(translation(context).settings,
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                    Container(
-                        width: double.infinity,
-                        height: 0.5.h,
-                        color: Theme.of(context).colorScheme.tertiary)
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                if (currentVal == 1) {
+                                  setState(() {
+                                    currentVal = 0;
+                                    controller.animateToPage(0,
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.easeIn);
+                                  });
+                                }
+                              },
+                              child: Text(
+                                translation(context).about,
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                if (currentVal == 0) {
+                                  setState(() {
+                                    controller.nextPage(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.easeIn);
+                                  });
+                                }
+                              },
+                              child: Text(
+                                translation(context).searchHistory,
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                            width: double.infinity,
+                            height: 0.5.h,
+                            color: Theme.of(context).colorScheme.tertiary)
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.5,
+                      child: PageView(
+                        allowImplicitScrolling: true,
+                        controller: controller,
+                        scrollDirection: Axis.horizontal,
+                        children: chidren,
+                        onPageChanged: (val) {
+                          setState(() {
+                            currentVal = val;
+                          });
+                        },
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 3.5,
-                  child: PageView(
-                    allowImplicitScrolling: true,
-                    controller: controller,
-                    scrollDirection: Axis.horizontal,
-                    children: chidren,
-                    onPageChanged: (val) {
-                      setState(() {
-                        currentVal = val;
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

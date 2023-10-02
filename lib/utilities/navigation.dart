@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 extension NewNavigation on BuildContext {
-  void goNamed(String name) {
+  void goNamed(String name ) {
     Navigator.of(this).popAndPushNamed(name);
   }
 

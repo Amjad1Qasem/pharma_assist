@@ -2,6 +2,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DefaultbButton extends StatelessWidget {
   final String textButton;
@@ -9,19 +10,19 @@ class DefaultbButton extends StatelessWidget {
   final Color color;
   final Color colorText;
   final double radius;
-  final double width;
+  double? width;
   final double height;
   final FontWeight fontweight;
   final double fontsize;
 
-  const DefaultbButton({
+  DefaultbButton({
     super.key,
     required this.textButton,
     required this.onTap,
     required this.color,
     required this.colorText,
     required this.radius,
-    required this.width,
+    this.width,
     required this.height,
     required this.fontweight,
     required this.fontsize,
@@ -29,7 +30,7 @@ class DefaultbButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: width,
+        width: width = 170.w,
         height: height,
         child: ElevatedButton(
           style: ButtonStyle(

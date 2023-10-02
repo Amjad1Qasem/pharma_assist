@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
@@ -21,15 +22,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   FocusNode focusEmail = FocusNode();
   FocusNode focusPass = FocusNode();
-
   var emailcontroller = TextEditingController();
-
   var passcontroller = TextEditingController();
-
-  bool secure = true;
-
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-
   bool scure = true;
 
   @override
@@ -38,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Stack(
         alignment: Alignment.center,
         children: [
+          const BackgroundScreen(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -81,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              const Spacer(),
+              Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -118,10 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           onFieldSubmitted: (val) {
                             FocusScope.of(context).requestFocus(focusPass);
                           },
-                          scureText: true,
+                          scureText: false,
                           fillColor: Theme.of(context)
                               .colorScheme
-                              .onSecondaryContainer,
+                              .onSecondary
+                              .withOpacity(0.3),
                           validation: const [],
                           controller: emailcontroller,
                           keyboardType: TextInputType.emailAddress,
@@ -143,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           focus: focusPass,
                           scureText: scure,
                           sufix:
-                              scure ? Icons.visibility : Icons.visibility_off,
+                              scure ? Icons.visibility_off : Icons.visibility,
                           sufixfun: () {
                             setState(() {
                               scure = !scure;
@@ -152,7 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           fillColor: Theme.of(context)
                               .colorScheme
-                              .onSecondaryContainer,
+                              .onSecondary
+                              .withOpacity(0.3),
                           validation: const [],
                           controller: passcontroller,
                           keyboardType: TextInputType.emailAddress,
@@ -162,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             context.pushNamed(AppRouter.confirmEmail);
                           },
-                          child: Text(translation(context).forget_password,
+                          child: Text(translation(context).forgetPassword,
                               style: Theme.of(context).textTheme.bodySmall),
                         ),
                         Row(
@@ -270,7 +268,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              translation(context).no_account,
+                              translation(context).noAccount,
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
                             TextButton(
@@ -278,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context.goNamed(AppRouter.registerScreen);
                                 },
                                 child: Text(
-                                  translation(context).register_now,
+                                  translation(context).registerNow,
                                   style:
                                       Theme.of(context).textTheme.labelMedium,
                                 ))
@@ -294,5 +292,13 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    passcontroller.clear();
+    emailcontroller.clear();
+    debugPrint('controlleres is cleared');
+    super.dispose();
   }
 }

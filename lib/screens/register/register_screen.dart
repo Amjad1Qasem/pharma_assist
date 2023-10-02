@@ -1,12 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
@@ -36,13 +34,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var MobileNumbercontroller = TextEditingController();
   var BirthDatecontroller = TextEditingController();
   late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-  bool scure = false;
+  bool scure = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
+          const BackgroundScreen(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -86,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              const Spacer(),
+              Spacer(),
               SizedBox(
                 height: 100.h,
                 child: Image.asset(
@@ -114,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(translation(context).first_name,
+                            Text(translation(context).firstName,
                                 style: Theme.of(context).textTheme.labelSmall),
                             SizedBox(
                               height: 3.h,
@@ -130,7 +129,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onSecondary
+                                    .withOpacity(0.3),
                                 validation: const [],
                                 controller: FirstNamecontroller,
                                 keyboardType: TextInputType.emailAddress,
@@ -148,7 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(translation(context).last_name,
+                            Text(translation(context).lastName,
                                 style: Theme.of(context).textTheme.labelSmall),
                             SizedBox(
                               height: 3.h,
@@ -164,7 +164,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onSecondary
+                                    .withOpacity(0.3),
                                 controller: LastNamecontroller,
                                 validation: const [],
                                 keyboardType: TextInputType.emailAddress,
@@ -187,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(translation(context).mobile_number,
+                            Text(translation(context).mobileNumber,
                                 style: Theme.of(context).textTheme.labelSmall),
                             SizedBox(
                               height: 3.h,
@@ -203,7 +204,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onSecondary
+                                    .withOpacity(0.3),
                                 validation: const [],
                                 controller: MobileNumbercontroller,
                                 keyboardType: TextInputType.emailAddress,
@@ -221,7 +223,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(translation(context).birth_date,
+                            Text(translation(context).birthDate,
                                 style: Theme.of(context).textTheme.labelSmall),
                             SizedBox(
                               height: 3.h,
@@ -237,7 +239,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onSecondary
+                                    .withOpacity(0.3),
                                 controller: BirthDatecontroller,
                                 validation: const [],
                                 keyboardType: TextInputType.emailAddress,
@@ -276,7 +279,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 scureText: false,
                                 fillColor: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onSecondary
+                                    .withOpacity(0.3),
                                 controller: emailcontroller,
                                 validation: const [],
                                 keyboardType: TextInputType.emailAddress,
@@ -305,8 +309,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 focus: focusPass,
                                 scureText: scure,
                                 sufix: scure
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
                                 sufixfun: () {
                                   setState(() {
                                     scure = !scure;
@@ -315,7 +319,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 },
                                 fillColor: Theme.of(context)
                                     .colorScheme
-                                    .onSecondaryContainer,
+                                    .onSecondary
+                                    .withOpacity(0.3),
                                 validation: const [],
                                 controller: passcontroller,
                                 keyboardType: TextInputType.emailAddress,
@@ -432,7 +437,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        translation(context).no_account,
+                        translation(context).noAccount,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                       TextButton(
@@ -440,7 +445,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             context.goNamed(AppRouter.loginScreen);
                           },
                           child: Text(
-                            translation(context).login_now,
+                            translation(context).loginNow,
                             style: Theme.of(context).textTheme.labelMedium,
                           ))
                     ],
@@ -452,5 +457,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailcontroller.clear();
+    passcontroller.clear();
+    FirstNamecontroller.clear();
+    LastNamecontroller.clear();
+    MobileNumbercontroller.clear();
+    BirthDatecontroller.clear();
+    super.dispose();
   }
 }

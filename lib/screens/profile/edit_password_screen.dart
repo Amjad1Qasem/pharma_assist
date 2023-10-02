@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
@@ -48,173 +49,188 @@ class _EditPasswordScreenState extends State<EditPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(30.0.sp),
-          child: Column(
-            children: [
-              Stack(
+      body: Stack(
+        children: [
+          const BackgroundScreen(),
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(30.0.sp),
+              child: Column(
                 children: [
-                  Row(
+                  Stack(
                     children: [
-                      IconButton(
-                        onPressed: context.pop,
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          size: 30.sp,
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: context.pop,
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              size: 30.sp,
+                              color: Theme.of(context).colorScheme.outline,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            AppImages.iconLogin,
+                            width: 120.w,
+                            height: 120.h,
+                          ),
+                        ],
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height / 12),
+                    child: Column(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              translation(context).oldPassword,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            DefaultTextFormField(
+                              focus: focusOldPassword,
+                              onFieldSubmitted: (val) {
+                                FocusScope.of(context)
+                                    .requestFocus(focusNewPassword);
+                              },
+                              scureText: scurePassNew,
+                              sufix: scurePassNew
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              sufixfun: () {
+                                setState(() {
+                                  scurePassNew = !scurePassNew;
+                                });
+                                return null;
+                              },
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                              validation: [],
+                              controller: oldPasswordController,
+                              radius: 6.r,
+                              keyboardType: TextInputType.name,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              translation(context).newPassword,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            DefaultTextFormField(
+                              focus: focusNewPassword,
+                              onFieldSubmitted: (val) {
+                                FocusScope.of(context)
+                                    .requestFocus(focusConfirmPassword);
+                              },
+                              scureText: scurePassold,
+                              sufix: scurePassold
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              sufixfun: () {
+                                setState(() {
+                                  scurePassold = !scurePassold;
+                                });
+                                return null;
+                              },
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                              validation: [],
+                              controller: newPasswordController,
+                              radius: 6.r,
+                              keyboardType: TextInputType.name,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              translation(context).confirmPassword,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            DefaultTextFormField(
+                              focus: focusConfirmPassword,
+                              scureText: scurePassConfirm,
+                              sufix: scurePassConfirm
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              sufixfun: () {
+                                setState(() {
+                                  scurePassConfirm = !scurePassConfirm;
+                                });
+                                return null;
+                              },
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .tertiaryContainer,
+                              validation: [],
+                              controller: confirmPasswordController,
+                              radius: 6.r,
+                              keyboardType: TextInputType.name,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        AppImages.iconLogin,
-                        width: 120.w,
-                        height: 120.h,
+                      DefaultbButton(
+                        textButton: translation(context).confirm,
+                        onTap: () {
+                          context.pop();
+                          debugPrint('the values has edited');
+                        },
+                        color: colors.buttonColor,
+                        colorText: Colors.white,
+                        radius: 40.r,
+                        height: 60.h,
+                        fontsize: 28.sp,
+                        fontweight: FontWeight.w500,
                       ),
                     ],
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height / 12),
-                child: Column(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          translation(context).old_password,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        DefaultTextFormField(
-                          focus: focusOldPassword,
-                          onFieldSubmitted: (val) {
-                            FocusScope.of(context)
-                                .requestFocus(focusNewPassword);
-                          },
-                          scureText: scurePassNew,
-                          sufix: scurePassNew
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          sufixfun: () {
-                            setState(() {
-                              scurePassNew = !scurePassNew;
-                            });
-                            return null;
-                          },
-                          fillColor: Theme.of(context)
-                              .colorScheme
-                              .onSecondaryContainer,
-                          validation: const [],
-                          controller: oldPasswordController,
-                          radius: 6.r,
-                          keyboardType: TextInputType.name,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          translation(context).new_password,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        DefaultTextFormField(
-                          focus: focusNewPassword,
-                          onFieldSubmitted: (val) {
-                            FocusScope.of(context)
-                                .requestFocus(focusConfirmPassword);
-                          },
-                          scureText: scurePassold,
-                          sufix: scurePassold
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          sufixfun: () {
-                            setState(() {
-                              scurePassold = !scurePassold;
-                            });
-                            return null;
-                          },
-                          fillColor: Theme.of(context)
-                              .colorScheme
-                              .onSecondaryContainer,
-                          validation: const [],
-                          controller: newPasswordController,
-                          radius: 6.r,
-                          keyboardType: TextInputType.name,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          translation(context).confirm_password,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        DefaultTextFormField(
-                          focus: focusConfirmPassword,
-                          scureText: scurePassConfirm,
-                          sufix: scurePassConfirm
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          sufixfun: () {
-                            setState(() {
-                              scurePassConfirm = !scurePassConfirm;
-                            });
-                            return null;
-                          },
-                          fillColor: Theme.of(context)
-                              .colorScheme
-                              .onSecondaryContainer,
-                          validation: const [],
-                          controller: confirmPasswordController,
-                          radius: 6.r,
-                          keyboardType: TextInputType.name,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DefaultbButton(
-                    textButton: translation(context).confirm,
-                    onTap: () {
-                      context.pop();
-                      debugPrint('the values has edited');
-                    },
-                    color: colors.buttonColor,
-                    colorText: Colors.white,
-                    radius: 40.r,
-                    width: 180.w,
-                    height: 60.h,
-                    fontsize: 28.sp,
-                    fontweight: FontWeight.w500,
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    oldPasswordController.clear();
+    newPasswordController.clear();
+    confirmPasswordController.clear();
+    scurePassNew = false;
+    scurePassold = false;
+    scurePassConfirm = false;
+    super.dispose();
   }
 }

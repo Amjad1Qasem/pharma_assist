@@ -34,4 +34,6 @@ abstract class AppColors {
   static const containerColor = Color(0xFFe5fdff);
 
   static const favorateColor = Color(0xFFFF0000);
+
+  static const backgroundFilter = Color(0xFFe0eeef);
 }

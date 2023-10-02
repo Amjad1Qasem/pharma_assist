@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/components/default_button.dart';
+import 'package:pharma_assist/screens/splash/widgets/animated_background.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/themes/extentions/splash_screen_header_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
@@ -25,7 +27,7 @@ class SplashScreen extends HookWidget {
     return DefaultScaffold(
       body: Stack(
         children: [
-          //const AnimatedBackgound(),
+          const AnimatedBackgound(),
           Center(
             child: Padding(
               padding: EdgeInsetsDirectional.only(

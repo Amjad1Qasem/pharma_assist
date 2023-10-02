@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 
-class CategoryContainer extends StatelessWidget {
+class CategoryContainer extends HookWidget {
   const CategoryContainer({super.key, required this.model});
   final DetailsMedModel model;
   @override
   Widget build(BuildContext context) {
+    final isFavorite = useState(false);
     return InkWell(
       onTap: () {
         context.goNamed(AppRouter.detailsMed);
@@ -22,14 +24,16 @@ class CategoryContainer extends StatelessWidget {
               color: Theme.of(context).colorScheme.onTertiaryContainer),
           child: ListTile(
             trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  isFavorite.value = !isFavorite.value;
+                },
                 icon: Icon(
-                  Icons.favorite_border_outlined,
+                  isFavorite.value ? Icons.favorite : Icons.favorite_outline,
                   size: 30.sp,
-                  color: Colors.red,
+                  color: Theme.of(context).colorScheme.onInverseSurface,
                 )),
             title: Text(
-              model.categoriesName,
+              model.medName,
               style: Theme.of(context).textTheme.labelLarge,
             ),
             subtitle: Text(
