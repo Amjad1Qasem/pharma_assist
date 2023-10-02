@@ -1,9 +1,6 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_constructors_in_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
-import 'package:pharma_assist/model/classes.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/bg_screen_onboarding_extention.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
@@ -11,9 +8,10 @@ import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../components/default_scaffold.dart';
+import 'widgets/on_boarding_item.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({super.key});
+  const OnBoardingScreen({super.key});
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
@@ -54,9 +52,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         const BackgroundScreen(),
         PageView.builder(
           controller: onBoardController,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) =>
-              buildOnBoardingItem(boarding[index], context),
+              OnBoardingItem(model: boarding[index]),
           itemCount: boarding.length,
           onPageChanged: (int index) {
             if (index == boarding.length - 1) {
@@ -77,7 +75,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //Indicator
               SmoothPageIndicator(
                   controller: onBoardController, // PageController
                   count: boarding.length,
@@ -100,7 +97,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         curve: Curves.fastOutSlowIn);
                   }
                 },
-                // ignore: sort_child_properties_last
                 child: Icon(
                   Icons.arrow_forward,
                   color: colors.floatingIconColor,
@@ -115,66 +111,3 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     ));
   }
 }
-
-Widget buildOnBoardingItem(OnBoardingModel model, BuildContext context) =>
-    Column(children: [
-      Padding(
-        // ignore: prefer_const_constructors
-        padding: EdgeInsetsDirectional.only(
-            top: 40.sp, start: 20.sp, end: 20.sp, bottom: 20.sp),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    onPressed: () {
-                      context.goNamed(AppRouter.loginScreen);
-                    },
-                    child: Text(
-                      translation(context).skip,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ))
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-                // ignore: unnecessary_string_interpolations
-                '${model.title}',
-                style: Theme.of(context).textTheme.labelLarge),
-            Text(
-                // ignore: unnecessary_string_interpolationsp, unnecessary_string_interpolations
-                '${model.descriptions}',
-                style: Theme.of(context).textTheme.bodyMedium),
-          ],
-        ),
-      ),
-      const Spacer(),
-      Column(
-        children: [
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              // ignore: unnecessary_string_interpolations
-              Image.asset(
-                // ignore: unnecessary_string_interpolations
-                '${model.backgroundonboarding}',
-                color: Theme.of(context).primaryColor,
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 60.r),
-                child: Image.asset(
-                  // ignore: unnecessary_string_interpolations
-                  '${model.persononboarding}',
-                  width: 340.w,
-                  height: 500.h,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ]);

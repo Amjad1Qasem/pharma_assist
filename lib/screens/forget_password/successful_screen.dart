@@ -72,7 +72,7 @@ class SuccessfulScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 50,
+              height: 50.h,
             ),
             DefaultbButton(
               textButton: translation(context).loginNow,

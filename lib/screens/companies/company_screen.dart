@@ -157,7 +157,7 @@ Widget buildCategoryModel(CompanyModel model, BuildContext context) => Row(
                       borderRadius: BorderRadius.circular(12.r),
                       color: const Color(0xffcceef1)),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0.sp),
                     child: Image.asset(
                       // ignore: unnecessary_string_interpolations
                       '${model.companyIcon}',

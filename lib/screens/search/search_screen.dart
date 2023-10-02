@@ -186,7 +186,7 @@ class SearchScreen extends HookWidget {
                                                             checkColor:
                                                                 Colors.white,
                                                             side: BorderSide(
-                                                                width: 1.5,
+                                                                width: 1.5.w,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .colorScheme
@@ -218,7 +218,7 @@ class SearchScreen extends HookWidget {
                                                             checkColor:
                                                                 Colors.white,
                                                             side: BorderSide(
-                                                                width: 1.5,
+                                                                width: 1.5.w,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .colorScheme
@@ -250,7 +250,7 @@ class SearchScreen extends HookWidget {
                                                             checkColor:
                                                                 Colors.white,
                                                             side: BorderSide(
-                                                                width: 1.5,
+                                                                width: 1.5.w,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .colorScheme
@@ -282,7 +282,7 @@ class SearchScreen extends HookWidget {
                                                             checkColor:
                                                                 Colors.white,
                                                             side: BorderSide(
-                                                                width: 1.5,
+                                                                width: 1.5.w,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .colorScheme
@@ -314,7 +314,7 @@ class SearchScreen extends HookWidget {
                                                             checkColor:
                                                                 Colors.white,
                                                             side: BorderSide(
-                                                                width: 1.5,
+                                                                width: 1.5.w,
                                                                 color: Theme.of(
                                                                         context)
                                                                     .colorScheme

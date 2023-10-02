@@ -12,6 +12,7 @@ import 'package:pharma_assist/themes/extentions/splash_screen_header_theme_exten
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
+//TODO:: Make this screen a real splash screen
 class SplashScreen extends HookWidget {
   const SplashScreen({super.key});
   @override
@@ -19,11 +20,7 @@ class SplashScreen extends HookWidget {
     final splashScreenHeaderThemeExtention =
         Theme.of(context).extension<SplashScreenHeaderThemeExtention>()!;
     final color = Theme.of(context).extension<ColorsThemeExtention>()!;
-    // useEffect(() {
-    //   Future.delayed(const Duration(seconds: 3))
-    //       .then((value) => context.pushNamed(AppRouter.homeLayout));
-    //   return null;
-    // }, []);
+    useEffect(() {}, []);
     return DefaultScaffold(
       body: Stack(
         children: [
@@ -66,7 +63,7 @@ class SplashScreen extends HookWidget {
                     radius: 40.r,
                     colorText: Theme.of(context).colorScheme.secondary,
                     color: color.buttonColor,
-                    fontsize: 24.sp,
+                    fontsize: 18.sp,
                     fontweight: FontWeight.w700,
                   ),
                 ],

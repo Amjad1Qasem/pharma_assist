@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/themes/app_colors.dart';
 
 class DefaultbButton extends StatelessWidget {
   final String textButton;
@@ -46,10 +47,11 @@ class DefaultbButton extends StatelessWidget {
           onPressed: onTap,
           child: Text(
             textButton,
-            style: TextStyle(
-                fontFamily: 'Nunito-Bold',
-                fontSize: fontsize,
-                fontWeight: fontweight),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontSize: fontsize,
+                  fontWeight: fontweight,
+                  color: AppColors.white,
+                ),
           ),
         ));
   }
