@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
@@ -158,7 +157,7 @@ Widget buildCategoryModel(CompanyModel model, BuildContext context) => Row(
                       borderRadius: BorderRadius.circular(12.r),
                       color: const Color(0xffcceef1)),
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(10.0.sp),
                     child: Image.asset(
                       // ignore: unnecessary_string_interpolations
                       '${model.companyIcon}',

@@ -1,17 +1,3 @@
-class OnBoardingModel {
-  final String persononboarding;
-  final String backgroundonboarding;
-  final String title;
-  final String descriptions;
-
-  OnBoardingModel({
-    required this.persononboarding,
-    required this.backgroundonboarding,
-    required this.title,
-    required this.descriptions,
-  });
-}
-
 class ImagesSwiperModel {
   final String swiperImage;
   ImagesSwiperModel({required this.swiperImage});
@@ -41,7 +27,7 @@ class DetailsMedModel {
   final String medForm;
   final String companyName;
   final String categoriesName;
-  final  List<String> title;
+  final List<String> title;
   final List<String> titleText;
   // final Map<String, String> title;
   DetailsMedModel({

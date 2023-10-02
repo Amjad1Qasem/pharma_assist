@@ -6,7 +6,6 @@ import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
-import 'package:pharma_assist/screens/caterories/category_item.dart';
 import 'package:pharma_assist/screens/companies/company_item.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
@@ -171,7 +170,7 @@ class CompanyData extends HookWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.r),
                         color: Theme.of(context).colorScheme.onTertiary,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Color.fromARGB(48, 0, 0, 0),
                             offset: Offset(0, 4),
@@ -204,7 +203,7 @@ class CompanyData extends HookWidget {
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     Image(
-                      image: AssetImage(AppImages.iconLogin),
+                      image: const AssetImage(AppImages.iconLogin),
                       fit: BoxFit.cover,
                       width: 45.w,
                       height: 55.h,
@@ -306,7 +305,7 @@ class CompanyData extends HookWidget {
                                                       activeColor: Colors.blue,
                                                       checkColor: Colors.white,
                                                       side: BorderSide(
-                                                          width: 1.5,
+                                                          width: 1.5.w,
                                                           color:
                                                               Theme.of(context)
                                                                   .colorScheme
@@ -332,7 +331,7 @@ class CompanyData extends HookWidget {
                                                       activeColor: Colors.blue,
                                                       checkColor: Colors.white,
                                                       side: BorderSide(
-                                                          width: 1.5,
+                                                          width: 1.5.w,
                                                           color:
                                                               Theme.of(context)
                                                                   .colorScheme
@@ -358,7 +357,7 @@ class CompanyData extends HookWidget {
                                                       activeColor: Colors.blue,
                                                       checkColor: Colors.white,
                                                       side: BorderSide(
-                                                          width: 1.5,
+                                                          width: 1.5.w,
                                                           color:
                                                               Theme.of(context)
                                                                   .colorScheme
@@ -384,7 +383,7 @@ class CompanyData extends HookWidget {
                                                       activeColor: Colors.blue,
                                                       checkColor: Colors.white,
                                                       side: BorderSide(
-                                                          width: 1.5,
+                                                          width: 1.w,
                                                           color:
                                                               Theme.of(context)
                                                                   .colorScheme
@@ -410,7 +409,7 @@ class CompanyData extends HookWidget {
                                                       activeColor: Colors.blue,
                                                       checkColor: Colors.white,
                                                       side: BorderSide(
-                                                          width: 1.5,
+                                                          width: 1.5.w,
                                                           color:
                                                               Theme.of(context)
                                                                   .colorScheme

@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(
-                    width: 170,
+                    width: 170.w,
                     child: Text(
                       'Jawad Talal',
                       maxLines: 2,
@@ -74,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(
-                    width: 170,
+                    width: 170.w,
                     child: Text(
                       'Jawad.u1@gmail.com',
                       maxLines: 2,

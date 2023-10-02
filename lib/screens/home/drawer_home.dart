@@ -232,7 +232,7 @@ class DrawerHome extends HookWidget {
                                             ),
                                           )
                                         : Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: EdgeInsets.all(5.sp),
                                             child: Container(
                                               height: 30.h,
                                               width: 70.w,
@@ -282,7 +282,7 @@ class DrawerHome extends HookWidget {
                       EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
                   child: Container(
                     width: double.infinity,
-                    height: 0.5.sp,
+                    height: 0.5.h,
                     color: Colors.black,
                   ),
                 ),

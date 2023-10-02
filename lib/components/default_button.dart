@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/themes/app_colors.dart';
 
 class DefaultbButton extends StatelessWidget {
   final String textButton;
@@ -10,7 +11,7 @@ class DefaultbButton extends StatelessWidget {
   final Color color;
   final Color colorText;
   final double radius;
-  double? width;
+  final double? width;
   final double height;
   final FontWeight fontweight;
   final double fontsize;
@@ -30,7 +31,7 @@ class DefaultbButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: width = 170.w,
+        width: 170.w,
         height: height,
         child: ElevatedButton(
           style: ButtonStyle(
@@ -46,10 +47,11 @@ class DefaultbButton extends StatelessWidget {
           onPressed: onTap,
           child: Text(
             textButton,
-            style: TextStyle(
-                fontFamily: 'Nunito-Bold',
-                fontSize: fontsize,
-                fontWeight: fontweight),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontSize: fontsize,
+                  fontWeight: fontweight,
+                  color: AppColors.white,
+                ),
           ),
         ));
   }

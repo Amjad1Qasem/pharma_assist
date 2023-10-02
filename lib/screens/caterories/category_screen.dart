@@ -185,7 +185,7 @@ Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 5.r, bottom: 5.0.r),
+                    padding: EdgeInsets.only(top: 5.sp, bottom: 5.0.sp),
                     child: Container(
                       height: 0.5.h,
                       color: Colors.black45,

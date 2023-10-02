@@ -107,7 +107,7 @@ Widget favoriteItem(context, ValueNotifier isFavorite) => Container(
         Row(
           children: [
             Container(
-              height: 32,
+              height: 32.h,
               decoration: BoxDecoration(
                 color: Theme.of(context)
                     .colorScheme
