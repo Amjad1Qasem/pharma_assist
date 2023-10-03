@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/components/loading.dart';
 import 'package:pharma_assist/themes/app_colors.dart';
 
 class DefaultbButton extends StatelessWidget {
@@ -15,6 +16,7 @@ class DefaultbButton extends StatelessWidget {
   final double height;
   final FontWeight fontweight;
   final double fontsize;
+  final bool loading;
 
   DefaultbButton({
     super.key,
@@ -27,32 +29,35 @@ class DefaultbButton extends StatelessWidget {
     required this.height,
     required this.fontweight,
     required this.fontsize,
+    this.loading = false,
   });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         width: 170.w,
         height: height,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            alignment: Alignment.center,
-            splashFactory: InkRipple.splashFactory,
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(radius)),
-            ),
-            foregroundColor: MaterialStateProperty.all<Color>(colorText),
-            backgroundColor: MaterialStateProperty.all<Color>(color),
-          ),
-          onPressed: onTap,
-          child: Text(
-            textButton,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontSize: fontsize,
-                  fontWeight: fontweight,
-                  color: AppColors.white,
+        child: loading
+            ? const Loading()
+            : ElevatedButton(
+                style: ButtonStyle(
+                  alignment: Alignment.center,
+                  splashFactory: InkRipple.splashFactory,
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(radius)),
+                  ),
+                  foregroundColor: MaterialStateProperty.all<Color>(colorText),
+                  backgroundColor: MaterialStateProperty.all<Color>(color),
                 ),
-          ),
-        ));
+                onPressed: loading ? null : onTap,
+                child: Text(
+                  textButton,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: fontsize,
+                        fontWeight: fontweight,
+                        color: AppColors.white,
+                      ),
+                ),
+              ));
   }
 }

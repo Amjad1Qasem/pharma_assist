@@ -10,7 +10,7 @@ class ApiHelper {
   void refreshToken() async {
     _token = await LocalStorageHelper.getToken();
     _dio = Dio()
-      ..options.baseUrl = "http://localhost:8000/api/"
+      ..options.baseUrl = "http://localhost:8000/api/v1/"
       ..options.connectTimeout = const Duration(minutes: 1)
       ..options.headers = {
         HttpHeaders.acceptHeader: 'application/json',
@@ -37,23 +37,25 @@ class ApiHelper {
     return response.data as T;
   }
 
-  Future<T>? post<T>(String endpoint,
+  Future<Map<String, dynamic>>? post(String endpoint,
       {Map<String, Object>? queryParameters,
       required Map<String, Object> body,
-      void Function(int statusCode)? onSuccess,
-      void Function(int statusCode)? onFialed}) async {
+      void Function(int statusCode, Map<String, dynamic> response)? onSuccess,
+      void Function(int statusCode, Map<String, dynamic> response)?
+          onFialed}) async {
     final response =
         await _dio.post(endpoint, queryParameters: queryParameters, data: body);
+    final String token = response.data['token'];
     final statusCode = response.statusCode;
     if (statusCode != null && statusCode < 300 && statusCode >= 200) {
-      onSuccess?.call(statusCode);
+      onSuccess?.call(statusCode, response.data);
     } else {
-      onFialed?.call(statusCode!);
+      onFialed?.call(statusCode!, response.data);
     }
-    return response.data as T;
+    return response.data;
   }
 
-  Future<T>? put<T>(String endpoint,
+  Future<Map<String, dynamic>>? put(String endpoint,
       {required int id,
       Map<String, Object>? queryParameters,
       required Map<String, Object> body,
@@ -67,7 +69,7 @@ class ApiHelper {
     } else {
       onFialed?.call(statusCode!);
     }
-    return response.data as T;
+    return response.data;
   }
 
   void delete(String endpoint,
