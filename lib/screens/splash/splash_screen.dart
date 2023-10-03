@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 
 import 'package:pharma_assist/router/app_router.dart';
@@ -12,15 +11,27 @@ import 'package:pharma_assist/themes/extentions/splash_screen_header_theme_exten
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
+import '../../helpers/local_storage/local_storage_helper.dart';
+
 //TODO:: Make this screen a real splash screen
 class SplashScreen extends HookWidget {
   const SplashScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    void checkRegistration() {
+      final token = LocalStorageHelper.getToken();
+      if (token != null) {
+        context.goNamed(AppRouter.onBoardingScreen);
+      }
+    }
+
     final splashScreenHeaderThemeExtention =
         Theme.of(context).extension<SplashScreenHeaderThemeExtention>()!;
     final color = Theme.of(context).extension<ColorsThemeExtention>()!;
-    useEffect(() {}, []);
+    useEffect(() {
+      checkRegistration();
+    }, []);
+
     return DefaultScaffold(
       body: Stack(
         children: [

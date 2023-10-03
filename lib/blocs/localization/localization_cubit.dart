@@ -12,19 +12,19 @@ class LocalizationCubit extends Cubit<LocalizationState> {
   }
 
   void init() async {
-    final Locale locale = await LocalStoageHelper.getLocale();
+    final Locale locale = await LocalStorageHelper.getLocale();
     emit(LocalizationFetched(locale));
   }
 
   void english() async {
     const Locale englishLocale = AppTranslation.english;
-    await LocalStoageHelper.setLocal(englishLocale);
+    await LocalStorageHelper.setLocal(englishLocale);
     emit(LocalizationFetched(englishLocale));
   }
 
   void dark() async {
     const Locale arabicLocale = AppTranslation.arabic;
-    await LocalStoageHelper.setLocal(arabicLocale);
+    await LocalStorageHelper.setLocal(arabicLocale);
     emit(LocalizationFetched(arabicLocale));
   }
 }
