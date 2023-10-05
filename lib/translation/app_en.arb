@@ -64,5 +64,7 @@
     "oldPassword":"Old Password ",
     "manufacturedBy":"Manufactured By:",
     "filter":"Filter Data",
-    "reset":"Reset"
+    "reset":"Reset",
+    "about_us":"About Us",
+    "share":"Share App"
 }

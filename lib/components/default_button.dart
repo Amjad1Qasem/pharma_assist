@@ -16,7 +16,7 @@ class DefaultbButton extends StatelessWidget {
   final FontWeight fontweight;
   final double fontsize;
 
-  DefaultbButton({
+  const DefaultbButton({
     super.key,
     required this.textButton,
     required this.onTap,

@@ -1,18 +1,17 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
+import 'package:pharma_assist/screens/about_us/about_us.dart';
 import 'package:pharma_assist/screens/caterories/category_data_screen.dart';
 import 'package:pharma_assist/screens/companies/company_data_screen.dart';
 import 'package:pharma_assist/screens/details_med/details.dart';
 import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
 import 'package:pharma_assist/screens/forget_password/confirm_password_screen.dart';
 import 'package:pharma_assist/screens/forget_password/successful_screen_screen.dart';
+import 'package:pharma_assist/screens/home/widgets/drawer_home.dart';
 import 'package:pharma_assist/screens/intro/intro_screen.dart';
 import 'package:pharma_assist/screens/forget_password/confirm_email_screen.dart';
 import 'package:pharma_assist/screens/layout/home_layout.dart';
@@ -22,7 +21,6 @@ import 'package:pharma_assist/screens/profile/profile_screen.dart';
 import 'package:pharma_assist/screens/register/register_screen.dart';
 import 'package:pharma_assist/screens/caterories/category_screen.dart';
 import 'package:pharma_assist/screens/companies/company_screen.dart';
-import 'package:pharma_assist/screens/error/no_internet_screen.dart';
 import 'package:pharma_assist/screens/home/home_screen.dart';
 import 'package:pharma_assist/screens/login/login_sreen.dart';
 import 'package:pharma_assist/screens/on_boarding/on_boarding_screen.dart';
@@ -53,6 +51,8 @@ class AppRouter {
   static const favorateScreen = '/favorateScreen';
   static const searchScreen = '/searchScreen';
   static const companyData = '/companyData';
+  static const aboutUsScreen = '/aboutUsScreen';
+  static const drawerHome = '/drawerHome';
 
   final NoInternetCubit noInternetCubit;
 
@@ -65,7 +65,7 @@ class AppRouter {
         route = CupertinoPageRoute(builder: (_) => const SplashScreen());
         break;
       case AppRouter.onBoardingScreen:
-        route = CupertinoPageRoute(builder: (_) => OnBoardingScreen());
+        route = CupertinoPageRoute(builder: (_) => const OnBoardingScreen());
         break;
       case AppRouter.loginScreen:
         route = MaterialPageRoute(builder: (_) => const LoginScreen());
@@ -78,7 +78,7 @@ class AppRouter {
         break;
       case AppRouter.confirmPassword:
         route =
-            CupertinoPageRoute(builder: (_) => const ConfirmPasswordSrceen());
+            MaterialPageRoute(builder: (_) => const ConfirmPasswordSrceen());
         break;
       case AppRouter.companyScreen:
         route = CupertinoPageRoute(builder: (_) => CompanyScreen());
@@ -105,13 +105,19 @@ class AppRouter {
         route = CupertinoPageRoute(builder: (_) => const EditProfileScreen());
         break;
       case AppRouter.introScreen:
-        route = CupertinoPageRoute(builder: (_) => IntroScreen());
+        route = CupertinoPageRoute(builder: (_) => const IntroScreen());
         break;
       case AppRouter.searchScreen:
         route = CupertinoPageRoute(builder: (_) => const SearchScreen());
         break;
+      case AppRouter.aboutUsScreen:
+        route = CupertinoPageRoute(builder: (_) => const AboutUsScreen());
+        break;
       case AppRouter.favorateScreen:
         route = CupertinoPageRoute(builder: (_) => const FavoriteScreen());
+        break;
+      case AppRouter.drawerHome:
+        route = CupertinoPageRoute(builder: (_) => const DrawerHome());
         break;
       case AppRouter.companyData:
         final companyName = settings.arguments as String;

@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/blocs/theme/theme_cubit.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/constants/app_images.dart';
+import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -33,8 +36,8 @@ class DrawerHome extends HookWidget {
                   child: Row(
                     children: [
                       Image(
-                        image: AssetImage(
-                          'assets/images/icon_App.png',
+                        image: const AssetImage(
+                          AppImages.iconLogin,
                         ),
                         width: 80.w,
                         height: 80.h,
@@ -56,24 +59,18 @@ class DrawerHome extends HookWidget {
                 SizedBox(
                   height: 45.h,
                 ),
-                ListTile(
-                    leading: Icon(
-                      Icons.language,
-                      size: 32.sp,
-                      color: Colors.black54,
-                    ),
-                    title: Text(
-                      translation(context).language,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
+                ListTileItem(
+                    onTap: () {},
+                    text: translation(context).language,
+                    icon: Icons.language,
                     trailing: AnimatedContainer(
                       alignment: Alignment.center,
-                      duration: Duration(microseconds: 1000),
+                      duration: const Duration(microseconds: 1000),
                       height: 38.h,
                       width: 110.w,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17.r),
-                          color: Color(0xff64c1db)),
+                          color: const Color(0xff64c1db)),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -81,7 +78,7 @@ class DrawerHome extends HookWidget {
                               curve: Curves.easeIn,
                               left: toggleValue.value ? 45.0.sp : 0.0.sp,
                               right: toggleValue.value ? 0.0.sp : 45.0.sp,
-                              duration: Duration(
+                              duration: const Duration(
                                 microseconds: 1000,
                               ),
                               child: InkWell(
@@ -89,7 +86,8 @@ class DrawerHome extends HookWidget {
                                   toggleValue.value = !toggleValue.value;
                                 },
                                 child: AnimatedSwitcher(
-                                    duration: Duration(milliseconds: 1000),
+                                    duration:
+                                        const Duration(milliseconds: 1000),
                                     transitionBuilder: (Widget child,
                                         Animation<double> animation) {
                                       return ScaleTransition(
@@ -110,7 +108,7 @@ class DrawerHome extends HookWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           12.r),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 255, 255, 255)),
                                               child: Center(
                                                 child: Text(
@@ -132,7 +130,7 @@ class DrawerHome extends HookWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           12.r),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 255, 255, 255)),
                                               child: Center(
                                                 child: Text(
@@ -149,35 +147,21 @@ class DrawerHome extends HookWidget {
                         ],
                       ),
                     )),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
-                  child: Container(
-                    width: double.infinity,
-                    height: 0.5.h,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
-                    leading: Icon(
-                      Icons.dark_mode,
-                      size: 35.sp,
-                      color: Colors.black54,
-                    ),
-                    title: Text(
-                      translation(context).theme,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
+                line(),
+                ListTileItem(
+                    onTap: () {},
+                    text: translation(context).theme,
+                    icon: Icons.dark_mode,
                     trailing: AnimatedContainer(
                       alignment: Alignment.center,
-                      duration: Duration(microseconds: 1000),
+                      duration: const Duration(microseconds: 1000),
                       height: 38.h,
                       width: 110.w,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17.r),
                           color: isDarkSelected.value
-                              ? Color(0xff1f4d59)
-                              : Color(0xff64c1db)),
+                              ? const Color(0xff1f4d59)
+                              : const Color(0xff64c1db)),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -185,7 +169,7 @@ class DrawerHome extends HookWidget {
                               curve: Curves.easeIn,
                               left: isDarkSelected.value ? 45.0.sp : 0.0.sp,
                               right: isDarkSelected.value ? 0.0.sp : 45.0.sp,
-                              duration: Duration(
+                              duration: const Duration(
                                 microseconds: 1000,
                               ),
                               child: InkWell(
@@ -199,7 +183,8 @@ class DrawerHome extends HookWidget {
                                   isDarkSelected.value = !isDarkSelected.value;
                                 },
                                 child: AnimatedSwitcher(
-                                    duration: Duration(milliseconds: 1000),
+                                    duration:
+                                        const Duration(milliseconds: 1000),
                                     transitionBuilder: (Widget child,
                                         Animation<double> animation) {
                                       return ScaleTransition(
@@ -220,7 +205,7 @@ class DrawerHome extends HookWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           12.r),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 255, 255, 255)),
                                               child: Center(
                                                 child: Icon(
@@ -240,12 +225,12 @@ class DrawerHome extends HookWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           12.r),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 255, 255, 255)),
                                               child: Icon(
                                                 Icons.light_mode,
                                                 size: 23.sp,
-                                                color: Color.fromRGBO(
+                                                color: const Color.fromRGBO(
                                                     255, 202, 40, 1),
                                               ),
                                             ),
@@ -254,51 +239,33 @@ class DrawerHome extends HookWidget {
                         ],
                       ),
                     )),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
-                  child: Container(
-                    width: double.infinity,
-                    height: 0.5.h,
-                    color: Colors.black,
-                  ),
+                line(),
+                ListTileItem(
+                  text: translation(context).favorites,
+                  onTap: () => context.goNamed(AppRouter.favorateScreen),
+                  icon: Icons.favorite,
                 ),
-                ListTile(
+                line(),
+                ListTileItem(
+                  text: translation(context).about_us,
+                  onTap: () => context.goNamed(AppRouter.aboutUsScreen),
+                  icon: Icons.contact_support,
+                ),
+                line(),
+                ListTileItem(
+                  text: translation(context).share,
                   onTap: () {
-                    debugPrint('Favorites');
+                    print('Share App');
                   },
-                  leading: Icon(
-                    Icons.favorite,
-                    size: 35.sp,
-                    color: Colors.black54,
-                  ),
-                  title: Text(
-                    translation(context).favorites,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                  icon: Icons.share,
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
-                  child: Container(
-                    width: double.infinity,
-                    height: 0.5.h,
-                    color: Colors.black,
-                  ),
-                ),
-                ListTile(
+                line(),
+                ListTileItem(
+                  text: translation(context).logout,
                   onTap: () {
-                    debugPrint('Log Out');
+                    context.goNamed(AppRouter.loginScreen);
                   },
-                  leading: Icon(
-                    Icons.logout_rounded,
-                    size: 35.sp,
-                    color: Colors.black54,
-                  ),
-                  title: Text(
-                    translation(context).logout,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                  icon: Icons.logout_rounded,
                 ),
               ],
             ),
@@ -308,3 +275,45 @@ class DrawerHome extends HookWidget {
     );
   }
 }
+
+class ListTileItem extends StatelessWidget {
+  const ListTileItem({
+    super.key,
+    required this.onTap,
+    required this.text,
+    required this.icon,
+    this.trailing,
+  });
+  final Function() onTap;
+  final String text;
+  final IconData icon;
+  final Widget? trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () {
+        onTap();
+      },
+      leading: Icon(
+        icon,
+        size: 30.sp,
+        color: Colors.black54,
+      ),
+      title: Text(
+        text,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      trailing: trailing,
+    );
+  }
+}
+
+Widget line() => Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
+      child: Container(
+        width: double.infinity,
+        height: 1.h,
+        color: Colors.black,
+      ),
+    );

@@ -1,73 +1,36 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
-
 import 'package:pharma_assist/router/app_router.dart';
-import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/screens/splash/widgets/animated_background.dart';
-import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/themes/extentions/splash_screen_header_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
-import 'package:pharma_assist/utilities/translation.dart';
 
-//TODO:: Make this screen a real splash screen
 class SplashScreen extends HookWidget {
   const SplashScreen({super.key});
   @override
   Widget build(BuildContext context) {
     final splashScreenHeaderThemeExtention =
         Theme.of(context).extension<SplashScreenHeaderThemeExtention>()!;
-    final color = Theme.of(context).extension<ColorsThemeExtention>()!;
-    useEffect(() {}, []);
+    useEffect(() {
+      final timer = Timer.periodic(const Duration(seconds: 4), (t) {
+        context.goNamed(AppRouter.onBoardingScreen);
+      });
+      return timer.cancel;
+    }, []);
     return DefaultScaffold(
       body: Stack(
         children: [
           const AnimatedBackgound(),
           Center(
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(
-                top: 50.sp,
-                start: 30.sp,
-                end: 30.sp,
+            child: Image(
+              image: AssetImage(
+                splashScreenHeaderThemeExtention.imagePath,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      Image(
-                        image: AssetImage(
-                          splashScreenHeaderThemeExtention.imagePath,
-                        ),
-                        width: 325.w,
-                        height: 150.h,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(translation(context).splashDescription,
-                      textAlign: TextAlign.start,
-                      style: Theme.of(context).textTheme.bodyMedium),
-                  SizedBox(
-                    height: 150.h,
-                  ),
-                  DefaultbButton(
-                    textButton: translation(context).splashTextButton,
-                    onTap: () {
-                      context.goNamed(AppRouter.onBoardingScreen);
-                    },
-                    width: 221.w,
-                    height: 59.h,
-                    radius: 40.r,
-                    colorText: Theme.of(context).colorScheme.secondary,
-                    color: color.buttonColor,
-                    fontsize: 18.sp,
-                    fontweight: FontWeight.w700,
-                  ),
-                ],
-              ),
+              width: 325.w,
+              height: 150.h,
             ),
           ),
         ],

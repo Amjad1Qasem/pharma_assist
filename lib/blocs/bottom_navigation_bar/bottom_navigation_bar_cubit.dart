@@ -1,24 +1,26 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'bottom_navigation_bar_state.dart';
 
 class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
-  BottomNavigationBarCubit() : super(HomeState());
+  BottomNavigationBarCubit() : super(const HomeState());
 
   void homeScreen() {
-    emit(HomeState());
+    emit(const HomeState());
   }
- 
+
   void categoryScreen() {
-    emit(CategoryState());
+    emit(const CategoryState());
   }
 
   void favorateScreen() {
-    emit(FavorateState());
+    emit(const FavorateState());
   }
 
   void profileScreen() {
-    emit(ProfileState());
+    emit(const ProfileState());
   }
 }

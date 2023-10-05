@@ -9,7 +9,6 @@ import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
-
 import '../../constants/app_images.dart';
 
 class LoginScreen extends HookWidget {
@@ -21,13 +20,15 @@ class LoginScreen extends HookWidget {
     final passcontroller = useTextEditingController();
     late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
     final scure = useState(true);
+
     return DefaultScaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
           const Background(),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -35,8 +36,8 @@ class LoginScreen extends HookWidget {
                   Image.asset(
                     AppImages.shapOnTopEnd,
                     color: Theme.of(context).primaryColor,
-                    width: 245.w,
-                    height: 150.h,
+                    width: MediaQuery.of(context).size.width / 1.7,
+                    height: MediaQuery.of(context).size.height * 0.17,
                   )
                 ],
               ),
@@ -46,221 +47,226 @@ class LoginScreen extends HookWidget {
                 child: Image.asset(
                   AppImages.shapOnButtom,
                   color: Theme.of(context).primaryColor,
-                  width: double.infinity.w,
+                  width: MediaQuery.of(context).size.width,
                   height: 150.h,
                 ),
               )
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.only(
-                bottom: 10.r, start: 40.r, end: 40.r),
-            child: SingleChildScrollView(
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          AppImages.iconLogin,
-                          color: colors.iconAppColor,
-                          width: 118.w,
-                          height: 120.h,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(20.0.sp),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(translation(context).pharma,
-                                  textAlign: TextAlign.start,
-                                  style: Theme.of(context).textTheme.bodyLarge),
-                              Text(translation(context).assist,
-                                  textAlign: TextAlign.start,
-                                  style: Theme.of(context).textTheme.bodyLarge),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(translation(context).email,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    DefaultTextFormField(
-                      fillColor: Theme.of(context)
-                          .colorScheme
-                          .onSecondary
-                          .withOpacity(0.3),
-                      validation: const [],
-                      controller: emailcontroller,
-                      keyboardType: TextInputType.emailAddress,
-                      radius: 20.sp,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Row(
-                      children: [
-                        Text(translation(context).password,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    DefaultTextFormField(
-                      scureText: scure.value,
-                      sufix:
-                          scure.value ? Icons.visibility_off : Icons.visibility,
-                      onSufixTap: () {
-                        scure.value = !scure.value;
-                        return null;
-                      },
-                      fillColor: Theme.of(context)
-                          .colorScheme
-                          .onSecondary
-                          .withOpacity(0.3),
-                      validation: const [],
-                      controller: passcontroller,
-                      keyboardType: TextInputType.emailAddress,
-                      radius: 20.sp,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.pushNamed(AppRouter.confirmEmail);
-                      },
-                      child: Text(translation(context).forgetPassword,
-                          style: Theme.of(context).textTheme.bodySmall),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        DefaultbButton(
-                          textButton: translation(context).login,
-                          onTap: () {
-                            // if (Form.of(context).validate()) {}
-                            context.goNamed(AppRouter.homeLayout);
-                            debugPrint('Login ok');
-                          },
-                          color: colors.buttonColor,
-                          colorText: Colors.white,
-                          radius: 40.r,
-                          width: 180.w,
-                          height: 60.h,
-                          fontsize: 28.sp,
-                          fontweight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          width: 80.w,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          height: 0.5.h,
-                        ),
-                        const Spacer(),
-                        Text(translation(context).continue_with,
-                            style: Theme.of(context).textTheme.labelSmall),
-                        const Spacer(),
-                        Container(
-                          width: 80.w,
-                          color: Theme.of(context).colorScheme.tertiary,
-                          height: 0.5.h,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              debugPrint('google login');
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 50.w,
-                              height: 50.h,
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/google_Icon.png',
-                                    width: 30.w,
-                                    height: 30.h,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              debugPrint('Facebook login');
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 50.w,
-                              height: 50.h,
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/facebook_Icon.png',
-                                    width: 30.w,
-                                    height: 30.h,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+            padding: EdgeInsetsDirectional.only(start: 40.r, end: 40.r),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        AppImages.iconLogin,
+                        color: colors.iconAppColor,
+                        width: 118.w,
+                        height: 120.h,
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      Text(translation(context).pharma,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      Text(translation(context).assist,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          translation(context).noAccount,
-                          style: Theme.of(context).textTheme.labelSmall,
+                        Row(
+                          children: [
+                            Text(translation(context).email,
+                                style: Theme.of(context).textTheme.bodyMedium),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 3.h,
+                        ),
+                        DefaultTextFormField(
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondary
+                              .withOpacity(0.3),
+                          validation: const [],
+                          controller: emailcontroller,
+                          keyboardType: TextInputType.emailAddress,
+                          radius: 20.sp,
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          children: [
+                            Text(translation(context).password,
+                                style: Theme.of(context).textTheme.bodyMedium),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 3.h,
+                        ),
+                        DefaultTextFormField(
+                          scureText: scure.value,
+                          sufix: scure.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          onSufixTap: () {
+                            scure.value = !scure.value;
+                            return null;
+                          },
+                          fillColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondary
+                              .withOpacity(0.3),
+                          validation: const [],
+                          controller: passcontroller,
+                          keyboardType: TextInputType.emailAddress,
+                          radius: 20.sp,
                         ),
                         TextButton(
-                            onPressed: () {
-                              context.goNamed(AppRouter.registerScreen);
-                            },
-                            child: Text(
-                              translation(context).registerNow,
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ))
+                          onPressed: () {
+                            context.goNamed(AppRouter.confirmEmail);
+                          },
+                          child: Text(translation(context).forgetPassword,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceTint,
+                                  )),
+                        ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DefaultbButton(
+                        textButton: translation(context).login,
+                        onTap: () {
+                          context.goNamed(AppRouter.homeLayout);
+                          debugPrint('Login ok');
+                        },
+                        color: colors.buttonColor,
+                        colorText: Colors.white,
+                        radius: 40.r,
+                        width: 180.w,
+                        height: 60.h,
+                        fontsize: 28.sp,
+                        fontweight: FontWeight.w500,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        width: 80.w,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        height: 0.5.h,
+                      ),
+                      const Spacer(),
+                      Text(translation(context).continue_with,
+                          style: Theme.of(context).textTheme.labelSmall),
+                      const Spacer(),
+                      Container(
+                        width: 80.w,
+                        color: Theme.of(context).colorScheme.tertiary,
+                        height: 0.5.h,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 100.sp),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            debugPrint('google login');
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 50.w,
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.secondary,
+                                borderRadius: BorderRadius.circular(50.r)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppImages.googleIcon,
+                                  width: 30.w,
+                                  height: 30.h,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            debugPrint('Facebook login');
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 50.w,
+                            height: 50.h,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.secondary,
+                                borderRadius: BorderRadius.circular(50)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppImages.facebookeIcon,
+                                  width: 30.w,
+                                  height: 30.h,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        translation(context).noAccount,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            context.pushNamed(AppRouter.registerScreen);
+                          },
+                          child: Text(
+                            translation(context).registerNow,
+                            style: Theme.of(context).textTheme.labelMedium,
+                          ))
+                    ],
+                  ),
+                ],
               ),
             ),
           ),

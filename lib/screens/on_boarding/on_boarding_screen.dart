@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/app_colors.dart';
 import 'package:pharma_assist/themes/extentions/bg_screen_onboarding_extention.dart';
@@ -24,19 +25,19 @@ class OnBoardingScreen extends HookWidget {
     List<OnBoardingModel> boarding = [
       OnBoardingModel(
         backgroundonboarding: bgScreencolor.imagePath,
-        persononboarding: 'assets/images/personOnBoarding1.png',
+        persononboarding: AppImages.personOnBoarding1,
         descriptions: translation(context).onBoardingFirstDescription,
         title: translation(context).onBoardingFirstTitle,
       ),
       OnBoardingModel(
         backgroundonboarding: bgScreencolor.imagePath,
-        persononboarding: 'assets/images/personOnBoarding2.png',
+        persononboarding: AppImages.personOnBoarding2,
         descriptions: translation(context).onBoardingSecondDescription,
         title: translation(context).onBoardingSecondTitle,
       ),
       OnBoardingModel(
         backgroundonboarding: bgScreencolor.imagePath,
-        persononboarding: 'assets/images/personOnBoarding3.png',
+        persononboarding: AppImages.personOnBoarding3,
         descriptions: translation(context).onBoardingLastDescription,
         title: translation(context).onBoardingLastTitle,
       ),

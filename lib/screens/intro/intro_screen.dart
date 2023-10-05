@@ -22,48 +22,65 @@ class _IntroScreenState extends State<IntroScreen> {
   bool toggleValue = false;
 
   @override
-  late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
-  @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
     return DefaultScaffold(
       body: Stack(
         children: [
           const Background(),
           Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Stack(
                 children: [
                   Image.asset(
                     AppImages.shapOnTopStart,
                     color: Theme.of(context).primaryColor,
-                    height: 330.h,
-                    width: 533.w,
+                    height: MediaQuery.of(context).size.height / 2.6,
+                    width: MediaQuery.of(context).size.width,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(
-                      top: 90.r,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Image.asset(
-                          AppImages.iconIntro,
-                          color: colors.iconAppColor,
-                          height: 240.h,
-                          width: 300.w,
-                        ),
-                      ],
+                    padding:
+                        EdgeInsetsDirectional.only(top: 80.sp, start: 130.sp),
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            AppImages.iconLogin,
+                            color: colors.iconAppColor,
+                            height: 200.h,
+                            width: 300.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(end: 40.0.sp),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(translation(context).pharma,
+                                    textAlign: TextAlign.start,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
+                                Text(translation(context).assist,
+                                    textAlign: TextAlign.start,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: 40.h,
+                height: 20.h,
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(
-                  start: 15.r,
+                  start: 15.sp,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -133,85 +150,6 @@ class _IntroScreenState extends State<IntroScreen> {
                     fontweight: FontWeight.w500,
                     textButton: translation(context).conti),
               ),
-              // AnimatedContainer(
-              //   alignment: Alignment.center,
-              //   duration: const Duration(microseconds: 1000),
-              //   height: 38.h,
-              //   width: 110.w,
-              //   decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(17.r),
-              //       color: colors.buttonColor),
-              //   child: Stack(
-              //     alignment: Alignment.center,
-              //     children: [
-              //       AnimatedPositioned(
-              //         curve: Curves.easeIn,
-              //         left: toggleValue ? 45.0.sp : 0.0.sp,
-              //         right: toggleValue ? 0.0.sp : 45.0.sp,
-              //         duration: const Duration(
-              //           microseconds: 1000,
-              //         ),
-              //         child: InkWell(
-              //             onTap: () {
-              //               setState(() {
-              //                 toggleValue = !toggleValue;
-              //               });
-              //             },
-              //             child: AnimatedSwitcher(
-              //               duration: const Duration(milliseconds: 1000),
-              //               transitionBuilder:
-              //                   (Widget child, Animation<double> animation) {
-              //                 return ScaleTransition(
-              //                   // ignore: sort_child_properties_last
-              //                   child: child,
-              //                   scale: animation,
-              //                 );
-              //               },
-              //               child: toggleValue
-              //                   ? Padding(
-              //                       padding: EdgeInsets.all(5.0.sp),
-              //                       child: Container(
-              //                         width: 70.w,
-              //                         height: 30.h,
-              //                         clipBehavior: Clip.antiAliasWithSaveLayer,
-              //                         decoration: BoxDecoration(
-              //                             borderRadius:
-              //                                 BorderRadius.circular(12.r),
-              //                             color: Theme.of(context)
-              //                                 .colorScheme
-              //                                 .tertiary),
-              //                         child: Center(
-              //                           child: Text('Ar',
-              //                               style: Theme.of(context)
-              //                                   .textTheme
-              //                                   .titleSmall),
-              //                         ),
-              //                       ),
-              //                     )
-              //                   : Padding(
-              //                       padding: EdgeInsets.all(5.0.sp),
-              //                       child: Container(
-              //                         height: 30.h,
-              //                         width: 70.w,
-              //                         decoration: BoxDecoration(
-              //                             borderRadius:
-              //                                 BorderRadius.circular(12.r),
-              //                             color: Theme.of(context)
-              //                                 .colorScheme
-              //                                 .tertiary),
-              //                         child: Center(
-              //                           child: Text('En',
-              //                               style: Theme.of(context)
-              //                                   .textTheme
-              //                                   .titleSmall),
-              //                         ),
-              //                       ),
-              //                     ),
-              //             )),
-              //       )
-              //     ],
-              //   ),
-              // )
             ],
           ),
         ],

@@ -5,7 +5,7 @@ import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
-import 'package:pharma_assist/router/app_router.dart';
+import 'package:pharma_assist/screens/search/widget/filter_search.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
@@ -46,7 +46,7 @@ class SearchScreen extends HookWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.r),
                         color: Theme.of(context).colorScheme.onTertiary,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Color.fromARGB(48, 0, 0, 0),
                             offset: Offset(0, 4),
@@ -83,12 +83,12 @@ class SearchScreen extends HookWidget {
                           alignment: AlignmentDirectional.centerEnd,
                           children: [
                             DefaultTextFormField(
-                                hintText: 'Search drug,company etc.',
+                                hintText: 'Search ',
                                 prefix: Icons.search_rounded,
                                 controller: searchcontroller,
                                 radius: 10.r,
                                 keyboardType: TextInputType.name,
-                                validation: [],
+                                validation: const [],
                                 fillColor: Theme.of(context)
                                     .colorScheme
                                     .tertiaryContainer),
@@ -162,47 +162,21 @@ class SearchScreen extends HookWidget {
                                                       ),
                                                       Column(
                                                         children: [
-                                                          CheckboxListTile(
-                                                            title: Text(
-                                                              filterText[0],
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .labelSmall,
-                                                            ),
-                                                            value:
+                                                          FilterCheckboxItem(
+                                                            text: filterText[0],
+                                                            initialValue:
                                                                 checkboxValue1
                                                                     .value,
                                                             onChanged:
-                                                                (bool? val) {
+                                                                (bool value) {
                                                               checkboxValue1
                                                                       .value =
-                                                                  !checkboxValue1
-                                                                      .value;
+                                                                  value;
                                                             },
-                                                            activeColor:
-                                                                Colors.blue,
-                                                            checkColor:
-                                                                Colors.white,
-                                                            side: BorderSide(
-                                                                width: 1.5.w,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .outline),
-                                                            controlAffinity:
-                                                                ListTileControlAffinity
-                                                                    .leading,
                                                           ),
-                                                          CheckboxListTile(
-                                                            title: Text(
-                                                              filterText[1],
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .labelSmall,
-                                                            ),
-                                                            value:
+                                                          FilterCheckboxItem(
+                                                            text: filterText[1],
+                                                            initialValue:
                                                                 checkboxValue2
                                                                     .value,
                                                             onChanged:
@@ -212,116 +186,46 @@ class SearchScreen extends HookWidget {
                                                                   !checkboxValue2
                                                                       .value;
                                                             },
-                                                            activeColor:
-                                                                Colors.blue,
-                                                            checkColor:
-                                                                Colors.white,
-                                                            side: BorderSide(
-                                                                width: 1.5.w,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .outline),
-                                                            controlAffinity:
-                                                                ListTileControlAffinity
-                                                                    .leading,
                                                           ),
-                                                          CheckboxListTile(
-                                                            title: Text(
-                                                              filterText[2],
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .labelSmall,
-                                                            ),
-                                                            value:
+                                                          FilterCheckboxItem(
+                                                            text: filterText[2],
+                                                            initialValue:
                                                                 checkboxValue3
                                                                     .value,
                                                             onChanged:
-                                                                (bool? val) {
+                                                                (bool? value) {
                                                               checkboxValue3
                                                                       .value =
                                                                   !checkboxValue3
                                                                       .value;
                                                             },
-                                                            activeColor:
-                                                                Colors.blue,
-                                                            checkColor:
-                                                                Colors.white,
-                                                            side: BorderSide(
-                                                                width: 1.5.w,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .outline),
-                                                            controlAffinity:
-                                                                ListTileControlAffinity
-                                                                    .leading,
                                                           ),
-                                                          CheckboxListTile(
-                                                            title: Text(
-                                                              filterText[3],
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .labelSmall,
-                                                            ),
-                                                            value:
+                                                          FilterCheckboxItem(
+                                                            text: filterText[3],
+                                                            initialValue:
                                                                 checkboxValue4
                                                                     .value,
                                                             onChanged:
-                                                                (bool? val) {
+                                                                (bool? value) {
                                                               checkboxValue4
                                                                       .value =
                                                                   !checkboxValue4
                                                                       .value;
                                                             },
-                                                            activeColor:
-                                                                Colors.blue,
-                                                            checkColor:
-                                                                Colors.white,
-                                                            side: BorderSide(
-                                                                width: 1.5.w,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .outline),
-                                                            controlAffinity:
-                                                                ListTileControlAffinity
-                                                                    .leading,
                                                           ),
-                                                          CheckboxListTile(
-                                                            title: Text(
-                                                              filterText[4],
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .labelSmall,
-                                                            ),
-                                                            value:
+                                                          FilterCheckboxItem(
+                                                            text: filterText[4],
+                                                            initialValue:
                                                                 checkboxValue5
                                                                     .value,
                                                             onChanged:
-                                                                (bool? val) {
+                                                                (bool? value) {
                                                               checkboxValue5
                                                                       .value =
                                                                   !checkboxValue5
                                                                       .value;
                                                             },
-                                                            activeColor:
-                                                                Colors.blue,
-                                                            checkColor:
-                                                                Colors.white,
-                                                            side: BorderSide(
-                                                                width: 1.5.w,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .outline),
-                                                            controlAffinity:
-                                                                ListTileControlAffinity
-                                                                    .leading,
-                                                          )
+                                                          ),
                                                         ],
                                                       )
                                                     ],
@@ -336,6 +240,7 @@ class SearchScreen extends HookWidget {
                                 ],
                               ),
                             ),
+                          
                           ],
                         ),
                       ),
@@ -345,7 +250,7 @@ class SearchScreen extends HookWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                Column(
+                const Column(
                   children: [],
                 )
               ],

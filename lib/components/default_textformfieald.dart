@@ -51,6 +51,7 @@ class DefaultTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         border: const UnderlineInputBorder(borderSide: BorderSide()),
         hintText: hintText,
+        hintStyle: Theme.of(context).textTheme.displayMedium,
         filled: true,
         fillColor: fillColor,
         prefixIcon: prefix != null

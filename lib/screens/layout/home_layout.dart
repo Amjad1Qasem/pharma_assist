@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/blocs/bottom_navigation_bar/bottom_navigation_bar_cubit.dart';
-import 'package:pharma_assist/components/default_textformfieald.dart';
+import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/screens/caterories/category_screen.dart';
 import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
-import 'package:pharma_assist/screens/home/drawer_home.dart';
+import 'package:pharma_assist/screens/home/widgets/bottm_navigation_bar.dart';
+import 'package:pharma_assist/screens/home/widgets/drawer_home.dart';
 import 'package:pharma_assist/screens/home/home_screen.dart';
 import 'package:pharma_assist/screens/profile/profile_screen.dart';
-import 'package:pharma_assist/themes/app_colors.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 
 class HomeLayout extends HookWidget {
@@ -19,13 +19,11 @@ class HomeLayout extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final searchcontroller = useTextEditingController();
-    final size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) => BottomNavigationBarCubit(),
       child: Builder(builder: (context) {
         final state = context.watch<BottomNavigationBarCubit>().state;
-        return Scaffold(
+        return DefaultScaffold(
           appBar: state is! HomeState
               ? null
               : AppBar(
@@ -50,40 +48,50 @@ class HomeLayout extends HookWidget {
                     height: 60.h,
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(end: 5.sp),
-                      child: Stack(
-                        alignment: AlignmentDirectional.centerEnd,
-                        children: [
-                          DefaultTextFormField(
-                              onEditingComplete: () {
-                                context.pushNamed(AppRouter.searchScreen);
-                              },
-                              hintText: 'Search drug,company etc.',
-                              prefix: Icons.search_rounded,
-                              controller: searchcontroller,
-                              radius: 10.r,
-                              keyboardType: TextInputType.none,
-                              validation: const [],
-                              fillColor: Theme.of(context)
-                                  .colorScheme
-                                  .tertiaryContainer),
-                          Padding(
-                            padding: EdgeInsets.all(10.0.sp),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                      child: InkWell(
+                        onTap: () => context.pushNamed(AppRouter.searchScreen),
+                        child: Stack(
+                          alignment: AlignmentDirectional.centerEnd,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: 50.h,
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .tertiaryContainer,
+                                  borderRadius: BorderRadius.circular(10.r)),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                InkWell(
-                                    onTap: () {
-                                      context.pushNamed(AppRouter.searchScreen);
-                                    },
-                                    child: Image.asset(
-                                      AppImages.filterIcon,
-                                      width: 27.w,
-                                      height: 27.h,
-                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: Text(
+                                    'Search drug,company etc...',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displayMedium,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(10.0.sp),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Image.asset(
+                                        AppImages.filterIcon,
+                                        width: 27.w,
+                                        height: 27.h,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -94,95 +102,7 @@ class HomeLayout extends HookWidget {
                   ),
                 ),
           drawer: state is! HomeState ? null : const DrawerHome(),
-          bottomNavigationBar: Container(
-            width: size.width,
-            height: size.height * .09,
-            decoration: const BoxDecoration(
-                // gradient: LinearGradient(
-                //   colors: [Color(0xff1c4c59), Color(0xff607d8b)],
-                //   begin: Alignment.bottomCenter,
-                //   end: Alignment.topCenter,
-                // ),
-
-                ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // GestureDetector(
-                //   child: const Text('dsadsa'),
-                //   onTap: () => debugPrint('dasjiopdjkpo'),
-                // ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    BottomNavigationBarShadowItem(
-                        opacity: state is! HomeState ? 0 : 1),
-                    GestureDetector(
-                      onTap:
-                          context.read<BottomNavigationBarCubit>().homeScreen,
-                      child: Image.asset(
-                        AppImages.homeIcon,
-                        width: 30.w,
-                        height: 30.h,
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    BottomNavigationBarShadowItem(
-                        opacity: state is! CategoryState ? 0 : 1),
-                    GestureDetector(
-                      onTap: context
-                          .read<BottomNavigationBarCubit>()
-                          .categoryScreen,
-                      child: Image.asset(
-                        AppImages.categoryIcon,
-                        width: 30.w,
-                        height: 30.h,
-                      ),
-                    )
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    BottomNavigationBarShadowItem(
-                        opacity: state is! ProfileState ? 0 : 1),
-                    GestureDetector(
-                      onTap: context
-                          .read<BottomNavigationBarCubit>()
-                          .profileScreen,
-                      child: Image.asset(
-                        AppImages.profileIcon,
-                        width: 30.w,
-                        height: 30.h,
-                        color: const Color(0xff333333),
-                      ),
-                    )
-                  ],
-                ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    BottomNavigationBarShadowItem(
-                        opacity: state is! FavorateState ? 0 : 1),
-                    GestureDetector(
-                      onTap: context
-                          .read<BottomNavigationBarCubit>()
-                          .favorateScreen,
-                      child: Image.asset(
-                        AppImages.favoriteIcon,
-                        width: 30.w,
-                        height: 30.h,
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ),
+          bottomNavigation: const BottomNavBarItem(),
           body: getBody(state),
         );
       }),
@@ -195,33 +115,5 @@ class HomeLayout extends HookWidget {
           ? CategorySreen(hasBackButton: false)
           : state is ProfileState
               ? const ProfileScreen()
-              : const FavoriteScreen();
-}
-
-class BottomNavigationBarShadowItem extends StatelessWidget {
-  const BottomNavigationBarShadowItem({
-    super.key,
-    required this.opacity,
-  });
-
-  final double opacity;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      opacity: opacity,
-      duration: const Duration(milliseconds: 500),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
-            width: 70.w,
-            height: 3.h,
-            color: AppColors.primaryGreen,
-          ),
-          Image.asset(AppImages.bottomShadowLightIcon),
-        ],
-      ),
-    );
-  }
+              : const FavoriteScreen(hasBackButton: false);
 }

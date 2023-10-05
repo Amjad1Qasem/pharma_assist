@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/components/botton_back.dart';
 import 'package:pharma_assist/components/default_button.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
@@ -26,59 +27,25 @@ class ConfirmEmailSrceen extends HookWidget {
         children: [
           const Background(),
           Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.only(
-                        top: 48.r, start: 0.r, end: 82.r),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 36.w,
-                          height: 36.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            color: Theme.of(context).colorScheme.onTertiary,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(48, 0, 0, 0),
-                                offset: Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                              BoxShadow(
-                                color: Color.fromARGB(48, 0, 0, 0),
-                                offset: Offset(4, 0),
-                                blurRadius: 4,
-                              )
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                bottom: 4.r, top: 0.r, start: 3.r),
-                            child: IconButton(
-                              onPressed: () {
-                                context.pop();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                                color: Theme.of(context).colorScheme.tertiary,
-                                size: 25,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                    padding:
+                        EdgeInsetsDirectional.only(start: 30.sp, top: 30.sp),
+                    child: BottonBack(
+                      onTap: () => context.goNamed(AppRouter.loginScreen),
                     ),
                   ),
                   Image.asset(
                     AppImages.shapOnTopEnd,
                     color: Theme.of(context).primaryColor,
-                    width: 245.w,
-                    height: 150.h,
+                    width: MediaQuery.of(context).size.width / 1.7,
+                    height: MediaQuery.of(context).size.height * 0.17,
                   ),
                 ],
               ),
@@ -118,72 +85,67 @@ class ConfirmEmailSrceen extends HookWidget {
                 ),
               ),
               const Spacer(),
-              SizedBox(
-                height: 100.h,
-                child: Image.asset(
-                  AppImages.shapOnButtom,
-                  color: Theme.of(context).primaryColor,
-                  width: double.infinity.w,
-                  height: 150.h,
-                ),
+              Image.asset(
+                AppImages.shapOnButtom,
+                color: Theme.of(context).primaryColor,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 8.5,
               )
             ],
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-                top: 340.r, bottom: 10.r, start: 40.r, end: 40.r),
-            // ignore: avoid_unnecessary_containers
-            child: Container(
-              child: Form(
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Row(
-                          children: [
-                            Text(translation(context).email,
-                                style: Theme.of(context).textTheme.labelSmall),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        DefaultTextFormField(
-                          fillColor: Theme.of(context)
-                              .colorScheme
-                              .onSecondary
-                              .withOpacity(0.3),
-                          validation: const [],
-                          controller: emailcontroller,
-                          keyboardType: TextInputType.emailAddress,
-                          radius: 20.sp,
-                        ),
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            DefaultbButton(
-                              textButton: translation(context).conti,
-                              onTap: () {
-                                context.pushNamed(AppRouter.confirmPassword);
-                                debugPrint('Login ok');
-                              },
-                              color: colors.buttonColor,
-                              colorText: Colors.white,
-                              radius: 40.r,
-                              width: 180.w,
-                              height: 60.h,
-                              fontsize: 28.sp,
-                              fontweight: FontWeight.w500,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+          Center(
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(
+                  start: 40.sp, end: 40.sp, top: 310),
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Text(translation(context).email,
+                              style: Theme.of(context).textTheme.labelSmall),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      DefaultTextFormField(
+                        fillColor: Theme.of(context)
+                            .colorScheme
+                            .onSecondary
+                            .withOpacity(0.3),
+                        validation: const [],
+                        controller: emailcontroller,
+                        keyboardType: TextInputType.emailAddress,
+                        radius: 20.sp,
+                      ),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          DefaultbButton(
+                            textButton: translation(context).conti,
+                            onTap: () {
+                              context.goNamed(AppRouter.confirmPassword);
+                              debugPrint('Login ok');
+                            },
+                            color: colors.buttonColor,
+                            colorText: Colors.white,
+                            radius: 40.r,
+                            width: 180.w,
+                            height: 60.h,
+                            fontsize: 28.sp,
+                            fontweight: FontWeight.w500,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
