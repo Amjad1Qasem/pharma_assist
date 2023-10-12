@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma_assist/blocs/localization/localization_cubit.dart';
 import 'package:pharma_assist/blocs/theme/theme_cubit.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/constants/app_images.dart';
@@ -8,6 +9,7 @@ import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DrawerHome extends HookWidget {
   const DrawerHome({super.key});
@@ -18,7 +20,16 @@ class DrawerHome extends HookWidget {
         BlocProvider.of<ThemeCubit>(context).state;
     final isDarkSelected = useState(themeCubitState is ThemeFetched &&
         (themeCubitState).themeMode == ThemeMode.dark);
-    final toggleValue = useState(false);
+    final languageSelected = useState(false);
+
+    // late LocalizationState localizationCubitState =
+    //     BlocProvider.of<LocalizationCubit>(context).state;
+    // final language = useState(localizationCubitState is LocalizationFetched &&
+    //         (localizationCubitState).locale.languageCode == 'en'
+    //     ? 'light'
+    //     : 'dark');
+
+    // final box = context.findRenderObject() as RenderBox?;
     return Drawer(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: Stack(
@@ -76,14 +87,32 @@ class DrawerHome extends HookWidget {
                         children: [
                           AnimatedPositioned(
                               curve: Curves.easeIn,
-                              left: toggleValue.value ? 45.0.sp : 0.0.sp,
-                              right: toggleValue.value ? 0.0.sp : 45.0.sp,
+                              left: languageSelected.value ? 45.0.sp : 0.0.sp,
+                              right: languageSelected.value ? 0.0.sp : 45.0.sp,
                               duration: const Duration(
                                 microseconds: 1000,
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  toggleValue.value = !toggleValue.value;
+                                  if (languageSelected.value) {
+                                    (BlocProvider.of<LocalizationCubit>(context)
+                                                .state as LocalizationFetched)
+                                            .locale
+                                            .languageCode ==
+                                        'en';
+                                    BlocProvider.of<LocalizationCubit>(context)
+                                        .english();
+                                  } else {
+                                    (BlocProvider.of<LocalizationCubit>(context)
+                                                .state as LocalizationFetched)
+                                            .locale
+                                            .languageCode ==
+                                        'ar';
+                                    BlocProvider.of<LocalizationCubit>(context)
+                                        .arabic();
+                                  }
+                                  languageSelected.value =
+                                      !languageSelected.value;
                                 },
                                 child: AnimatedSwitcher(
                                     duration:
@@ -96,7 +125,7 @@ class DrawerHome extends HookWidget {
                                         scale: animation,
                                       );
                                     },
-                                    child: toggleValue.value
+                                    child: languageSelected.value
                                         ? Padding(
                                             padding: EdgeInsets.all(5.0.sp),
                                             child: Container(
@@ -247,15 +276,20 @@ class DrawerHome extends HookWidget {
                 ),
                 line(),
                 ListTileItem(
-                  text: translation(context).about_us,
+                  text: translation(context).aboutUs,
                   onTap: () => context.goNamed(AppRouter.aboutUsScreen),
                   icon: Icons.contact_support,
                 ),
                 line(),
                 ListTileItem(
                   text: translation(context).share,
-                  onTap: () {
-                    print('Share App');
+                  onTap: () async {
+                    await Share.share(
+                      'com.example.pharma_assist',
+                      // sharePositionOrigin:
+                      // box!.localToGlobal(Offset.zero) & box.size,
+                    );
+                    debugPrint('Share App');
                   },
                   icon: Icons.share,
                 ),

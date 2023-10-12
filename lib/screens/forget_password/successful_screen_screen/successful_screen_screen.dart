@@ -24,6 +24,7 @@ class SuccessfulScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
+              textDirection: TextDirection.ltr,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Image.asset(

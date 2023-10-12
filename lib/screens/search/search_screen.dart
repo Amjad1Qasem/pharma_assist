@@ -14,7 +14,7 @@ class SearchScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    var searchcontroller = TextEditingController();
+    final searchcontroller = useTextEditingController();
     List<String> filterText = [
       'By Commercial Name',
       'By Scientific Name',
@@ -240,7 +240,6 @@ class SearchScreen extends HookWidget {
                                 ],
                               ),
                             ),
-                          
                           ],
                         ),
                       ),

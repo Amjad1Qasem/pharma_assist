@@ -7,7 +7,7 @@ import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
-import 'package:pharma_assist/screens/caterories/category_item.dart';
+import 'package:pharma_assist/screens/caterories/widget/category_item.dart';
 import 'package:pharma_assist/screens/search/widget/filter_search.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';

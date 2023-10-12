@@ -27,6 +27,7 @@ class EditProfileScreen extends HookWidget {
         useTextEditingController();
     late final colors = Theme.of(context).extension<ColorsThemeExtention>()!;
     return DefaultScaffold(
+      resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
           const Background(),
@@ -97,7 +98,7 @@ class EditProfileScreen extends HookWidget {
                                         .tertiaryContainer,
                                     validation: const [],
                                     controller: firsNameController,
-                                    radius: 10.r,
+                                    radius:6.r,
                                     keyboardType: TextInputType.text),
                               ],
                             ),
@@ -118,7 +119,7 @@ class EditProfileScreen extends HookWidget {
                                       .tertiaryContainer,
                                   validation: const [],
                                   controller: lastNameController,
-                                  radius: 10.r,
+                                  radius:6.r,
                                   keyboardType: TextInputType.name,
                                 ),
                               ],
@@ -140,7 +141,7 @@ class EditProfileScreen extends HookWidget {
                                       .tertiaryContainer,
                                   validation: const [],
                                   controller: emailController,
-                                  radius: 10.r,
+                                  radius:6.r,
                                   keyboardType: TextInputType.name,
                                 ),
                               ],
@@ -162,7 +163,7 @@ class EditProfileScreen extends HookWidget {
                                       .tertiaryContainer,
                                   validation: const [],
                                   controller: specialtyController,
-                                  radius: 10.r,
+                                  radius:6.r,
                                   keyboardType: TextInputType.name,
                                 ),
                               ],
@@ -184,7 +185,7 @@ class EditProfileScreen extends HookWidget {
                                       .tertiaryContainer,
                                   validation: const [],
                                   controller: mobileNumberController,
-                                  radius: 10.r,
+                                  radius:6.r,
                                   keyboardType: TextInputType.number,
                                 ),
                               ],
@@ -206,9 +207,9 @@ class EditProfileScreen extends HookWidget {
                                       .tertiaryContainer,
                                   validation: const [],
                                   controller: birthDateController,
-                                  radius: 10.r,
-                                  suffixIcon: const Icon(Icons.calendar_month),
+                                  radius:6.r,
                                   keyboardType: TextInputType.none,
+                                  sufix: Icons.date_range_outlined,
                                   onSufixTap: () async {
                                     DateTime? date = await showDatePicker(
                                         builder: (BuildContext context,
@@ -216,7 +217,7 @@ class EditProfileScreen extends HookWidget {
                                           return Theme(
                                             data: ThemeData.light().copyWith(
                                               useMaterial3: true,
-                                              // buttonBarTheme: ButtonBarThemeData(buttonTextTheme: ),
+                                              // buttonBarTheme: ButtonBarThemeData(buttonTextTheme:Theme.of(context).textTheme.bodySmall),
                                               buttonTheme:
                                                   const ButtonThemeData(
                                                       textTheme: ButtonTextTheme
@@ -226,13 +227,13 @@ class EditProfileScreen extends HookWidget {
                                           );
                                         },
                                         context: context,
-                                        initialDate: DateTime.utc(2016, 1, 1),
+                                        initialDate: DateTime.utc(2002, 1, 1),
                                         firstDate: DateTime(1950),
-                                        lastDate: DateTime(2016)
+                                        lastDate: DateTime(2005)
                                             .add(const Duration(days: 30)));
                                     if (date != null) {
                                       birthDateController.text =
-                                          '${date.year}/${date.month}/${date.day}';
+                                          '${date.day}/${date.month}/${date.year}';
                                     }
                                   },
                                 ),
@@ -253,7 +254,7 @@ class EditProfileScreen extends HookWidget {
                       },
                       color: colors.buttonColor,
                       colorText: Colors.white,
-                      radius: 40.r,
+                      radius:6.r,
                       height: 60.h,
                       fontsize: 28.sp,
                       fontweight: FontWeight.w500,

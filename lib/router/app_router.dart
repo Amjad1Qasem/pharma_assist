@@ -7,13 +7,14 @@ import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
 import 'package:pharma_assist/screens/about_us/about_us.dart';
 import 'package:pharma_assist/screens/caterories/category_data_screen.dart';
 import 'package:pharma_assist/screens/companies/company_data_screen.dart';
-import 'package:pharma_assist/screens/details_med/details.dart';
-import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
 import 'package:pharma_assist/screens/forget_password/confirm_password_screen.dart';
-import 'package:pharma_assist/screens/forget_password/successful_screen_screen.dart';
+import 'package:pharma_assist/screens/forget_password/verification_screen/verification_screen.dart';
+import 'package:pharma_assist/screens/widget/details.dart';
+import 'package:pharma_assist/screens/favorite/favorite_screen.dart';
+import 'package:pharma_assist/screens/forget_password/successful_screen_screen/successful_screen_screen.dart';
 import 'package:pharma_assist/screens/home/widgets/drawer_home.dart';
 import 'package:pharma_assist/screens/intro/intro_screen.dart';
-import 'package:pharma_assist/screens/forget_password/confirm_email_screen.dart';
+import 'package:pharma_assist/screens/forget_password/confirm_email_screen/confirm_email_screen.dart';
 import 'package:pharma_assist/screens/layout/home_layout.dart';
 import 'package:pharma_assist/screens/profile/edit_password_screen.dart';
 import 'package:pharma_assist/screens/profile/edit_profile_screen.dart';
@@ -53,6 +54,7 @@ class AppRouter {
   static const companyData = '/companyData';
   static const aboutUsScreen = '/aboutUsScreen';
   static const drawerHome = '/drawerHome';
+  static const verificationScreen = '/verificationScreen';
 
   final NoInternetCubit noInternetCubit;
 
@@ -74,7 +76,11 @@ class AppRouter {
         route = MaterialPageRoute(builder: (_) => const RegisterScreen());
         break;
       case AppRouter.confirmEmail:
-        route = MaterialPageRoute(builder: (_) => const ConfirmEmailSrceen());
+        final hasBackButton = settings.arguments as bool;
+        route = MaterialPageRoute(
+            builder: (_) => ConfirmEmailSrceen(
+                  hasBackButton: hasBackButton,
+                ));
         break;
       case AppRouter.confirmPassword:
         route =
@@ -90,13 +96,13 @@ class AppRouter {
         route = CupertinoPageRoute(builder: (_) => const HomeScreen());
         break;
       case AppRouter.successfulScreen:
-        route = CupertinoPageRoute(builder: (_) => const SuccessfulScreen());
+        route = MaterialPageRoute(builder: (_) => const SuccessfulScreen());
         break;
       case AppRouter.profilescreen:
         route = CupertinoPageRoute(builder: (_) => const ProfileScreen());
         break;
       case AppRouter.homeLayout:
-        route = CupertinoPageRoute(builder: (_) => const HomeLayout());
+        route = MaterialPageRoute(builder: (_) => const HomeLayout());
         break;
       case AppRouter.detailsMed:
         route = CupertinoPageRoute(builder: (_) => const DetailsMed());
@@ -115,6 +121,13 @@ class AppRouter {
         break;
       case AppRouter.favorateScreen:
         route = CupertinoPageRoute(builder: (_) => const FavoriteScreen());
+        break;
+      case AppRouter.verificationScreen:
+        final emailcontroller = settings.arguments as TextEditingController;
+        route = MaterialPageRoute(
+            builder: (_) => VerificationScreen(
+                  emailcontroller: emailcontroller,
+                ));
         break;
       case AppRouter.drawerHome:
         route = CupertinoPageRoute(builder: (_) => const DrawerHome());

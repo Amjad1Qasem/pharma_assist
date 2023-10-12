@@ -39,6 +39,7 @@ class RegisterScreen extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    textDirection: TextDirection.ltr,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Image.asset(AppImages.shapOnTopEnd,
@@ -88,10 +89,7 @@ class RegisterScreen extends HookWidget {
                           width: 118.w,
                           height: 120.h,
                         ),
-                        Text(translation(context).pharma,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        Text(translation(context).assist,
+                        Text(translation(context).pharmaAssist,
                             textAlign: TextAlign.start,
                             style: Theme.of(context).textTheme.bodyLarge),
                       ],
@@ -416,7 +414,7 @@ class RegisterScreen extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        translation(context).noAccount,
+                        translation(context).haveAccount,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                       TextButton(

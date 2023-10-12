@@ -12,11 +12,14 @@ import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
-import '../../router/app_router.dart';
+import '../../../router/app_router.dart';
 
 class ConfirmEmailSrceen extends HookWidget {
-  const ConfirmEmailSrceen({super.key});
-
+  const ConfirmEmailSrceen({
+    super.key,
+    required this.hasBackButton,
+  });
+  final bool hasBackButton;
   @override
   Widget build(BuildContext context) {
     final emailcontroller = useTextEditingController();
@@ -31,16 +34,19 @@ class ConfirmEmailSrceen extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
+                textDirection: TextDirection.ltr,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.only(start: 30.sp, top: 30.sp),
-                    child: BottonBack(
-                      onTap: () => context.goNamed(AppRouter.loginScreen),
-                    ),
-                  ),
+                  hasBackButton
+                      ? const SizedBox()
+                      : Padding(
+                          padding: EdgeInsetsDirectional.only(
+                              start: 30.sp, top: 30.sp, end: 30.sp),
+                          child: BottonBack(
+                            onTap: () => context.goNamed(AppRouter.loginScreen),
+                          ),
+                        ),
                   Image.asset(
                     AppImages.shapOnTopEnd,
                     color: Theme.of(context).primaryColor,
@@ -132,7 +138,8 @@ class ConfirmEmailSrceen extends HookWidget {
                           DefaultbButton(
                             textButton: translation(context).conti,
                             onTap: () {
-                              context.goNamed(AppRouter.confirmPassword);
+                              context.goNamed(AppRouter.verificationScreen,
+                                  argument: emailcontroller);
                               debugPrint('Login ok');
                             },
                             color: colors.buttonColor,

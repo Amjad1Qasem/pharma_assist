@@ -40,12 +40,12 @@ class _IntroScreenState extends State<IntroScreen> {
                     width: MediaQuery.of(context).size.width,
                   ),
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.only(top: 80.sp, start: 130.sp),
+                    padding: EdgeInsets.only(top: 80.sp, left: 100.sp),
                     child: Center(
                       child: Column(
+                        textDirection: TextDirection.rtl,
                         mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image.asset(
                             AppImages.iconLogin,
@@ -54,16 +54,13 @@ class _IntroScreenState extends State<IntroScreen> {
                             width: 300.w,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(end: 40.0.sp),
+                            padding: EdgeInsets.only(right: 40.0.sp),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              textDirection: TextDirection.rtl,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text(translation(context).pharma,
-                                    textAlign: TextAlign.start,
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge),
-                                Text(translation(context).assist,
-                                    textAlign: TextAlign.start,
+                                Text(translation(context).pharmaAssist,
                                     style:
                                         Theme.of(context).textTheme.bodyLarge),
                               ],

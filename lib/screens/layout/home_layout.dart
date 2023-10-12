@@ -13,6 +13,7 @@ import 'package:pharma_assist/screens/home/widgets/drawer_home.dart';
 import 'package:pharma_assist/screens/home/home_screen.dart';
 import 'package:pharma_assist/screens/profile/profile_screen.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
+import 'package:pharma_assist/utilities/translation.dart';
 
 class HomeLayout extends HookWidget {
   const HomeLayout({super.key});
@@ -29,21 +30,16 @@ class HomeLayout extends HookWidget {
               : AppBar(
                   backgroundColor: Theme.of(context).primaryColor,
                   toolbarHeight: 70.h,
-                  leading: Padding(
-                    padding: EdgeInsetsDirectional.only(start: 6.sp),
-                    child: Builder(builder: (context) {
-                      return IconButton(
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        icon: Icon(
-                          Icons.menu_rounded,
-                          size: 45.sp,
-                        ),
+                  leading: Builder(builder: (context) {
+                    return InkWell(
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: Icon(
+                        Icons.menu_rounded,
+                        size: 45.sp,
                         color: Colors.white,
-                      );
-                    }),
-                  ),
+                      ),
+                    );
+                  }),
                   title: SizedBox(
                     height: 60.h,
                     child: Padding(
@@ -69,7 +65,7 @@ class HomeLayout extends HookWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15),
                                   child: Text(
-                                    'Search drug,company etc...',
+                                    translation(context).searchDrugCompany,
                                     style: Theme.of(context)
                                         .textTheme
                                         .displayMedium,
