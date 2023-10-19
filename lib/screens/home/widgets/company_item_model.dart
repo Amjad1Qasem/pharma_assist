@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ class CompanyModelItem extends StatelessWidget {
             debugPrint('Compani itemes');
 
             context.pushNamed(AppRouter.companyData,
-                argument: ('${model.companyName}'));
+                argument: (model.companyName));
           },
           child: Container(
               width: 100.w,
@@ -28,7 +29,7 @@ class CompanyModelItem extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(5.0.sp),
                 child: Image.asset(
-                  '${model.companyIcon}',
+                  model.companyIcon,
                   fit: BoxFit.fill,
                   width: 70.w,
                   height: 50.h,

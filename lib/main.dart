@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppThemes.light,
-            darkTheme: AppThemes.dark,
+            darkTheme: AppThemes.dark,           
             locale: localizationState.locale,
             themeMode: themeState.themeMode,
             supportedLocales: AppTranslation.all,
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
             ],
             // routerConfig: appRouter.router,
-            onGenerateRoute: AppRouter.onGenerateRoute,
+            // onGenerateRoute: AppRouter.onGenerateRoute,
           );
         },
       ),
