@@ -7,19 +7,24 @@ import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/screens/splash/widgets/animated_background.dart';
 import 'package:pharma_assist/themes/extentions/splash_screen_header_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
+import '../../helpers/local_storage/local_storage_helper.dart';
 
+//TODO:: Make this screen a real splash screen
 class SplashScreen extends HookWidget {
   const SplashScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    void checkRegistration() async{
+      final token = await LocalStorageHelper.getToken();
+        context.goNamed(AppRouter.onBoardingScreen);
+    }
+
     final splashScreenHeaderThemeExtention =
         Theme.of(context).extension<SplashScreenHeaderThemeExtention>()!;
     useEffect(() {
-      final timer = Timer.periodic(const Duration(seconds: 4), (t) {
-        context.goNamed(AppRouter.onBoardingScreen);
-      });
-      return timer.cancel;
+      checkRegistration();
     }, []);
+
     return DefaultScaffold(
       body: Stack(
         children: [
