@@ -52,7 +52,8 @@ dependencies:
   form_field_validator: ^1.1.0
   dio: ^5.3.3
   get_it: ^7.6.4
-
+  share_plus: ^6.0.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/components/botton_back.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
@@ -67,48 +68,16 @@ class CompanyScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       !hasBackButton
-                          ? SizedBox()
-                          : Container(
-                              width: 36.w,
-                              height: 36.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.r),
-                                color: Theme.of(context).colorScheme.onTertiary,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color.fromARGB(48, 0, 0, 0),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 4,
-                                  ),
-                                  BoxShadow(
-                                    color: Color.fromARGB(48, 0, 0, 0),
-                                    offset: Offset(4, 0),
-                                    blurRadius: 4,
-                                  )
-                                ],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.only(
-                                    bottom: 0.sp, top: 0.sp, start: 3.sp),
-                                child: IconButton(
-                                  onPressed: () {
-                                    context.pop();
-                                  },
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
-                                    size: 24.sp,
-                                  ),
-                                ),
-                              ),
+                          ? const SizedBox()
+                          : BottonBack(
+                              onTap: () => context.pop(),
                             ),
                       Text(
                         translation(context).companies,
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       Image(
-                        image: AssetImage(AppImages.iconLogin),
+                        image: const AssetImage(AppImages.iconLogin),
                         fit: BoxFit.cover,
                         width: 45.w,
                         height: 55.h,
@@ -119,12 +88,13 @@ class CompanyScreen extends StatelessWidget {
                 Expanded(
                   child: GridView.builder(
                     padding: EdgeInsets.all(20.sp),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 1,
-                        crossAxisSpacing: 9,
-                        //مسؤلة عن طول الايتم
-                        childAspectRatio: 10 / 16,
-                        crossAxisCount: 3),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            mainAxisSpacing: 1,
+                            crossAxisSpacing: 9,
+                            //مسؤلة عن طول الايتم
+                            childAspectRatio: 10 / 16,
+                            crossAxisCount: 3),
                     itemCount: listOfCompanyItems.length,
                     itemBuilder: (context, index) =>
                         buildCategoryModel(listOfCompanyItems[index], context),

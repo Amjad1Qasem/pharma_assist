@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/components/botton_back.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
-import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -137,7 +137,7 @@ class DetailsMed extends HookWidget {
             'Lörem ipsum speda plaheten. Nisuns ovis: spen i smartball pong. Heterobel pot. Ultraliga telerade epiktiga läde i prebevis. Dojonar dosk. Heskapet gyr örat livslogga. Progen dissade sokron, i niktiga biojär. Tera nynat. Terasa grindsamhälle. Trirad yre i askstoppad geonyrar. Fas filotiv som dät nyna. Heterost deledes nis. Påliga pregisk decimasamma. ',
           ]),
     ];
-    PageController controller = PageController();
+    final controller = usePageController();
     final isLast = useState(false);
     final isFirst = useState(false);
     final isFavorite = useState(false);
@@ -154,42 +154,11 @@ class DetailsMed extends HookWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 36.w,
-                      height: 36.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.r),
-                        color: Theme.of(context).colorScheme.onTertiary,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromARGB(48, 0, 0, 0),
-                            offset: Offset(0, 4),
-                            blurRadius: 4,
-                          ),
-                          BoxShadow(
-                            color: Color.fromARGB(48, 0, 0, 0),
-                            offset: Offset(4, 0),
-                            blurRadius: 4,
-                          )
-                        ],
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(
-                            bottom: 0.sp, top: 0.sp, start: 3.sp),
-                        child: IconButton(
-                          onPressed: () {
-                            context.pop();
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: Theme.of(context).colorScheme.tertiary,
-                            size: 24.sp,
-                          ),
-                        ),
-                      ),
+                    BottonBack(
+                      onTap: () => context.pop(),
                     ),
                     Image(
-                      image: AssetImage(AppImages.iconLogin),
+                      image: const AssetImage(AppImages.iconLogin),
                       fit: BoxFit.cover,
                       width: 45.w,
                       height: 55.h,
@@ -233,7 +202,7 @@ class DetailsMed extends HookWidget {
                           height: 20.h,
                         ),
                         SmoothPageIndicator(
-                            controller: controller, // PageController
+                            controller: controller, 
                             count: listOfMed.length,
                             effect: ExpandingDotsEffect(
                                 activeDotColor:
@@ -280,7 +249,7 @@ class DetailsMed extends HookWidget {
                           'NameMed',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           height: 36,
                           decoration: BoxDecoration(
@@ -367,7 +336,7 @@ class DetailsMed extends HookWidget {
                   ),
                   itemCount: listOfMed.length,
                   controller: controller,
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   onPageChanged: (int index) {
                     if (index == listOfMed.length - 1) {
                       debugPrint('Last screen');

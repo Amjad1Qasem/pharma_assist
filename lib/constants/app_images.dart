@@ -7,6 +7,12 @@ abstract class AppImages {
 
   static const backgroundOnBoarding1 = '$_imagesPath/BackgroundOnBoarding1.png';
 
+  static const personOnBoarding1 = '$_imagesPath/personOnBoarding1.png';
+
+  static const personOnBoarding2 = '$_imagesPath/personOnBoarding2.png';
+
+  static const personOnBoarding3 = '$_imagesPath/personOnBoarding3.png';
+
   static const backgroundOnBoarding2 = '$_imagesPath/BackgroundOnBoarding2.png';
 
   static const backgroundOnBoarding3 = '$_imagesPath/BackgroundOnBoarding3.png';
@@ -31,8 +37,6 @@ abstract class AppImages {
 
   static const successIcon = '$_imagesPath/forget_password_icon3.png';
 
-  static const iconIntro = '$_imagesPath/Icon_app2.png';
-
   static const persIntro = '$_imagesPath/person_intro.png';
 
   static const editIcon = '$_imagesPath/edit_icon.png';
@@ -52,4 +56,6 @@ abstract class AppImages {
   static const favoriteIcon = '$_imagesPath/favorite_icon.png';
 
   static const bottomShadowLightIcon = '$_imagesPath/bottom-shadow-light.png';
+
+  static const bottomShadowDarkIcon = '$_imagesPath/bottom-shadow-dark.png';
 }

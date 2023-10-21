@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/components/botton_back.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/components/default_textformfieald.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
-import 'package:pharma_assist/screens/companies/company_item.dart';
+import 'package:pharma_assist/screens/companies/company_screen/company_item.dart';
+import 'package:pharma_assist/screens/search/widget/filter_search.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 
@@ -164,39 +166,8 @@ class CompanyData extends HookWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 36.w,
-                      height: 36.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.r),
-                        color: Theme.of(context).colorScheme.onTertiary,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color.fromARGB(48, 0, 0, 0),
-                            offset: Offset(0, 4),
-                            blurRadius: 4,
-                          ),
-                          BoxShadow(
-                            color: Color.fromARGB(48, 0, 0, 0),
-                            offset: Offset(4, 0),
-                            blurRadius: 4,
-                          )
-                        ],
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(
-                            bottom: 0.sp, top: 0.sp, start: 3.sp),
-                        child: IconButton(
-                          onPressed: () {
-                            context.pop();
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: Theme.of(context).colorScheme.tertiary,
-                            size: 24.sp,
-                          ),
-                        ),
-                      ),
+                    BottonBack(
+                      onTap: () => context.pop(),
                     ),
                     Text(
                       companyName,
@@ -224,7 +195,7 @@ class CompanyData extends HookWidget {
                           controller: searchController,
                           radius: 10.r,
                           keyboardType: TextInputType.name,
-                          validation: [],
+                          validation: const [],
                           fillColor:
                               Theme.of(context).colorScheme.tertiaryContainer),
                       Padding(
@@ -287,136 +258,55 @@ class CompanyData extends HookWidget {
                                                 ),
                                                 Column(
                                                   children: [
-                                                    CheckboxListTile(
-                                                      title: Text(
-                                                        filterText[0],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelSmall,
-                                                      ),
-                                                      value:
+                                                    FilterCheckboxItem(
+                                                      text: filterText[0],
+                                                      initialValue:
                                                           checkboxValue1.value,
-                                                      onChanged: (bool? val) {
+                                                      onChanged: (bool value) {
                                                         checkboxValue1.value =
-                                                            !checkboxValue1
-                                                                .value;
+                                                            value;
                                                       },
-                                                      activeColor: Colors.blue,
-                                                      checkColor: Colors.white,
-                                                      side: BorderSide(
-                                                          width: 1.5.w,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .outline),
-                                                      controlAffinity:
-                                                          ListTileControlAffinity
-                                                              .leading,
                                                     ),
-                                                    CheckboxListTile(
-                                                      title: Text(
-                                                        filterText[1],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelSmall,
-                                                      ),
-                                                      value:
+                                                    FilterCheckboxItem(
+                                                      text: filterText[1],
+                                                      initialValue:
                                                           checkboxValue2.value,
                                                       onChanged: (bool? val) {
                                                         checkboxValue2.value =
                                                             !checkboxValue2
                                                                 .value;
                                                       },
-                                                      activeColor: Colors.blue,
-                                                      checkColor: Colors.white,
-                                                      side: BorderSide(
-                                                          width: 1.5.w,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .outline),
-                                                      controlAffinity:
-                                                          ListTileControlAffinity
-                                                              .leading,
                                                     ),
-                                                    CheckboxListTile(
-                                                      title: Text(
-                                                        filterText[2],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelSmall,
-                                                      ),
-                                                      value:
+                                                    FilterCheckboxItem(
+                                                      text: filterText[2],
+                                                      initialValue:
                                                           checkboxValue3.value,
-                                                      onChanged: (bool? val) {
+                                                      onChanged: (bool? value) {
                                                         checkboxValue3.value =
                                                             !checkboxValue3
                                                                 .value;
                                                       },
-                                                      activeColor: Colors.blue,
-                                                      checkColor: Colors.white,
-                                                      side: BorderSide(
-                                                          width: 1.5.w,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .outline),
-                                                      controlAffinity:
-                                                          ListTileControlAffinity
-                                                              .leading,
                                                     ),
-                                                    CheckboxListTile(
-                                                      title: Text(
-                                                        filterText[3],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelSmall,
-                                                      ),
-                                                      value:
+                                                    FilterCheckboxItem(
+                                                      text: filterText[3],
+                                                      initialValue:
                                                           checkboxValue4.value,
-                                                      onChanged: (bool? val) {
+                                                      onChanged: (bool? value) {
                                                         checkboxValue4.value =
                                                             !checkboxValue4
                                                                 .value;
                                                       },
-                                                      activeColor: Colors.blue,
-                                                      checkColor: Colors.white,
-                                                      side: BorderSide(
-                                                          width: 1.w,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .outline),
-                                                      controlAffinity:
-                                                          ListTileControlAffinity
-                                                              .leading,
                                                     ),
-                                                    CheckboxListTile(
-                                                      title: Text(
-                                                        filterText[4],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelSmall,
-                                                      ),
-                                                      value:
+                                                    FilterCheckboxItem(
+                                                      text: filterText[4],
+                                                      initialValue:
                                                           checkboxValue5.value,
-                                                      onChanged: (bool? val) {
+                                                      onChanged: (bool? value) {
                                                         checkboxValue5.value =
                                                             !checkboxValue5
                                                                 .value;
                                                       },
-                                                      activeColor: Colors.blue,
-                                                      checkColor: Colors.white,
-                                                      side: BorderSide(
-                                                          width: 1.5.w,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .colorScheme
-                                                                  .outline),
-                                                      controlAffinity:
-                                                          ListTileControlAffinity
-                                                              .leading,
-                                                    )
+                                                    ),
                                                   ],
                                                 )
                                               ],

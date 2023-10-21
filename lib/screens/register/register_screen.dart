@@ -31,264 +31,283 @@ class RegisterScreen extends HookWidget {
         alignment: Alignment.center,
         children: [
           const Background(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+          SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    AppImages.shapOnTopEnd,
-                    color: Theme.of(context).primaryColor,
-                    width: 245.w,
-                    height: 150.h,
+                  Row(
+                    textDirection: TextDirection.ltr,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(AppImages.shapOnTopEnd,
+                          color: Theme.of(context).primaryColor,
+                          width: MediaQuery.of(context).size.width / 1.7,
+                          height: MediaQuery.of(context).size.height * 0.17)
+                    ],
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    height: 100.h,
+                    child: Image.asset(
+                      AppImages.shapOnButtom,
+                      color: Theme.of(context).primaryColor,
+                      width: MediaQuery.of(context).size.width,
+                      height: 150.h,
+                    ),
                   )
                 ],
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.only(start: 40.r, end: 40.r),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      AppImages.iconLogin,
-                      color: colors.iconAppColor,
-                      width: 118.w,
-                      height: 120.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(20.0.sp),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(translation(context).pharma,
-                              textAlign: TextAlign.start,
-                              style: Theme.of(context).textTheme.bodyLarge),
-                          Text(translation(context).assist,
-                              textAlign: TextAlign.start,
-                              style: Theme.of(context).textTheme.bodyLarge),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              SizedBox(
-                height: 100.h,
-                child: Image.asset(
-                  AppImages.shapOnButtom,
-                  color: Theme.of(context).primaryColor,
-                  width: double.infinity.w,
-                  height: 150.h,
-                ),
-              )
-            ],
+            ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-                top: 245.r, bottom: 10.r, start: 20.r, end: 20.r),
-            child: SingleChildScrollView(
+          SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(
+                start: 20.sp,
+                end: 20.sp,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(translation(context).firstName,
-                                style: Theme.of(context).textTheme.labelSmall),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            SizedBox(
-                              height: 45.h,
-                              child: DefaultTextFormField(
-                                fillColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary
-                                    .withOpacity(0.3),
-                                validation: const [],
-                                controller: FirstNamecontroller,
-                                keyboardType: TextInputType.emailAddress,
-                                radius: 15.sp,
-                              ),
-                            )
-                          ],
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      start: 20.sp,
+                      bottom: 30.sp,
+                      end: 20.sp,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          AppImages.iconLogin,
+                          color: colors.iconAppColor,
+                          width: 118.w,
+                          height: 120.h,
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(translation(context).lastName,
-                                style: Theme.of(context).textTheme.labelSmall),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            SizedBox(
-                              height: 45.h,
-                              child: DefaultTextFormField(
-                                fillColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary
-                                    .withOpacity(0.3),
-                                controller: LastNamecontroller,
-                                validation: const [],
-                                keyboardType: TextInputType.emailAddress,
-                                radius: 15.sp,
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                        Text(translation(context).pharmaAssist,
+                            textAlign: TextAlign.start,
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(translation(context).mobileNumber,
-                                style: Theme.of(context).textTheme.labelSmall),
-                            SizedBox(
-                              height: 3.h,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(translation(context).firstName,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall),
+                                  SizedBox(
+                                    height: 3.h,
+                                  ),
+                                  SizedBox(
+                                    height: 45.h,
+                                    child: DefaultTextFormField(
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                          .withOpacity(0.3),
+                                      validation: const [],
+                                      controller: FirstNamecontroller,
+                                      keyboardType: TextInputType.emailAddress,
+                                      radius: 15.sp,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(
-                              height: 45.h,
-                              child: DefaultTextFormField(
-                                fillColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary
-                                    .withOpacity(0.3),
-                                validation: const [],
-                                controller: MobileNumbercontroller,
-                                keyboardType: TextInputType.emailAddress,
-                                radius: 15.sp,
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(translation(context).lastName,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall),
+                                  SizedBox(
+                                    height: 3.h,
+                                  ),
+                                  SizedBox(
+                                    height: 45.h,
+                                    child: DefaultTextFormField(
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                          .withOpacity(0.3),
+                                      controller: LastNamecontroller,
+                                      validation: const [],
+                                      keyboardType: TextInputType.emailAddress,
+                                      radius: 15.sp,
+                                    ),
+                                  )
+                                ],
                               ),
                             )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(translation(context).birthDate,
-                                style: Theme.of(context).textTheme.labelSmall),
-                            SizedBox(
-                              height: 3.h,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(translation(context).mobileNumber,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall),
+                                  SizedBox(
+                                    height: 3.h,
+                                  ),
+                                  SizedBox(
+                                    height: 45.h,
+                                    child: DefaultTextFormField(
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                          .withOpacity(0.3),
+                                      validation: const [],
+                                      controller: MobileNumbercontroller,
+                                      keyboardType: TextInputType.emailAddress,
+                                      radius: 15.sp,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(
-                              height: 45.h,
-                              child: DefaultTextFormField(
-                                fillColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary
-                                    .withOpacity(0.3),
-                                controller: BirthDatecontroller,
-                                validation: const [],
-                                keyboardType: TextInputType.emailAddress,
-                                radius: 15.sp,
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(translation(context).birthDate,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall),
+                                  SizedBox(
+                                    height: 3.h,
+                                  ),
+                                  SizedBox(
+                                    height: 45.h,
+                                    child: DefaultTextFormField(
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                          .withOpacity(0.3),
+                                      controller: BirthDatecontroller,
+                                      validation: const [],
+                                      keyboardType: TextInputType.emailAddress,
+                                      radius: 15.sp,
+                                    ),
+                                  )
+                                ],
                               ),
                             )
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(translation(context).email,
-                                style: Theme.of(context).textTheme.labelSmall),
-                            SizedBox(
-                              height: 3.h,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(translation(context).email,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall),
+                                  SizedBox(
+                                    height: 3.h,
+                                  ),
+                                  SizedBox(
+                                    height: 45.h,
+                                    child: DefaultTextFormField(
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                          .withOpacity(0.3),
+                                      controller: emailcontroller,
+                                      validation: const [],
+                                      keyboardType: TextInputType.emailAddress,
+                                      radius: 15.sp,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(
-                              height: 45.h,
-                              child: DefaultTextFormField(
-                                fillColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary
-                                    .withOpacity(0.3),
-                                controller: emailcontroller,
-                                validation: const [],
-                                keyboardType: TextInputType.emailAddress,
-                                radius: 15.sp,
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(translation(context).password,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall),
+                                  SizedBox(
+                                    height: 3.h,
+                                  ),
+                                  SizedBox(
+                                    height: 45.h,
+                                    child: DefaultTextFormField(
+                                      scureText: scure.value,
+                                      sufix: scure.value
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                      onSufixTap: () {
+                                        scure.value = !scure.value;
+                                      },
+                                      fillColor: Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary
+                                          .withOpacity(0.3),
+                                      validation: const [],
+                                      controller: passcontroller,
+                                      keyboardType: TextInputType.emailAddress,
+                                      radius: 15.sp,
+                                    ),
+                                  )
+                                ],
                               ),
                             )
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.w,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(translation(context).password,
-                                style: Theme.of(context).textTheme.labelSmall),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            SizedBox(
-                              height: 45.h,
-                              child: DefaultTextFormField(
-                                scureText: scure.value,
-                                sufix: scure.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                onSufixTap: () {
-                                  scure.value = !scure.value;
-                                },
-                                fillColor: Theme.of(context)
-                                    .colorScheme
-                                    .onSecondary
-                                    .withOpacity(0.3),
-                                validation: const [],
-                                controller: passcontroller,
-                                keyboardType: TextInputType.emailAddress,
-                                radius: 15.sp,
-                              ),
-                            )
-                          ],
+                        SizedBox(
+                          height: 15.h,
                         ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15.h,
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -312,30 +331,33 @@ class RegisterScreen extends HookWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: 80.w,
-                        color: Theme.of(context).colorScheme.tertiary,
-                        height: 0.5.h,
-                      ),
-                      const Spacer(),
-                      Text(translation(context).continue_with,
-                          style: Theme.of(context).textTheme.labelSmall),
-                      const Spacer(),
-                      Container(
-                        width: 80.w,
-                        color: Theme.of(context).colorScheme.tertiary,
-                        height: 0.5.h,
-                      ),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: 80.w,
+                          color: Theme.of(context).colorScheme.tertiary,
+                          height: 0.5.h,
+                        ),
+                        const Spacer(),
+                        Text(translation(context).continue_with,
+                            style: Theme.of(context).textTheme.labelSmall),
+                        const Spacer(),
+                        Container(
+                          width: 80.w,
+                          color: Theme.of(context).colorScheme.tertiary,
+                          height: 0.5.h,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 10.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 120),
+                    padding: const EdgeInsets.symmetric(horizontal: 126),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -348,7 +370,7 @@ class RegisterScreen extends HookWidget {
                             width: 50.w,
                             height: 50.h,
                             decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 255, 255, 255),
+                                color: Theme.of(context).colorScheme.secondary,
                                 borderRadius: BorderRadius.circular(50)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -371,7 +393,7 @@ class RegisterScreen extends HookWidget {
                             width: 50.w,
                             height: 50.h,
                             decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 255, 255, 255),
+                                color: Theme.of(context).colorScheme.secondary,
                                 borderRadius: BorderRadius.circular(50)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -392,12 +414,12 @@ class RegisterScreen extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        translation(context).noAccount,
+                        translation(context).haveAccount,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                       TextButton(
                           onPressed: () {
-                            context.goNamed(AppRouter.loginScreen);
+                            context.pop();
                           },
                           child: Text(
                             translation(context).loginNow,

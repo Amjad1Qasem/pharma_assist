@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/components/background.dart';
+import 'package:pharma_assist/components/botton_back.dart';
 import 'package:pharma_assist/components/default_scaffold.dart';
 import 'package:pharma_assist/constants/app_images.dart';
 import 'package:pharma_assist/model/classes.dart';
@@ -69,48 +70,16 @@ class CategorySreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       !hasBackButton
-                          ? SizedBox()
-                          : Container(
-                              width: 36.w,
-                              height: 36.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.r),
-                                color: Theme.of(context).colorScheme.onTertiary,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color.fromARGB(48, 0, 0, 0),
-                                    offset: Offset(0, 4),
-                                    blurRadius: 4,
-                                  ),
-                                  BoxShadow(
-                                    color: Color.fromARGB(48, 0, 0, 0),
-                                    offset: Offset(4, 0),
-                                    blurRadius: 4,
-                                  )
-                                ],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.only(
-                                    bottom: 0.sp, top: 0.sp, start: 3.sp),
-                                child: IconButton(
-                                  onPressed: () {
-                                    context.pop();
-                                  },
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
-                                    size: 24.sp,
-                                  ),
-                                ),
-                              ),
+                          ? const SizedBox()
+                          : BottonBack(
+                              onTap: () => context.pop(),
                             ),
                       Text(
                         translation(context).categories,
                         style: Theme.of(context).textTheme.labelLarge,
                       ),
                       Image(
-                        image: AssetImage(AppImages.iconLogin),
+                        image: const AssetImage(AppImages.iconLogin),
                         fit: BoxFit.cover,
                         width: 45.w,
                         height: 55.h,
@@ -121,15 +90,15 @@ class CategorySreen extends StatelessWidget {
                 Expanded(
                   child: GridView.builder(
                       padding: EdgeInsets.all(20.sp),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 1,
-                          crossAxisSpacing: 9,
-                          //مسؤلة عن طول الايتم
-                          childAspectRatio: 12 / 16,
-                          crossAxisCount: 2),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 1,
+                              crossAxisSpacing: 9,
+                              childAspectRatio: 12 / 16,
+                              crossAxisCount: 2),
                       itemCount: listOfCategoryItems.length,
-                      itemBuilder: (context, index) => buildCategoryModel(
-                          listOfCategoryItems[index], context)),
+                      itemBuilder: (context, index) =>
+                          CategoryModelItem(model: listOfCategoryItems[index])),
                 ),
               ],
             ),
@@ -141,7 +110,16 @@ class CategorySreen extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
+
+class CategoryModelItem extends StatelessWidget {
+  const CategoryModelItem({
+    super.key,
+    required this.model,
+  });
+  final CategoryModel model;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
       children: [
         GestureDetector(
           onTap: () {
@@ -177,9 +155,13 @@ Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
                       ),
                       child: Image.asset(
                         // ignore: unnecessary_string_interpolations
-                        '${model.categoriesImage}',
+
+                        model.categoriesImage,
+
                         fit: BoxFit.fill,
+
                         width: 154.w,
+
                         height: 120.h,
                       ),
                     ),
@@ -197,13 +179,18 @@ Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
                     padding: EdgeInsets.all(10.0.sp),
                     child: Text(
                       // ignore: unnecessary_string_interpolations
-                      '${model.categoriesName}',
+
+                      model.categoriesName,
+
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall
                           ?.copyWith(color: const Color(0xFF333333)),
+
                       maxLines: 2,
+
                       textAlign: TextAlign.start,
+
                       overflow: TextOverflow.ellipsis,
                     ),
                   ))
@@ -212,3 +199,5 @@ Widget buildCategoryModel(CategoryModel model, BuildContext context) => Row(
         ),
       ],
     );
+  }
+}

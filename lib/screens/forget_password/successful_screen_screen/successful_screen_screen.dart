@@ -24,6 +24,7 @@ class SuccessfulScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
+              textDirection: TextDirection.ltr,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Image.asset(
@@ -92,7 +93,7 @@ class SuccessfulScreen extends StatelessWidget {
               child: Image.asset(
                 AppImages.shapOnButtom,
                 color: Theme.of(context).primaryColor,
-                width: double.infinity.w,
+                width: MediaQuery.of(context).size.width,
                 height: 150.h,
               ),
             )

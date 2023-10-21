@@ -22,7 +22,7 @@ class LocalizationCubit extends Cubit<LocalizationState> {
     emit(LocalizationFetched(englishLocale));
   }
 
-  void dark() async {
+  void arabic() async {
     const Locale arabicLocale = AppTranslation.arabic;
     await LocalStorageHelper.setLocal(arabicLocale);
     emit(LocalizationFetched(arabicLocale));

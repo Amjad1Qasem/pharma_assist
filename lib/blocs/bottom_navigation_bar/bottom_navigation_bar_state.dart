@@ -8,17 +8,17 @@ sealed class BottomNavigationBarState {
 }
 
 final class HomeState extends BottomNavigationBarState {
-  HomeState() : super(0);
+  const HomeState() : super(0);
 }
 
 final class CategoryState extends BottomNavigationBarState {
-  CategoryState() : super(1);
+  const CategoryState() : super(1);
 }
 
 final class FavorateState extends BottomNavigationBarState {
-  FavorateState() : super(3);
+  const FavorateState() : super(3);
 }
 
 final class ProfileState extends BottomNavigationBarState {
-  ProfileState() : super(2);
+  const ProfileState() : super(2);
 }

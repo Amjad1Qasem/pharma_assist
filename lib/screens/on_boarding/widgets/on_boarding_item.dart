@@ -31,25 +31,30 @@ class OnBoardingItem extends StatelessWidget {
     return Column(children: [
       Padding(
         padding: EdgeInsetsDirectional.only(
-            top: 40.sp, start: 20.sp, end: 20.sp, bottom: 20.sp),
+            top: 40.sp, start: 20.sp, end: 10.sp, bottom: 20.sp),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    onPressed: () {
-                      context.goNamed(AppRouter.loginScreen);
-                    },
-                    child: Text(
-                      translation(context).skip,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ))
-              ],
+            Padding(
+              padding: EdgeInsetsDirectional.only(
+                top: 10.sp,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        context.goNamed(AppRouter.loginScreen);
+                      },
+                      child: Text(
+                        translation(context).skip,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ))
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             Text(model.title, style: Theme.of(context).textTheme.labelLarge),
             Text(model.descriptions,

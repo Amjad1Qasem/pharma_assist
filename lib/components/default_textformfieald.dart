@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
@@ -16,7 +17,11 @@ class DefaultTextFormField extends StatelessWidget {
     this.onSufixTap,
     this.hintText,
     this.prefix,
+    this.style,
     this.onEditingComplete,
+    this.onChanged,
+    this.num = 30,
+    this.textAlignCenter = false,
   });
   final TextEditingController controller;
   final double radius;
@@ -29,20 +34,29 @@ class DefaultTextFormField extends StatelessWidget {
   final Function()? onSufixTap;
   final String? hintText;
   final IconData? prefix;
+  final TextStyle? style;
   final void Function()? onEditingComplete;
+  final Function(String)? onChanged;
+  final int? num;
+  final bool? textAlignCenter;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged: (input) {
-        debugPrint(input);
-      },
+      onChanged: onChanged,
       validator: MultiValidator(validation),
       maxLines: 1,
       controller: controller,
       obscureText: scureText,
+      textAlign: textAlignCenter! ? TextAlign.center : TextAlign.start,
+      inputFormatters: [
+        LengthLimitingTextInputFormatter(num),
+      ],
       autovalidateMode: AutovalidateMode.always,
-      style: Theme.of(context).textTheme.bodyMedium,
+      style: Theme.of(context)
+          .textTheme
+          .bodyMedium
+          ?.copyWith(color: const Color(0XFF333333)),
       keyboardType: keyboardType,
       onEditingComplete: () {
         FocusScope.of(context).nextFocus();
@@ -51,6 +65,7 @@ class DefaultTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         border: const UnderlineInputBorder(borderSide: BorderSide()),
         hintText: hintText,
+        hintStyle: Theme.of(context).textTheme.displayMedium,
         filled: true,
         fillColor: fillColor,
         prefixIcon: prefix != null

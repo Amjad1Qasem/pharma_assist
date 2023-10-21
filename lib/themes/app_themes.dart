@@ -23,7 +23,8 @@ abstract class AppThemes {
             outline: AppColors.grey,
             onTertiaryContainer: AppColors.containerColor,
             onInverseSurface: AppColors.favorateColor,
-            // onBackground: AppColors.backgroundGradientLightColors,
+            surfaceTint: AppColors.primaryGreen,
+            onBackground: AppColors.primaryGreen,
             inversePrimary: AppColors.aqua),
         scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
@@ -45,7 +46,7 @@ abstract class AppThemes {
                 textStyle: TextStyle(
                     color: AppColors.primaryGreen,
                     fontFamily: 'Nunito-Bold',
-                    fontSize: 42.sp,
+                    fontSize: 28.sp,
                     fontWeight: FontWeight.w500)),
             labelSmall: GoogleFonts.nunito(
                 textStyle: TextStyle(
@@ -126,6 +127,8 @@ abstract class AppThemes {
             onTertiary: AppColors.colorButtonBack,
             onTertiaryContainer: AppColors.containerColor.withOpacity(0.3),
             inversePrimary: AppColors.aqua,
+            onBackground: AppColors.white,
+            surfaceTint: AppColors.primaryGreen,
             onInverseSurface: AppColors.favorateColor,
             outline: AppColors.white),
         scaffoldBackgroundColor: Colors.black,
@@ -148,7 +151,7 @@ abstract class AppThemes {
                 textStyle: TextStyle(
                     color: AppColors.white,
                     fontFamily: 'Nunito-Bold',
-                    fontSize: 42.sp,
+                    fontSize: 28.sp,
                     fontWeight: FontWeight.w500)),
             labelSmall: GoogleFonts.nunito(
                 textStyle: TextStyle(

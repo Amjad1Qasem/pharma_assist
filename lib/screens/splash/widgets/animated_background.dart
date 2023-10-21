@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/themes/app_colors.dart';
-
 import 'bg_shape.dart';
 
 class AnimatedBackgound extends HookWidget {
@@ -35,8 +33,8 @@ class AnimatedBackgound extends HookWidget {
             bottom: 0.h,
             child: BgShape(
               color: isFirstColor.value
-                  ? AppColors.lightBlue.withOpacity(0.5)
-                  : AppColors.aqua.withOpacity(0.5),
+                  ? AppColors.lightBlue.withOpacity(0.2)
+                  : AppColors.aqua.withOpacity(0.4),
               blurRadius: 50,
               width: 130.w,
               height: 150.h,

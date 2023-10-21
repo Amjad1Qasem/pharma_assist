@@ -11,7 +11,6 @@ import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
-
 import '../../constants/app_images.dart';
 
 class LoginScreen extends HookWidget {
@@ -79,11 +78,11 @@ class LoginScreen extends HookWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(translation(context).pharma,
+                                Text(translation(context).pharmacist,
                                     textAlign: TextAlign.start,
                                     style:
                                         Theme.of(context).textTheme.bodyLarge),
-                                Text(translation(context).assist,
+                                Text(translation(context).pharmaAssist,
                                     textAlign: TextAlign.start,
                                     style:
                                         Theme.of(context).textTheme.bodyLarge),
@@ -156,6 +155,7 @@ class LoginScreen extends HookWidget {
                               if (state is LoginSuccessed) {
                                 context.goNamed(AppRouter.homeLayout);
                               }
+
                             },
                             builder: (context, state) {
                               return DefaultbButton(
