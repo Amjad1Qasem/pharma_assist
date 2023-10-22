@@ -41,15 +41,24 @@ abstract class LocalStorageHelper {
   static Future<String> setToken({required String token}) async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    await sharedPreferences.setString('token', token);
+    await sharedPreferences.setString(_Keys.token, token);
     return token;
   }
 
-  static Future<String> getToken() async {
+  static void removeToken() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
-    final token = sharedPreferences.getString('token');
-    return token as String;
+    await sharedPreferences.remove(_Keys.token);
+  }
+
+  static Future<String?> getToken() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    final token = sharedPreferences.getString(_Keys.token);
+    return token;
   }
 }
-//تأخذ طريقة setLocal() كائنًا من نوع Locale كإدخال وتقوم بحفظه في تفضيلات المشاركة. يمثل كائن Locale لغة محددة ومنطقة. على سبيل المثال، يمثل كائن Locale en_US اللغة الإنجليزية في الولايات المتحدة.
+
+
+//تأخذ طريقة setLocal() كائنًا من نوع Locale كإدخال وتقوم بحفظه في تفضيلات المشاركة. يمثل كائن Locale لغة محددة ومنطقة. على سبيل المثال
+//، يمثل كائن Locale en_US اللغة الإنجليزية في الولايات المتحدة.

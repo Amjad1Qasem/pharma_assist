@@ -155,7 +155,6 @@ class LoginScreen extends HookWidget {
                               if (state is LoginSuccessed) {
                                 context.goNamed(AppRouter.homeLayout);
                               }
-
                             },
                             builder: (context, state) {
                               return DefaultbButton(
@@ -271,7 +270,7 @@ class LoginScreen extends HookWidget {
                           ),
                           TextButton(
                               onPressed: () {
-                                context.goNamed(AppRouter.registerScreen);
+                                context.pushNamed(AppRouter.registerScreen);
                               },
                               child: Text(
                                 translation(context).registerNow,

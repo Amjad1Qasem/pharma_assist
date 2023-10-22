@@ -4,4 +4,6 @@ abstract class _Keys {
   static String get theme => 'theme';
 
   static String get locale => 'locale';
+
+  static String get token => 'token';
 }

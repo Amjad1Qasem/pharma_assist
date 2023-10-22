@@ -6,9 +6,17 @@ abstract class AuthService {
     final response = await api().post(
       'auth/local',
       body: {'email': email, 'password': password},
-      onFialed: (statusCode, response) =>
+      onFailed: (statusCode, response) =>
           throw Exception(response['message'] as String),
     );
+    api().refreshToken();
     return response!['token'] as String;
   }
+
+  static void logout() async => await api().post(
+        'auth/logout',
+        body: {},
+        onFailed: (statusCode, response) =>
+            throw Exception(response['message'] as String),
+      );
 }
