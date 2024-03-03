@@ -4,7 +4,7 @@ import 'package:pharma_assist/helpers/local_storage/local_storage_helper.dart';
 import 'package:pharma_assist/utilities/log.dart';
 
 class ApiHelper {
-  late final Dio _dio;
+  late  Dio _dio;
   String? _token;
 
   void refreshToken() async {
@@ -12,10 +12,12 @@ class ApiHelper {
     _dio = Dio()
       ..options.baseUrl = "http://localhost:8000/api/v1/"
       ..options.connectTimeout = const Duration(minutes: 1)
+      ..options.receiveDataWhenStatusError = true
       ..options.headers = {
         HttpHeaders.acceptHeader: 'application/json',
         if (_token != null) "Authorization": 'Bearer $_token',
       };
+
     debugPrint('headers = ${_dio.options.headers}');
   }
 

@@ -92,15 +92,12 @@ class DrawerHome extends HookWidget {
                                 child: InkWell(
                                   onTap: () {
                                     if (languageSelected.value) {
-                                      (BlocProvider.of<LocalizationCubit>(
-                                                      context)
+                                      (BlocProvider.of<LocalizationCubit>(context)
                                                   .state as LocalizationFetched)
                                               .locale
                                               .languageCode ==
                                           'en';
-                                      BlocProvider.of<LocalizationCubit>(
-                                              context)
-                                          .english();
+                                      BlocProvider.of<LocalizationCubit>(context).english();
                                     } else {
                                       (BlocProvider.of<LocalizationCubit>(
                                                       context)
@@ -108,9 +105,7 @@ class DrawerHome extends HookWidget {
                                               .locale
                                               .languageCode ==
                                           'ar';
-                                      BlocProvider.of<LocalizationCubit>(
-                                              context)
-                                          .arabic();
+                                      BlocProvider.of<LocalizationCubit>(context).arabic();
                                     }
                                     languageSelected.value =
                                         !languageSelected.value;

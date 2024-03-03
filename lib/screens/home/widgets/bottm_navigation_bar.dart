@@ -13,7 +13,7 @@ class BottomNavBarItem extends StatelessWidget {
     final colorbottomNavigation =
         Theme.of(context).extension<ColorsThemeExtention>()!;
 
-    final state = context.watch<BottomNavigationBarCubit>().state;
+     final state = context.watch<BottomNavigationBarCubit>().state;
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * .07,

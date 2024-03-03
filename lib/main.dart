@@ -5,15 +5,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma_assist/blocs/localization/localization_cubit.dart';
 import 'package:pharma_assist/blocs/no_internet/no_internet_cubit.dart';
 import 'package:pharma_assist/blocs/theme/theme_cubit.dart';
+import 'package:pharma_assist/constants/bloc_observer.dart';
 import 'package:pharma_assist/router/app_router.dart';
 import 'package:pharma_assist/themes/app_themes.dart';
 import 'package:pharma_assist/translation/app_translations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pharma_assist/utilities/api.dart';
 
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   registerApi();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -38,14 +41,13 @@ class MyApp extends StatelessWidget {
               localizationState is! LocalizationFetched) {
             return const SizedBox();
           }
-       
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: AppThemes.light,
-            darkTheme: AppThemes.dark,
-            locale: localizationState.locale,
-            initialRoute: AppRouter.splashScreen,
             themeMode: themeState.themeMode,
+            darkTheme: AppThemes.dark,
+            initialRoute: AppRouter.splashScreen,
+            locale: localizationState.locale,
             supportedLocales: AppTranslation.all,
             localizationsDelegates: const [
               AppLocalizations.delegate,
@@ -59,5 +61,6 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
+  
   }
 }

@@ -72,7 +72,7 @@ class CompanyScreen extends StatelessWidget {
                           : BottonBack(
                               onTap: () => context.pop(),
                             ),
-                      Text(
+                      Text( 
                         translation(context).companies,
                         style: Theme.of(context).textTheme.labelLarge,
                       ),

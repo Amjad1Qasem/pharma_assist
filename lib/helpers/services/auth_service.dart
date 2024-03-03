@@ -1,6 +1,7 @@
 import 'package:pharma_assist/utilities/api.dart';
 
 abstract class AuthService {
+  
   static Future<String> login(
       {required String email, required String password}) async {
     final response = await api().post(

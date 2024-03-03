@@ -91,7 +91,12 @@ class RegisterScreen extends HookWidget {
                         ),
                         Text(translation(context).pharmaAssist,
                             textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.bodyLarge),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(
+                                    fontSize: 28.sp,
+                                    fontWeight: FontWeight.bold))
                       ],
                     ),
                   ),

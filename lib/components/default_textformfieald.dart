@@ -26,8 +26,8 @@ class DefaultTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final double radius;
   final TextInputType keyboardType;
-  final List<FieldValidator> validation;
   final bool scureText;
+  final List<FieldValidator> validation;
   final Widget? suffixIcon;
   final Color fillColor;
   final IconData? sufix;

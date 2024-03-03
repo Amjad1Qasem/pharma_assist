@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:pharma_assist/blocs/login/login_bloc.dart';
 import 'package:pharma_assist/components/background.dart';
 import 'package:pharma_assist/components/default_button.dart';
@@ -12,6 +13,18 @@ import 'package:pharma_assist/themes/extentions/colors_theme_extention.dart';
 import 'package:pharma_assist/utilities/navigation.dart';
 import 'package:pharma_assist/utilities/translation.dart';
 import '../../constants/app_images.dart';
+
+class PhoneNumberValidator extends FieldValidator<String> {
+  static final RegExp _phoneNumberRegExp = RegExp(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$');
+
+  PhoneNumberValidator({String errorText = 'pleas confirm you number'})
+      : super(errorText);
+
+  @override
+  bool isValid(String value) {
+    return _phoneNumberRegExp.hasMatch(value);
+  }
+}
 
 class LoginScreen extends HookWidget {
   const LoginScreen({super.key});
@@ -29,31 +42,36 @@ class LoginScreen extends HookWidget {
           alignment: Alignment.center,
           children: [
             const Background(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+            SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      AppImages.shapOnTopEnd,
-                      color: Theme.of(context).primaryColor,
-                      width: 245.w,
-                      height: 150.h,
+                    Row(
+                      textDirection: TextDirection.ltr,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset(AppImages.shapOnTopEnd,
+                            color: Theme.of(context).primaryColor,
+                            width: MediaQuery.of(context).size.width / 1.7,
+                            height: MediaQuery.of(context).size.height * 0.17)
+                      ],
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      height: 100.h,
+                      child: Image.asset(
+                        AppImages.shapOnButtom,
+                        color: Theme.of(context).primaryColor,
+                        width: MediaQuery.of(context).size.width,
+                        height: 150.h,
+                      ),
                     )
                   ],
                 ),
-                const Spacer(),
-                SizedBox(
-                  height: 100.h,
-                  child: Image.asset(
-                    AppImages.shapOnButtom,
-                    color: Theme.of(context).primaryColor,
-                    width: double.infinity.w,
-                    height: 150.h,
-                  ),
-                )
-              ],
+              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(
@@ -64,7 +82,7 @@ class LoginScreen extends HookWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
@@ -74,22 +92,25 @@ class LoginScreen extends HookWidget {
                             height: 120.h,
                           ),
                           Padding(
-                            padding: EdgeInsets.all(20.0.sp),
+                            padding: EdgeInsets.all(0.0.sp),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(translation(context).pharmacist,
-                                    textAlign: TextAlign.start,
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge),
                                 Text(translation(context).pharmaAssist,
                                     textAlign: TextAlign.start,
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(
+                                            fontSize: 28.sp,
+                                            fontWeight: FontWeight.bold)),
                               ],
                             ),
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       Row(
                         children: [
@@ -105,7 +126,12 @@ class LoginScreen extends HookWidget {
                             .colorScheme
                             .onSecondary
                             .withOpacity(0.3),
-                        validation: const [],
+                        validation:  [
+                           PatternValidator(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$', errorText: 'pleas confirm you number'),
+                          // RequiredValidator(errorText: 'Email is required'),
+                          // MinLengthValidator(8, errorText:' errorText MinLengthValidator')
+                        ],
+                        // validation: MultiValidator(validators),
                         controller: emailcontroller,
                         keyboardType: TextInputType.emailAddress,
                         radius: 20.sp,
@@ -135,14 +161,17 @@ class LoginScreen extends HookWidget {
                             .colorScheme
                             .onSecondary
                             .withOpacity(0.3),
-                        validation: const [],
+                        validation:  [
+                             PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'password must have at least one special character')
+                        ],
                         controller: passcontroller,
                         keyboardType: TextInputType.emailAddress,
                         radius: 20.sp,
                       ),
                       TextButton(
                         onPressed: () {
-                          context.pushNamed(AppRouter.confirmEmail);
+                          context.pushNamed(AppRouter.confirmEmail,
+                              argument: false);
                         },
                         child: Text(translation(context).forgetPassword,
                             style: Theme.of(context).textTheme.bodySmall),
@@ -165,6 +194,9 @@ class LoginScreen extends HookWidget {
                                     context.read<LoginBloc>().add(LoginProcess(
                                         emailcontroller.text,
                                         passcontroller.text));
+
+                                    debugPrint(
+                                        '${emailcontroller.text}/${passcontroller.text}');
                                     debugPrint('Login ok');
                                   }
                                 },

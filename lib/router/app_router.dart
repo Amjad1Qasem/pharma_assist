@@ -173,6 +173,7 @@ class AppRouter {
     return route;
   }
 
+  
   late final GoRouter router = GoRouter(
     initialLocation: detailsMed,
     debugLogDiagnostics: kDebugMode,

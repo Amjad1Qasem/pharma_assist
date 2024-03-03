@@ -44,7 +44,8 @@ class OnBoardingScreen extends HookWidget {
     ];
     bool isLast = false;
     return DefaultScaffold(
-        body: Stack(
+        body:
+        Stack(
       alignment: Alignment.bottomCenter,
       children: [
         const Background(),
@@ -101,6 +102,7 @@ class OnBoardingScreen extends HookWidget {
             ],
           ),
         ),
+     
       ],
     ));
   }
